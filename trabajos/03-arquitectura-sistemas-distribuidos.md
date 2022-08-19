@@ -47,7 +47,7 @@ Si nuestro sistem distribuido está compuesto de varios componentes corriendo co
    ```
   - Levantar una aplicacion web, que utilice esta base de datos
   ```bash
-    docker run -d --net mybridge -e REDIS_HOST=db -e REDIS_PORT=6379 -p 5000:5000 --name web alexisfr/flask-app:latest
+    docker run -d --net mybridge -e REDIS_HOST=db -e REDIS_PORT=6379 -p 5000:5000 --name web fernandobono/flask-app:latest
   ```
   - Abrir un navegador y acceder a la URL: http://localhost:5000/
   - Verificar el estado de los contenedores y redes en Docker, describir:
@@ -81,7 +81,7 @@ if __name__ == "__main__":
 ```
   - Explicar cómo funciona el sistema
   - ¿Para qué se sirven y porque están los parámetros `-e` en el segundo Docker run del ejercicio 1?
-  - ¿Qué pasa si ejecuta `docker rm -f web` y vuelve a correr ` docker run -d --net mybridge -e REDIS_HOST=db -e REDIS_PORT=6379 -p 5000:5000 --name web alexisfr/flask-app:latest` ?
+  - ¿Qué pasa si ejecuta `docker rm -f web` y vuelve a correr ` docker run -d --net mybridge -e REDIS_HOST=db -e REDIS_PORT=6379 -p 5000:5000 --name web fernandobono/flask-app:latest` ?
   - ¿Qué occure en la página web cuando borro el contenedor de Redis con `docker rm -f db`?
   - Y si lo levanto nuevamente con `docker run -d --net mybridge --name db redis:alpine` ?
   - ¿Qué considera usted que haría falta para no perder la cuenta de las visitas?
@@ -104,7 +104,7 @@ if __name__ == "__main__":
 version: '3.6'
 services:
   app:
-    image: alexisfr/flask-app:latest
+    image: fernandobono/flask-app:latest
     depends_on:
       - db
     environment:
