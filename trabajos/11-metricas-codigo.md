@@ -18,7 +18,7 @@ Este trabajo práctico corresponde a la unidad Nº: 6 (Libro Ingeniería de Soft
 
 #### 1- Configurando SonarCloud
   - Crear una cuenta en SonarCloud, se puede utilizar el usuario de GitHub.
-  - Hacer un fork del repositorio https://github.com/alexisfr/java-projects
+  - Hacer un fork del repositorio https://github.com/fernandobono/java-projects
   - Clonar el repositorio al que se le hizo el fork.
   - En SonarCloud crear un nuevo proyecto (haciendo click en el botón +)
   - Elegir la opción de analizar nuevo projecto.
