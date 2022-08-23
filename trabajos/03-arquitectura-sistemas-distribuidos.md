@@ -104,7 +104,7 @@ if __name__ == "__main__":
 version: '3.6'
 services:
   app:
-    image: fernandobono/flask-app:latest
+    image: alexisfr/flask-app:latest
     depends_on:
       - db
     environment:
