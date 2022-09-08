@@ -29,7 +29,7 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
 
 
 #### 2- Instalar Maven
-- Instalar maven desde https://maven.apache.org/download.cgi (última versión disponible 3.6.1)
+- Instalar maven desde https://maven.apache.org/download.cgi (última versión disponible 3.8.6)
 - Descomprimir en una carpeta, por ejemplo C:\tools
 - Agregar el siguiente directorio a la variable de entorno PATH, asumiendo que los binarios de ant están en C:\tools\apache-maven-3.6.1\bin
 
