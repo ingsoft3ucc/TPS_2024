@@ -184,7 +184,7 @@ public class SampleControllerTest extends AbstractTest {
         String content = mvcResult.getResponse().getContentAsString();
         int status = mvcResult.getResponse().getStatus();
         assertEquals(200, status);
-        assertEquals("Expected correct message","{\"message\":\"Spring boot says hello from a Docker container\"}",content);
+        assertEquals(content,"Expected correct message","{\"message\":\"Spring boot says hello from a Docker container\"}");
     }
 }
 ```
