@@ -123,7 +123,7 @@ Scenario('test something', ({ I }) => {
     I.see('GitHub');
     I.see('Built for developers')
     I.scrollPageToBottom()
-    I.seeElement("//li[contains(.,'© 2020 GitHub, Inc.')]")
+    I.seeElement("//li[contains(.,'© 2022 GitHub, Inc.')]")
 });
 ```
 - Para generar selectores fácilmente utilizamos plugins como (Firefox o Chrome)
