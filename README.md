@@ -23,8 +23,6 @@ Repositorio Git de Ingeniería de Software 3
   * [Trabajo Práctico 9 - Pruebas de Unidad](trabajos/09-pruebas-unidad.md)  
 
   * [Trabajo Práctico 10 - Pruebas de Integración](trabajos/10-pruebas-integracion.md)  
-
-  * DEMORADO - (Hacer siguiente) [Trabajo Práctico 11 - Métricas de código](trabajos/11-metricas-codigo.md)
-
-  * [Trabajo Práctico 12 - Despliegue de aplicaciones](trabajos/12-despliegue-aplicaciones.md)  
+ 
+  * [Trabajo Práctico 11 - Despliegue de aplicaciones](trabajos/12-despliegue-aplicaciones.md)  
 
