@@ -18,8 +18,9 @@ Este trabajo práctico corresponde a la unidad Nº: 1
 #### 1- Instalar Git
 Los pasos y referencias asumen el uso del sistema operativo Windows, en caso otros SO seguir recomendaciones específicas.
 
-  - Bajar e instalar el cliente git. Por ejemplo, desde https://git-scm.com/
-  - Bajar e instalar un cliente visual. Por ejemplo, TortoiseGit para Windows o SourceTree para Windows/MAC:
+  - Bajar e instalar el cliente git. Por ejemplo, https://git-for-windows.github.io/
+  - Bajar e instalar un cliente visual.
+ Por ejemplo, TortoiseGit para Windows o SourceTree para Windows/MAC:
     - https://tortoisegit.org/
     - https://www.sourcetreeapp.com/
     - Lista completa: https://git-scm.com/downloads/guis/
@@ -29,49 +30,74 @@ Los pasos y referencias asumen el uso del sistema operativo Windows, en caso otr
   - Agregar un archivo Readme.md, agregar algunas líneas con texto a dicho archivo.
   - Crear un commit y proveer un mensaje descriptivo.
 
-#### 3- Crear un repositorio remoto
+#### 3- Configuración del Editor Predeterminado
+ - Instalar Notepad ++ para Windows o TextMate para Mac OS, colocarle un alias y configurarlo como editor predeterminado
+   
+#### 4- Creación de Repos 01 -> Crearlo en GitHub, clonarlo localmente y subir cambios
   - Crear una cuenta en https://github.com
-  - Crear un nuevo repositorio en dicha página (vacío)
-  - Asociar el repositorio local creado en el punto 2 al creado en github.
-  - Subir los cambios locales a github.
+  - Crear un nuevo repositorio en dicha página con el Readme.md por defecto
+  - Clonar el repo remoto en un nuevo directorio local
+  - Editar archivo Readme.md agregando algunas lineas de texto
+  - Editar (o crear si no existe) el archivo .gitignore agregando los archivos *.bak
+  - Crear un commit y porveer un mensaje descriptivo
+  - Intentar un push al repo remoto
+  - En caso de ser necesario configurar las claves SSH requeridas y reintentar el push.
 
-#### 4- Familiarizarse con el concepto de Pull Request
-Para algunos de los puntos proveer imágenes.
+#### 5- Creación de Repos 02-> Crearlo localmente y subirlo a GitHub
+  - Crear un repo local
+  - Agregar archivo Readme.md con algunas lineas de texto
+  - Crear repo remoto en GitHub
+  - Asociar repo local con remoto
+  - Crear archivo .gitignore
+  - Crear un commit y proveer un mensaje descriptivo
+  - Subir cambios.
+
+#### 6- Ramas
+  - Crear una nueva rama
+  - Cambiarse a esa rama
+  - Hacer un cambio en el archivo Readme.md y hacer commit
+  - Revisar la diferencia entre ramas
+
+#### 7- Merges
+  - Hacer un merge FF
+  - Borrar la rama creada
+  - Ver el log de commits
+  - Repetir el ejercicio 6 para poder hacer un merge con No-FF
+
+#### 8- Resolución de Conflictos
+  - Instalar alguna herramienta de comparación. Idealmente una 3-Way:
+    - P4Merge https://www.perforce.com/downloads/helix-visual-client-p4v:
+![alt text](p4merge.png)
+    - Se puede omitir registración. Instalar solo opción Merge and DiffTool.
+ - ByondCompare trial version https://www.scootersoftware.com/download.php
+    - Configurar Tortoise/SourceTree para soportar esta herramienta.
+    - https://www.scootersoftware.com/support.php?zz=kb_vcs
+    - https://medium.com/@robinvanderknaap/using-p4merge-with-tortoisegit-87c1714eb5e2
+  - Crear una nueva rama conflictBranch
+  - Realizar una modificación en la linea 1 del Readme.md desde main y commitear
+  - En la conflictBranch modificar la misma línea del Readme.md y commitear
+  - Ver las diferencias con git difftool main conflictBranch
+  - Cambiarse a la rama main e intentar mergear con la rama conflictBranch
+  - Resolver el conflicto con git mergetool
+  - Agregar .orig al .gitignore
+  - Hacer commit y push
+
+#### 9- Familiarizarse con el concepto de Pull Request
 
   - Explicar que es un pull request.
   - Crear un branch local y agregar cambios a dicho branch. 
   - Subir el cambio a dicho branch y crear un pull request.
   - Completar el proceso de revisión en github y mergear el PR al branch master.
 
-#### 5- Mergear código con conflictos
-  - Instalar alguna herramienta de comparación. Idealmente una 3-Way:
-    - P4Merge https://www.perforce.com/downloads/helix-visual-client-p4v:
-![alt text](p4merge.png)
-    - Se puede omitir registración. Instalar solo opción Merge and DiffTool.
 
-- ByondCompare trial version https://www.scootersoftware.com/download.php
-  - Configurar Tortoise/SourceTree para soportar esta herramienta.
-    - https://www.scootersoftware.com/support.php?zz=kb_vcs
-    - https://medium.com/@robinvanderknaap/using-p4merge-with-tortoisegit-87c1714eb5e2
-  - Clonar en un segundo directorio el repositorio creado en github.
-  - En el clon inicial, modificar el Readme.md agregando más texto.
-  - Hacer commit y subir el cambio a master a github.
-  - En el segundo clon también agregar texto, en las mismas líneas que se modificaron el punto anterior.
-  - Intentar subir el cambio, haciendo un commit y push. Mostrar el error que se obtiene.
-  - Hacer pull y mergear el código (solo texto por ahora), mostrar la herramienta de mergeo como luce.
-  - Resolver los conflictos del código.
-  - Explicar las versiones LOCAL, BASE y REMOTE.
-  - Pushear el cambio mergeado.
-
-#### 6- Algunos ejercicios online
+#### 10- Algunos ejercicios online
   - Entrar a la página https://learngitbranching.js.org/
   - Completar los ejercicios **Introduction Sequence**
   - Opcional - Completar el resto de los ejercicios para ser un experto en Git!!!
 
-#### 7- Crear Repositorio de la materia
+#### 11- Crear Repositorio de la materia
   - Crear un repositorio para la materia en github. Por ejemplo **ing-software-3**
   - Subir archivo(s) .md con los resultados e imágenes de este trabajo práctico. Puede ser en una subcarpeta **trabajo-practico-01**
-
 
 ### Referencias
 
