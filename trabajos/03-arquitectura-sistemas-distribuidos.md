@@ -80,7 +80,7 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0", debug=True, port=bind_port)
 ```
   - Explicar cómo funciona el sistema
-  - ¿Para qué se sirven y porque están los parámetros `-e` en el segundo Docker run del ejercicio 1?
+  - ¿Para qué sirven y porque están los parámetros `-e` en el segundo Docker run del ejercicio 1?
   - ¿Qué pasa si ejecuta `docker rm -f web` y vuelve a correr ` docker run -d --net mybridge -e REDIS_HOST=db -e REDIS_PORT=6379 -p 5000:5000 --name web alexisfr/flask-app:latest` ?
   - ¿Qué occure en la página web cuando borro el contenedor de Redis con `docker rm -f db`?
   - Y si lo levanto nuevamente con `docker run -d --net mybridge --name db redis:alpine` ?
