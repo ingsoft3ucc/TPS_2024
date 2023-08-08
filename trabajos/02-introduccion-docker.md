@@ -150,20 +150,18 @@ docker rm $(docker ps -a -q -f status=exited)
 docker container prune
 ```
 
-#### 7- Montando volúmenes
+#### 7- Construir una imagen
 
-Hasta este punto los contenedores ejecutados no tenían contacto con el exterior, ellos corrían en su propio entorno hasta que terminaran su ejecución. Ahora veremos cómo montar un volumen dentro del contenedor para visualizar por ejemplo archivos del sistema huésped:
-
-  - Ejecutar el siguiente comando, cambiar myusuario por el usuario que corresponda. En linux/Mac puede utilizarse /home/miusuario):
-```bash
-docker run -it -v C:\Users\misuario\Desktop:/var/escritorio busybox /bin/sh
+- A partir del código https://github.com/ingsoft3ucc/SimpleWebAPI crearemos una imagen.
+- Clonar repo
+- Crear imagen etiquetándola con un nombre. El punto final le indica a Docker que use el dir actual
 ```
-  - Dentro del contenedor correr
-```bash
-ls -l /var/escritorio
-touch /var/escritorio/hola.txt
+docker build –t mywebapi .
 ```
-  - Verificar que el Archivo se ha creado en el escritorio o en el directorio home según corresponda.
+- Revisar Dockerfile y explicar cada línea
+- Ver imágenes disponibles
+- Ejecutar un contenedor con nuestra imagen
+- Subir imagen a nuestra cuenta de dockerhub
 
 #### 8- Publicando puertos
 
@@ -194,7 +192,22 @@ docker run -d -p 80:80 daviey/nyan-cat-web
 ```
   - Accedamos nuevamente a http://localhost y expliquemos que sucede.
 
-#### 9- Utilizando una base de datos
+#### 9- Montando volúmenes
+
+Hasta este punto los contenedores ejecutados no tenían contacto con el exterior, ellos corrían en su propio entorno hasta que terminaran su ejecución. Ahora veremos cómo montar un volumen dentro del contenedor para visualizar por ejemplo archivos del sistema huésped:
+
+  - Ejecutar el siguiente comando, cambiar myusuario por el usuario que corresponda. En linux/Mac puede utilizarse /home/miusuario):
+```bash
+docker run -it -v C:\Users\misuario\Desktop:/var/escritorio busybox /bin/sh
+```
+  - Dentro del contenedor correr
+```bash
+ls -l /var/escritorio
+touch /var/escritorio/hola.txt
+```
+  - Verificar que el Archivo se ha creado en el escritorio o en el directorio home según corresponda.
+
+#### 10- Utilizando una base de datos
 - Levantar una base de datos PostgreSQL
 
 ```bash
@@ -227,6 +240,6 @@ exit
 
 - Explicar que se logro con el comando `docker run` y `docker exec` ejecutados en este ejercicio.
 
-#### 10- Presentación del trabajo práctico.
+#### 11- Presentación del trabajo práctico.
 
 Subir un archivo md (puede ser en una carpeta) trabajo-practico-02 con las salidas de los comandos utilizados. Si es necesario incluir también capturas de pantalla.
