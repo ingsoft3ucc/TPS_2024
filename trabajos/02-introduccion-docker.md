@@ -260,6 +260,10 @@ exit
 
 - Explicar que se logro con el comando `docker run` y `docker exec` ejecutados en este ejercicio.
 
-#### 12- Presentación del trabajo práctico.
+#### 12- Hacer el punto 11 con Microsoft SQL Server
+- Armar un contenedor con SQL Server
+- Crear BD, Tablas y ejecutar SELECT
+  
+#### 13- Presentación del trabajo práctico.
 
 Subir un archivo md (puede ser en una carpeta) trabajo-practico-02 con las salidas de los comandos utilizados. Si es necesario incluir también capturas de pantalla.
