@@ -170,44 +170,64 @@ En el caso de aplicaciones web o base de datos donde se interactúa con estas ap
   - Ejecutar la siguiente imagen, en este caso utilizamos la bandera -d (detach) para que nos devuelva el control de la consola:
 
 ```bash
-docker run -d daviey/nyan-cat-web
+docker run --name myapi -d mywebapi
 ```
-  - Si ejecutamos un comando ps:
-```bash
-PS D:\> docker ps
-CONTAINER ID        IMAGE                 COMMAND                  CREATED             STATUS              PORTS               NAMES
-87d1c5f44809        daviey/nyan-cat-web   "nginx -g 'daemon of…"   2 minutes ago       Up 2 minutes        80/tcp, 443/tcp     compassionate_raman
-```
-  - Vemos que el contendor expone 2 puertos el 80 y el 443, pero si intentamos en un navegador acceder a http://localhost no sucede nada.
+  - Ejecutamos un comando ps:
+  - Vemos que el contendor expone 3 puertos el 80, el 5254 y el 443, pero si intentamos en un navegador acceder a http://localhost/WeatherForecast no sucede nada.
 
   - Procedemos entonces a parar y remover este contenedor:
 ```bash
-docker kill compassionate_raman
-docker rm compassionate_raman
+docker kill myapi
+docker rm myapi
 ```
-  - Vamos a volver a correrlo otra vez, pero publicando uno de los puertos solamente, el este caso el 80
+  - Vamos a volver a correrlo otra vez, pero publicando los puertos 80 y 5254
 
 ```bash
-docker run -d -p 80:80 daviey/nyan-cat-web
+docker run --name myapi -d -p 80:80 -p 5254:5254 mywebapi
 ```
-  - Accedamos nuevamente a http://localhost y expliquemos que sucede.
+  - Accedamos nuevamente a http://localhost/WeatherForecast y a http://localhost/swagger/index.html y expliquemos que sucede.
 
-#### 9- Montando volúmenes
+#### 9- Modificar Dockerfile para soportar bash 
+
+- Modificamos dockerfile para que entre en bash sin ejecutar automaticamente la app
+
+ 
+```bash
+#ENTRYPOINT ["dotnet", "SimpleWebAPI.dll"]
+CMD ["/bin/bash"]
+```
+- Rehacemos la imagen
+- Corremos contenedor en modo interactivo exponiendo puerto
+```
+docker run -it --rm -p 80:80 mywebapi
+```
+- Navegamos a http://localhost/weatherforecast
+- Vemos que no se ejecuta automaticamente
+- Ejecutamos app:
+```
+dotnet SimpleWebAPI.dll
+```
+-Volvemos a navegar a http://localhost/weatherforecast
+- Salimos del contenedor
+
+
+  
+#### 10- Montando volúmenes
 
 Hasta este punto los contenedores ejecutados no tenían contacto con el exterior, ellos corrían en su propio entorno hasta que terminaran su ejecución. Ahora veremos cómo montar un volumen dentro del contenedor para visualizar por ejemplo archivos del sistema huésped:
 
-  - Ejecutar el siguiente comando, cambiar myusuario por el usuario que corresponda. En linux/Mac puede utilizarse /home/miusuario):
+  - Ejecutar el siguiente comando, cambiar myusuario por el usuario que corresponda. En Mac puede utilizarse /Users/miusuario/temp):
 ```bash
-docker run -it -v C:\Users\misuario\Desktop:/var/escritorio busybox /bin/sh
+docker run -it --rm -p 80:80 -v /Users/miuser/temp:/var/temp  mywebapi
 ```
   - Dentro del contenedor correr
 ```bash
-ls -l /var/escritorio
-touch /var/escritorio/hola.txt
+ls -l /var/temp
+touch /var/temp/hola.txt
 ```
-  - Verificar que el Archivo se ha creado en el escritorio o en el directorio home según corresponda.
+  - Verificar que el Archivo se ha creado en el directorio del guest y del host.
 
-#### 10- Utilizando una base de datos
+#### 11- Utilizando una base de datos
 - Levantar una base de datos PostgreSQL
 
 ```bash
@@ -240,6 +260,6 @@ exit
 
 - Explicar que se logro con el comando `docker run` y `docker exec` ejecutados en este ejercicio.
 
-#### 11- Presentación del trabajo práctico.
+#### 12- Presentación del trabajo práctico.
 
 Subir un archivo md (puede ser en una carpeta) trabajo-practico-02 con las salidas de los comandos utilizados. Si es necesario incluir también capturas de pantalla.
