@@ -75,33 +75,13 @@ npm start
 - Analizar el manejo de paquetes y dependencias realizado por npm.
 
 
-#### 3- Opcional: Ejemplo con python
-- Instalar dependencias (Ejemplo Ubuntu) varía según el OS:
-```
-sudo apt install build-essential python3-dev
-pip3 install cookiecutter
-```
-- Correr el scaffold
-```bash
-$ cookiecutter https://github.com/candidtim/cookiecutter-flask-minimal.git
-application_name [Your Application]: test
-package_name [yourapplication]: test
-$
-```
-- Ejecutar la aplicación
-```bash
-cd test
-make run
-```
-- Acceder a la aplicación en: http://localhost:5000/
-- Explicar que hace una tool como cookiecutter, make y pip.
 
-#### 4- Build tools para otros lenguajes
+#### 3- Build tools para otros lenguajes
 - Hacer una lista de herramientas de build (una o varias) para distintos lenguajes, por ejemplo (Rust -> cargo)
 - Elegir al menos 10 lenguajes de la lista de top 20 o top 50 de tiobe: https://www.tiobe.com/tiobe-index/
 
 
-#### 5- Presentación
+#### 4- Presentación
 
 - Subir todo el código, ejemplos y respuestas a una carpeta trabajo-practico-05.
 
