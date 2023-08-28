@@ -24,42 +24,36 @@ Este trabajo práctico corresponde a la unidad Nº: 3
      - ENTRYPOINT
 
 #### 2- Generar imagen de docker
-   - Clonar/Actualizar el repositorio de https://github.com/fernandobono/ing-software-3
-   - El código se encuentra en la carpeta `./proyectos/spring-boot`
-   - Se puede copiar al repositorio personal en una carpeta `trabajo-practico-06/spring-boot`
-   - Compilar la salida con:
-```bash
-cd proyectos/spring-boot
-mvn clean package spring-boot:repackage  
-```
-   - Agregar un archivo llamado **Dockerfile** (en el directorio donde se corrió el comando mvn)
+   - Utilizar el resultado del paso 1 del TP 5
+   - Agregar un archivo llamado **Dockerfile** (en el directorio raiz donde se encuentran todos los archivos y directorios)
 ```Dockerfile
-FROM java:8-jre-alpine
-
-RUN apk add --no-cache bash
-
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
 WORKDIR /app
+EXPOSE 80
 
-COPY target/*.jar ./spring-boot-application.jar
 
-ENV JAVA_OPTS="-Xms32m -Xmx128m"
-EXPOSE 8080
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+WORKDIR /src
+COPY ["MiProyectoWebAPI.csproj", "."]
+RUN dotnet restore "./MiProyectoWebAPI.csproj"
+COPY . .
+WORKDIR "/src/."
+RUN dotnet build "MiProyectoWebAPI.csproj" -c Release -o /app/build
+RUN dotnet publish "MiProyectoWebAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
+ENTRYPOINT ["dotnet", "bin/Debug/net7.0/MiProyectoWebAPI.dll"]
 
-ENTRYPOINT exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar spring-boot-application.jar
 ```
    - Generar la imagen de docker con el comando build
 ```bash
-docker build -t test-spring-boot .
+docker build -t miproyectowebapi .
 ```
   - Ejecutar el contenedor
 ```bash
-docker run -p 8080:8080 test-spring-boot
+docker run -p 8080:80 -it --rm miproyectowebapi
 ```
   - Capturar y mostrar la salida.
-  - Verificar si retorna un mensaje (correr en otro terminal o browser)
-```bash
-curl -v localhost:8080
-```
+  - Entrar a la terminal del contenedor y ver directorios src, app/build y app/publish
+
 
 #### 3- Dockerfiles Multi Etapas
 Se recomienda crear compilaciones de varias etapas para todas las aplicaciones (incluso las heredadas). En resumen, las compilaciones de múltiples etapas:
@@ -73,33 +67,36 @@ Se recomienda crear compilaciones de varias etapas para todas las aplicaciones (
 
 Las compilaciones de múltiples etapas también son esenciales en organizaciones que emplean múltiples lenguajes de programación. La facilidad de crear una imagen de Docker por cualquier persona sin la necesidad de JDK / Node / Python / etc. no puede ser sobrestimado.
 
-- Modificar el dockerfile para el proyecto Java anterior de la siguiente forma
+- Modificar el dockerfile para el proyecto anterior de la siguiente forma
 ```dockerfile
-FROM maven:3.5.2-jdk-8-alpine AS MAVEN_TOOL_CHAIN
-COPY pom.xml /tmp/
-RUN mvn -B dependency:go-offline -f /tmp/pom.xml -s /usr/share/maven/ref/settings-docker.xml
-COPY src /tmp/src/
-WORKDIR /tmp/
-RUN mvn -B -s /usr/share/maven/ref/settings-docker.xml package
+FROM mcr.microsoft.com/dotnet/aspnet:7.0 AS base
+WORKDIR /app
+EXPOSE 80
 
-FROM java:8-jre-alpine
 
-EXPOSE 8080
+FROM mcr.microsoft.com/dotnet/sdk:7.0 AS build
+WORKDIR /src
+COPY ["MiProyectoWebAPI.csproj", "."]
+RUN dotnet restore "./MiProyectoWebAPI.csproj"
+COPY . .
+WORKDIR "/src/."
+RUN dotnet build "MiProyectoWebAPI.csproj" -c Release -o /app/build
 
-RUN mkdir /app
-COPY --from=MAVEN_TOOL_CHAIN /tmp/target/*.jar /app/spring-boot-application.jar
+FROM build AS publish
+RUN dotnet publish "MiProyectoWebAPI.csproj" -c Release -o /app/publish /p:UseAppHost=false
 
-ENV JAVA_OPTS="-Xms32m -Xmx128m"
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app/publish .
+ENTRYPOINT ["dotnet", "MiProyectoWebAPI.dll"]
 
-ENTRYPOINT exec java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app/spring-boot-application.jar
-
-HEALTHCHECK --interval=1m --timeout=3s CMD wget -q -T 3 -s http://localhost:8080/actuator/health/ || exit 1
 ```
 - Construir nuevamente la imagen
 ```bash
-docker build -t test-spring-boot .
+docker build -t miproyectowebapi .
 ```
 - Analizar y explicar el nuevo Dockerfile, incluyendo las nuevas instrucciones.
+- Entrar a la terminal del contenedor y ver directorios src, app/build y app/publish
 
 
 #### 4- Imagen para aplicación web en Nodejs
