@@ -1,4 +1,4 @@
-## Trabajo Práctico 5 - Construcción de Imágenes de Docker
+## Trabajo Práctico 6 - Construcción de Imágenes de Docker
 
 ### 1- Objetivos de Aprendizaje
  - Adquirir conocimientos para construir y publicar imágenes de Docker.
@@ -101,18 +101,8 @@ docker build -t test-spring-boot .
 ```
 - Analizar y explicar el nuevo Dockerfile, incluyendo las nuevas instrucciones.
 
-#### 4- Python Flask
-  - Utilizar el código que se encuentra en la carpeta `./proyectos/python-flask`
-  - Se puede copiar al repositorio personal en una carpeta `trabajo-practico-06/python-flask`
-  - Correr el comando
-```bash
-cd ./proyectos/python-flask
-docker-compose up -d
-```
-  - Explicar que sucedió!
-  - ¿Para qué está la key `build.context` en el docker-compose.yml?
 
-#### 5- Imagen para aplicación web en Nodejs
+#### 4- Imagen para aplicación web en Nodejs
   - Crear una la carpeta `trabajo-practico-06/nodejs-docker`
   - Generar un proyecto siguiendo los pasos descriptos en el trabajo práctico 5 para Nodejs
   - Escribir un Dockerfile para ejecutar la aplicación web localizada en ese directorio
@@ -125,7 +115,7 @@ docker-compose up -d
   - Verificar en http://localhost:3000 que la aplicación está funcionando.
   - Proveer el Dockerfile y los comandos ejecutados como resultado de este ejercicio.
 
-#### 6- Publicar la imagen en Docker Hub.
+#### 5- Publicar la imagen en Docker Hub.
   - Crear una cuenta en Docker Hub si no se dispone de una.
   - Registrase localmente a la cuenta de Docker Hub:
 ```bash
