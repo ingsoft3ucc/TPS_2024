@@ -1,4 +1,4 @@
-## Trabajo Práctico 6 - Construcción de Imágenes de Docker
+## Trabajo Práctico 5 - Construcción de Imágenes de Docker
 
 ### 1- Objetivos de Aprendizaje
  - Adquirir conocimientos para construir y publicar imágenes de Docker.
