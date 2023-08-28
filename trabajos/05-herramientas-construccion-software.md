@@ -34,7 +34,7 @@ npm start
 - Analizar el manejo de paquetes y dependencias realizado por npm.
 
 
-#### 9- Ejemplo con python
+#### 9- Opcional: Ejemplo con python
 - Instalar dependencias (Ejemplo Ubuntu) varía según el OS:
 ```
 sudo apt install build-essential python3-dev
