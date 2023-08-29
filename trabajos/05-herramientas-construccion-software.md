@@ -11,6 +11,11 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
   - En los puntos en los que se pida alguna descripción, realizarlo de la manera más clara posible.
 
 ### 4- Desarrollo:
+**Dependency Hell / DLLs Hell:**
+
+![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/e45ecee8-3fbd-4b7c-9a38-86e0580cba8a)
+
+
 Un software administrador de paquetes es una herramienta esencial en el desarrollo de software que permite a los programadores gestionar eficientemente las bibliotecas, módulos y componentes de código reutilizable que se utilizan en un proyecto. En esencia, actúa como un intermediario que simplifica la incorporación, actualización y eliminación de estas piezas de software en una aplicación.
 
 Su funcionalidad principal abarca desde la descarga automatizada de las bibliotecas necesarias hasta la resolución de conflictos y la garantía de coherencia en las versiones. Los administradores de paquetes también facilitan la especificación de las dependencias exactas o los rangos de versiones que un proyecto requiere, asegurando así que el software funcione de manera predecible y estable.
