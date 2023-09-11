@@ -8,6 +8,28 @@
 ### 2- Unidad temática que incluye este trabajo práctico
 Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery: Cap 3)
 
+
+CI (Continuous Integration), Continuous Deployment y Continuous Delivery son tres prácticas clave en la ingeniería de software que se utilizan para mejorar la calidad del software y acelerar el proceso de desarrollo. Aunque están relacionadas y a menudo se utilizan juntas, tienen diferencias clave:
+
+**Continuous Integration (CI):**
+
+CI es una práctica que implica la integración constante de cambios de código en un repositorio compartido por parte de varios desarrolladores.
+Los desarrolladores envían regularmente su código al repositorio compartido (a menudo varias veces al día).
+Cada vez que se envía código, se activan pruebas automáticas para verificar la calidad y la compatibilidad del código.
+El objetivo principal de CI es detectar y resolver problemas de integración de código de manera temprana y continua, lo que evita la acumulación de errores.
+Continuous Development:
+
+**Continuous Deployment (CD)**
+Se refiere a la práctica de automatizar y acelerar el proceso de entrega de software al entorno de producción.
+En Continuous Development, una vez que el código pasa por el proceso de CI y se considera estable, se automatiza la entrega del software al entorno de producción sin intervención manual adicional.
+Esto implica la automatización de tareas como pruebas adicionales, empaquetado, despliegue y configuración en el entorno de producción.
+Continuous Delivery:
+
+**Continuous Delivery** es similar a Continuous Deployment, pero se detiene en la etapa de preparación para la entrega al entorno de producción.
+En Continuous Delivery, después de que el código pasa por CI y se considera estable, se automatiza el proceso de empaquetado y preparación para la entrega.
+Sin embargo, la entrega real al entorno de producción se realiza manualmente después de una revisión y aprobación humanas.
+En resumen, CI se centra en la integración continua de cambios de código y pruebas automáticas, mientras que Continuous Deployment y Continuous Delivery se centran en la automatización del proceso de entrega de software al entorno de producción, con Continuous Delivery deteniéndose antes de la entrega real y Continuous Deployment automatizando todo el proceso hasta la entrega al entorno de producción. Estas prácticas son esenciales en el desarrollo de software ágil y permiten la entrega rápida y confiable de software de alta calidad.
+
 ### 3- Consignas a desarrollar en el trabajo práctico:
  - Para una mejor evaluación del trabajo práctico, incluir capturas de pantalla de los pasos donde considere necesario.
 
