@@ -76,15 +76,57 @@ cat ~/jenkins/secrets/initialAdminPassword
   - De la lista de plugins disponibles instalamos **Docker Pipeline**
   - Instalamos sin reiniciar el servidor.
   - Abrir nuevamente página de Plugins y explorar la lista, para familiarizarse qué tipo de plugins hay disponibles.
-  - En la sección de administración abrir la opción de configuración de herramientas
-  - Agregar maven con el nombre de **M3** y que se instale automáticamente.
+
+
+En Jenkins, los proyectos de estilo libre (también conocidos como proyectos de construcción de estilo libre o freestyle projects) y los pipelines son dos enfoques diferentes para crear y configurar trabajos de automatización. 
+**Proyecto de Estilo Libre (Freestyle Project):**
+
+-Interfaz Gráfica Amigable: Los proyectos de estilo libre utilizan una interfaz gráfica basada en formularios y menús desplegables que facilita la configuración del trabajo sin necesidad de escribir código o scripts.
+
+-Configuración Basada en Pasos: En un proyecto de estilo libre, configuras el trabajo mediante una serie de pasos predefinidos, como "Construir", "Publicar", "Notificar", etc. Cada paso se configura utilizando opciones y campos específicos.
+
+-Facilidad para Usuarios No Técnicos: Los proyectos de estilo libre son ideales para usuarios que no están familiarizados con la creación de scripts o que desean una configuración rápida y simple.
+
+-Limitaciones en la Lógica de Flujo: Pueden resultar limitados para implementar flujos de trabajo más complejos y condicionales, ya que la lógica de ejecución se basa principalmente en la configuración de pasos secuenciales.
+
+**Pipeline:**
+
+-Definición como Código: Los pipelines se definen como código en un DSL (lenguaje específico de dominio) llamado "Pipeline DSL". Esto significa que defines tu flujo de trabajo como un script de Jenkinsfile, generalmente escrito en Groovy.
+
+-Mayor Flexibilidad: Los pipelines ofrecen una mayor flexibilidad y capacidad para crear flujos de trabajo altamente personalizados y condicionales. Puedes utilizar lógica de programación y estructuras de control en tu Jenkinsfile.
+
+-Gestión de Versiones: Los Jenkinsfiles se pueden gestionar en sistemas de control de versiones (como Git), lo que permite un control de versiones completo y seguimiento de cambios en tus flujos de trabajo.
+
+-Reutilización y Modularidad: Puedes reutilizar secciones de código en múltiples trabajos de Jenkins al utilizar funciones y definiciones compartidas en tus Jenkinsfiles.
+
+-Mayor Escalabilidad: Los pipelines son más adecuados para proyectos grandes y complejos, donde se requiere una gestión más avanzada de flujos de trabajo, paralelismo y manejo de errores.
+
+-En resumen, la principal diferencia radica en la forma en que se configuran y gestionan los trabajos de Jenkins. Los proyectos de estilo libre son más simples y se basan en una configuración gráfica, mientras que los pipelines son más flexibles, versátiles y se definen como código, lo que los hace ideales para flujos de trabajo más complejos y para equipos de desarrollo que prefieren la gestión de código fuente para sus flujos de trabajo de Jenkins. La elección entre uno u otro dependerá de tus necesidades y preferencias específicas.
+
+#### 4- Creando el primer Job de estilo libre
+  - Crear un nuevo item, del tipo estilo libre con nombre **first-job**
+    ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/b7ba3848-4cb4-419e-8116-924ecd59d538)
+
+  - Una vez creado el job, en la sección Build Steps seleccionamos **Ejecutar linea de comandos (shell)** y escribimos:
+    ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/ff7660e5-5887-4a2c-8be7-dfb98357fdc5)
+
+```bash
+current_datetime=$(date +"%Y-%m-%d %H:%M:%S")
+Imprime la fecha y hora actual utilizando el comando echo
+echo "La fecha y hora actual es: $current_datetime"
+```
+
+  - Guardamos y ejecutamos el Job
+  - Analizar la salida del mismo
 
 #### 4- Creando el primer Pipeline Job
   - Crear un nuevo item, del tipo Pipeline con nombre **hello-world**
   - Una vez creado el job, en la sección Pipeline seleccionamos **try sample Pipeline** y luego **Hello World**
   - Guardamos y ejecutamos el Job
   - Analizar la salida del mismo
- 
+
+
+
 #### 5- Creando un Pipeline Job con Git y Maven
   - Similar al paso anterior creamos un ítem con el nombre **simple-maven**
   - Elegir **Git + Maven** en la sección **try sample Pipeline**
