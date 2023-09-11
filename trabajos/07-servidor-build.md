@@ -30,6 +30,12 @@ En Continuous Delivery, después de que el código pasa por CI y se considera es
 Sin embargo, la entrega real al entorno de producción se realiza manualmente después de una revisión y aprobación humanas.
 En resumen, CI se centra en la integración continua de cambios de código y pruebas automáticas, mientras que Continuous Deployment y Continuous Delivery se centran en la automatización del proceso de entrega de software al entorno de producción, con Continuous Delivery deteniéndose antes de la entrega real y Continuous Deployment automatizando todo el proceso hasta la entrega al entorno de producción. Estas prácticas son esenciales en el desarrollo de software ágil y permiten la entrega rápida y confiable de software de alta calidad.
 
+Jenkins es un servidor de integración continua (CI). Jenkins se utiliza principalmente para automatizar y gestionar el proceso de integración continua, lo que significa que se enfoca en la integración constante de cambios de código en un repositorio compartido y en la ejecución de pruebas automáticas para garantizar la calidad del software.
+
+Si bien Jenkins es una herramienta muy versátil y extensible, puede ser parte de un flujo de trabajo más amplio que incluye Continuous Delivery (CD) o Continuous Deployment (CD), pero por sí mismo, Jenkins se centra en la CI.
+
+Para implementar Continuous Delivery o Continuous Deployment, Jenkins se utiliza en combinación con otras herramientas y prácticas para automatizar el proceso de empaquetado, despliegue y entrega de software en entornos de producción. Estas prácticas más amplias involucran la automatización de todo el proceso de desarrollo y entrega de software, y Jenkins puede ser una pieza importante de esa automatización, pero su función principal sigue siendo la de un servidor de integración continua.
+
 ### 3- Consignas a desarrollar en el trabajo práctico:
  - Para una mejor evaluación del trabajo práctico, incluir capturas de pantalla de los pasos donde considere necesario.
 
