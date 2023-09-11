@@ -184,7 +184,12 @@ echo "La fecha y hora actual es: $current_datetime"
 
   - Corremos el Job y revisamos la salida.
 
-#### 6.2- Node.js
+#### 6.2- Monitorear Cambios en el repo de GitHub
+ - Configurar Poll cada 1 minuto
+ - Verificar su funcionamiento al hacer un commit y cuando no se hizo commit
+ - Explicar por que no es posible tener un WebHook en nuestro TP
+   
+#### 6.3- Node.js
  - Repetir el ejercicio 6.1 para construir el proyecto del ejercicio 2 del TP 05.
 
 
