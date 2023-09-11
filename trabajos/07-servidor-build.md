@@ -73,7 +73,7 @@ cat ~/jenkins/secrets/initialAdminPassword
 
 #### 3- Instalando Plugins y configurando herramientas
   - En Administrar Jenkins vamos a la sección de Administrar Plugins
-  - De la lista de plugins disponibles instalamos **Docker Pipeline** y .NET SDK Support
+  - De la lista de plugins disponibles instalamos .NET SDK Support
   - Instalamos sin reiniciar el servidor.
   - Abrir nuevamente página de Plugins y explorar la lista, para familiarizarse qué tipo de plugins hay disponibles.
 
@@ -155,7 +155,9 @@ echo "La fecha y hora actual es: $current_datetime"
   - Guardar y ejecutar el Job
   - Analizar el script, para identificar los diferentes pasos definidos y correlacionarlos con lo que se ejecuta en el Job y se visualiza en la página del Job.
 
-#### 6- Utilizando nuestros proyectos
+#### 6- Utilizando nuestros proyectos. 
+#### 6.1- .NET Core
+
   - Crear un Job de estilo libre llamado "**git-netcore-job**" que construya el proyecto en .NET Core del ejercicio 1 del TP 05.
   - Configurar el Job para obtener el código desde el repositorio de cada alumno:
  ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/832cc713-ca04-4baa-9e19-b9d66b880412)
@@ -169,14 +171,13 @@ echo "La fecha y hora actual es: $current_datetime"
 - Indicar la rama desde la cual se construira:
 
 ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/e08d13b5-a25b-433d-b2a0-0f7cf4b8f01a)
+- Configurar las etapas de Build y Publish del proyecto
 
-  - Generar y publicar los artefactos que se producen.
+![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/825c9d07-2302-4656-9808-5deeb54994ea)
+
+  - Corremos el Job y revisamos la salida.
+
+#### 6.2- Node.js
+ - Repetir el ejercicio 6.1 para construir el proyecto del ejercicio 2 del TP 05.
 
 
-#### 7- Utilizando nuestros proyectos con Docker
-  - Extender el ejercicio 6
-  - Generar y publicar en Dockerhub la imagen de docker ademas del Jar.
-  - Se puede utilizar el [plugin de docker](https://docs.cloudbees.com/docs/admin-resources/latest/plugins/docker-workflow) o comandos de shell.
-  - No poner usuario y password en el pipeline en texto plano, por ejemplo para conectarse a DockerHub, utilizar [credenciales de jenkins](https://github.com/jenkinsci/credentials-plugin/blob/master/docs/user.adoc) en su lugar.
-  - Como resultado de este ejercicio proveer el script en un archivo **spring-boot/Jenkinsfile**
-  - Referencia: https://tutorials.releaseworksacademy.com/learn/building-your-first-docker-image-with-jenkins-2-guide-for-developers
