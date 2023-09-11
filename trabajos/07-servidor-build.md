@@ -14,34 +14,46 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
 ### 4- Desarrollo:
 
 #### 1- Poniendo en funcionamiento Jenkins
-  - Bajar la aplicación y ejecutarla (ejemplo para Linux):
+  - Crear una imagen de Docker que se base en la imagen oficial de Jenkins y que tenga instalado .NET Core. Crear un archivo llamado Dockerfile.jenkins con el siguiente contenido:
+  
 ```bash
-export JENKINS_HOME=~/jenkins
+FROM jenkins/jenkins:lts
 
-mkdir -p $JENKINS_HOME
-cd $JENKINS_HOME
+USER root
 
-wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+# Instala dependencias necesarias
+RUN apt-get update && apt-get install -y \
+    apt-transport-https \
+    software-properties-common \
+    wget
 
-java -jar jenkins.war --httpPort=8081
+# Agrega el repositorio de Microsoft y actualiza
+RUN wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb && \
+    apt-get update
+
+# Instala el SDK de .NET Core
+RUN apt-get install -y dotnet-sdk-7.0
+
+USER jenkins
 ```
-  - Se puede también ejecutar en contenedor de Jenkins (pero para construir imágenes de Docker, el proceso se complica un poco):
 
+- Desde la misma ubicación donde tengas el archivo Dockerfile personalizado, ejecuta el siguiente comando para construir una nueva imagen de Docker con .NET Core y Jenkins. Esto creará una nueva imagen de Docker llamada jenkins-with-dotnetcore:
 ```bash
-# Windows
-
-mkdir -p C:\jenkins
-docker run -d -p 8081:8080 -p 50000:50000 -v C:\jenkins:/var/jenkins_home jenkins/jenkins:lts
+docker build -t jenkins-with-dotnetcore -f Dockerfile.jenkins .
 ```
-
+- Ejecuta un Contenedor con la Nueva Imagen. Ahora, puedes ejecutar un contenedor utilizando la imagen que acabas de crear:
 ```bash
 # Linux / Mac OS
 
 mkdir -p ~/jenkins
-docker run -d -p 8081:8080 -p 50000:50000 -v ~/jenkins:/var/jenkins_home jenkins/jenkins:lts
+docker run -d -p 8080:8080 -p 50000:50000 --name jenkins \
+-v jenkins_home:/var/jenkins_home \
+jenkins-with-dotnetcore
+
 ```
-  - Una vez en ejecución, abrir http://localhost:8081
-  - Inicialmente deberá especificar el texto dentro del archivo ~/jenkins/secrets/initialAdminPassword
+  - Una vez en ejecución, abrir http://localhost:8080
+  - Inicialmente deberá especificar el texto que se encuentra dentro del archivo ~/jenkins/secrets/initialAdminPassword **en el contenedor**
 ```bash
 cat ~/jenkins/secrets/initialAdminPassword
 ```
@@ -54,7 +66,6 @@ cat ~/jenkins/secrets/initialAdminPassword
 
 [imagen1]:  jenkins-admin.png    
 
- - Se aconseja perisistir la variable **JENKINS_HOME**, ya sea por ejemplo en .bashrc o en las variables de entorno de Windows.
 #### 2- Conceptos generales
   - Junto al Jefe de trabajos prácticos:
   - Explicamos los diferentes componentes que vemos en la página principal
