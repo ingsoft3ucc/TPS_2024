@@ -156,11 +156,22 @@ echo "La fecha y hora actual es: $current_datetime"
   - Analizar el script, para identificar los diferentes pasos definidos y correlacionarlos con lo que se ejecuta en el Job y se visualiza en la página del Job.
 
 #### 6- Utilizando nuestros proyectos
-  - Utilizando lo aprendido en el ejercicio 5
-  - Crear un Job que construya el proyecto **spring-boot** del [trabajo práctico 6](06-construccion-imagenes-docker.md).
-  - Obtener el código desde el repositorio de cada alumno (se puede crear un repositorio nuevo en github que contenga solamente el proyecto maven).
+  - Crear un Job de estilo libre llamado "**git-netcore-job**" que construya el proyecto en .NET Core del ejercicio 1 del TP 05.
+  - Configurar el Job para obtener el código desde el repositorio de cada alumno:
+ ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/832cc713-ca04-4baa-9e19-b9d66b880412)
+
+  - Agregar las credenciales correspondientes:
+     
+![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/bf2a9b63-321e-4904-8b20-74291cc43785)
+
+![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/afd7a315-c3db-4913-bdf8-a874ab31508a)
+
+- Indicar la rama desde la cual se construira:
+
+![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/e08d13b5-a25b-433d-b2a0-0f7cf4b8f01a)
+
   - Generar y publicar los artefactos que se producen.
-  - Como resultado de este ejercicio proveer el script en un archivo **spring-boot/Jenkinsfile**
+
 
 #### 7- Utilizando nuestros proyectos con Docker
   - Extender el ejercicio 6
