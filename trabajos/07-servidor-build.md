@@ -77,15 +77,11 @@ cat ~/jenkins/secrets/initialAdminPassword
 
 [imagen1]:  jenkins-admin.png    
 
-#### 2- Conceptos generales
-  - Junto al Jefe de trabajos prácticos:
-  - Explicamos los diferentes componentes que vemos en la página principal
-  - Analizamos las opciones de administración de Jenkins
 
-#### 3- Instalando Plugins y configurando herramientas
+#### 2- Instalando Plugins y configurando herramientas
   - En Administrar Jenkins vamos a la sección de Administrar Plugins
   - De la lista de plugins disponibles instalamos .NET SDK Support
-  - Instalamos sin reiniciar el servidor.
+  - Reiniciamos el servidor
   - Abrir nuevamente página de Plugins y explorar la lista, para familiarizarse qué tipo de plugins hay disponibles.
 
 **Tipos de Jobs**
@@ -115,7 +111,7 @@ En Jenkins, los proyectos de estilo libre (también conocidos como proyectos de 
 
 -En resumen, la principal diferencia radica en la forma en que se configuran y gestionan los trabajos de Jenkins. Los proyectos de estilo libre son más simples y se basan en una configuración gráfica, mientras que los pipelines son más flexibles, versátiles y se definen como código, lo que los hace ideales para flujos de trabajo más complejos y para equipos de desarrollo que prefieren la gestión de código fuente para sus flujos de trabajo de Jenkins. La elección entre uno u otro dependerá de tus necesidades y preferencias específicas.
 
-#### 4- Creando el primer Job de estilo libre
+#### 3- Creando el primer Job de estilo libre
   - Crear un nuevo item, del tipo estilo libre con nombre **first-job**
     ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/b7ba3848-4cb4-419e-8116-924ecd59d538)
 
@@ -134,14 +130,14 @@ echo "La fecha y hora actual es: $current_datetime"
   - Guardamos y ejecutamos el Job
   - Analizar la salida del mismo
 
-#### 5- Creando el primer Pipeline Job
+#### 4- Creando el primer Pipeline Job
   - Crear un nuevo item, del tipo Pipeline con nombre **hello-world**
   - Una vez creado el job, en la sección Pipeline seleccionamos **try sample Pipeline** y luego **Hello World**
   - Guardamos y ejecutamos el Job
   - Analizar la salida del mismo
 
 
-#### 6- Creando un Pipeline Job con Git
+#### 5- Creando un Pipeline Job con Git
   - Similar al paso anterior creamos un ítem con el nombre **github-job**
   - En script escibir:
 ```bash
