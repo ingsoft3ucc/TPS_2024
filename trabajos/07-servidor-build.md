@@ -52,6 +52,17 @@ docker run -d -p 8080:8080 -p 50000:50000 --name jenkins \
 jenkins-with-dotnetcore
 
 ```
+
+```bash
+# windows
+
+mkdir -p c:\jenkins
+docker run -d -p 8080:8080 -p 50000:50000 --name jenkins -v c:\jenkins:/var/jenkins_home jenkins-with-dotnetcore
+```
+
+
+
+
   - Una vez en ejecución, abrir http://localhost:8080
   - Inicialmente deberá especificar el texto que se encuentra dentro del archivo ~/jenkins/secrets/initialAdminPassword **en el contenedor**
 ```bash
