@@ -73,10 +73,11 @@ cat ~/jenkins/secrets/initialAdminPassword
 
 #### 3- Instalando Plugins y configurando herramientas
   - En Administrar Jenkins vamos a la sección de Administrar Plugins
-  - De la lista de plugins disponibles instalamos **Docker Pipeline**
+  - De la lista de plugins disponibles instalamos **Docker Pipeline** y .NET SDK Support
   - Instalamos sin reiniciar el servidor.
   - Abrir nuevamente página de Plugins y explorar la lista, para familiarizarse qué tipo de plugins hay disponibles.
 
+**Tipos de Jobs**
 
 En Jenkins, los proyectos de estilo libre (también conocidos como proyectos de construcción de estilo libre o freestyle projects) y los pipelines son dos enfoques diferentes para crear y configurar trabajos de automatización. 
 **Proyecto de Estilo Libre (Freestyle Project):**
@@ -110,6 +111,9 @@ En Jenkins, los proyectos de estilo libre (también conocidos como proyectos de 
   - Una vez creado el job, en la sección Build Steps seleccionamos **Ejecutar linea de comandos (shell)** y escribimos:
     ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/ff7660e5-5887-4a2c-8be7-dfb98357fdc5)
 
+    ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/b086b436-c41f-4d9b-be65-e8649b4a85e1)
+
+
 ```bash
 current_datetime=$(date +"%Y-%m-%d %H:%M:%S")
 Imprime la fecha y hora actual utilizando el comando echo
@@ -119,17 +123,35 @@ echo "La fecha y hora actual es: $current_datetime"
   - Guardamos y ejecutamos el Job
   - Analizar la salida del mismo
 
-#### 4- Creando el primer Pipeline Job
+#### 5- Creando el primer Pipeline Job
   - Crear un nuevo item, del tipo Pipeline con nombre **hello-world**
   - Una vez creado el job, en la sección Pipeline seleccionamos **try sample Pipeline** y luego **Hello World**
   - Guardamos y ejecutamos el Job
   - Analizar la salida del mismo
 
 
+#### 6- Creando un Pipeline Job con Git
+  - Similar al paso anterior creamos un ítem con el nombre **github-job**
+  - En script escibir:
+```bash
+  pipeline {
+    agent any
 
-#### 5- Creando un Pipeline Job con Git y Maven
-  - Similar al paso anterior creamos un ítem con el nombre **simple-maven**
-  - Elegir **Git + Maven** en la sección **try sample Pipeline**
+   
+    stages {
+        stage('Build') {
+            steps {
+                // Get some code from a GitHub repository
+                git branch: 'main', url: 'https://github.com/ingsoft3ucc/SimpleWebAPI'
+
+            }
+        }
+    }
+ }  
+```
+    
+  ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/6724bc06-44fa-4e88-85d5-13a3f95938b6)
+
   - Guardar y ejecutar el Job
   - Analizar el script, para identificar los diferentes pasos definidos y correlacionarlos con lo que se ejecuta en el Job y se visualiza en la página del Job.
 
