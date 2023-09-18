@@ -190,7 +190,6 @@ echo "La fecha y hora actual es: $current_datetime"
   ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/6724bc06-44fa-4e88-85d5-13a3f95938b6)
 
   - Guardar y ejecutar el Job
-  - Analizar el script, para identificar los diferentes pasos definidos y correlacionarlos con lo que se ejecuta en el Job y se visualiza en la página del Job.
 
 #### 6- Utilizando nuestros proyectos. 
 #### 6.1- .NET Core
