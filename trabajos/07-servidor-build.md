@@ -214,9 +214,15 @@ echo "La fecha y hora actual es: $current_datetime"
   - Corremos el Job y revisamos la salida.
 
 #### 6.2- Monitorear Cambios en el repo de GitHub
+![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/ecbd6b73-7009-4da1-b54b-905a603a0ae9)
+
  - Configurar Poll cada 1 minuto
  - Verificar su funcionamiento al hacer un commit y cuando no se hizo commit
  - Explicar por que no es posible tener un WebHook en nuestro TP
+ - Eplicar Diferencia con ejecutar periódicamente:
+   
+![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/31fc53eb-af06-4a40-adc2-419401d98e72)
+
    
 #### 6.3- Node.js
  - Repetir el ejercicio 6.1 para construir el proyecto del ejercicio 2 del TP 05.
