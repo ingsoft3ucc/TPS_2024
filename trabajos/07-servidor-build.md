@@ -31,6 +31,7 @@ En resumen, CI se centra en la integración continua de cambios de código y pru
 Estas prácticas son esenciales en el desarrollo de software ágil y permiten la entrega rápida y confiable de software de alta calidad.
 
 **JENKINS**
+
 Jenkins es un servidor de integración continua (CI). Jenkins se utiliza principalmente para automatizar y gestionar el proceso de integración continua, lo que significa que se enfoca en la integración constante de cambios de código en un repositorio compartido y en la ejecución de pruebas automáticas para garantizar la calidad del software.
 
 Si bien Jenkins es una herramienta muy versátil y extensible, puede ser parte de un flujo de trabajo más amplio que incluye Continuous Delivery (CD) o Continuous Deployment (CD), pero por sí mismo, Jenkins se centra en la CI.
