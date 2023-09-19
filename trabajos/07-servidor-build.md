@@ -152,9 +152,12 @@ En Jenkins, los proyectos de estilo libre (también conocidos como proyectos de 
 
 
 ```bash
+# Obtén la fecha y hora actual en formato personalizado
 current_datetime=$(date +"%Y-%m-%d %H:%M:%S")
-Imprime la fecha y hora actual utilizando el comando echo
+
+# Imprime la fecha y hora actual utilizando el comando echo
 echo "La fecha y hora actual es: $current_datetime"
+
 ```
 
   - Guardamos y ejecutamos el Job
