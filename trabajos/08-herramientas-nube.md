@@ -22,7 +22,7 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
 #### 2- Configurando GitHub Actions
   - Repetir el ejercicio 6.1 del trabajo práctico [trabajo práctico 7](07-servidor-build.md) para el proyecto SimpleWebAPI, pero utilizando GitHub Actions.
   - En GitHub, en el repositorio donde se encuentra la aplicación **SimpleWebAPI**, ir a la opción **Actions** y crear un nuevo `workflow`.
-  - El nombre de archivo puede ser main.xml y tendrá un contenido similar al siguiente (el path donde se encuentra el código puede ser diferente):
+  - El nombre de archivo puede ser main.yml y tendrá un contenido similar al siguiente:
 
 ```yaml
 name: Build and Publish
@@ -32,7 +32,6 @@ on:
   push:
     branches:
       - main
- 
 
 jobs:
   build:
@@ -76,27 +75,21 @@ jobs:
     - name: Deploy to Server
       run: |
         echo "Deploy"
+   
 ```
   - Guardar el archivo (hacemos commit directamente en GitHub por ejemplo) y ejecutamos manualmente el pipeline.
-  - Explicar que realiza el pipeline anterior.
+  - Explicar paso a paso que realiza el pipeline anterior.
 
 #### 3- Utilizando nuestros proyectos con Docker
-  - Repetir el ejercicio 7 del trabajo práctico [trabajo práctico 7](07-servidor-build.md), pero utilizando GitHub Actions.
+  - En GitHub Actions generar una acción que genere una imagen de docker con nuestra aplicación **SimpleWebAPI** y la suba a DockerHub
   - Generar `secretos` y los `pasos` necesarios para subir la imagen a Docker Hub. [Referencia](https://github.com/actions/starter-workflows/blob/main/ci/docker-publish.yml)
 
-#### 4- Opcional: Configurando CircleCI
-  - De manera similar al ejercicio 2, configurar un build job para el mismo proyecto, pero utilizando CircleCI
-  - Para capturar artefactos, utilizar esta referencia: https://circleci.com/docs/2.0/artifacts/
-  - Como resultado de este ejercicio, subir el config.yml a la carpeta **spring-boot**
+#### 4- Crear una GitHub Action que genere los artefactos para el proyecto React
+  - En GitHub Actions generar una acción que genere los artefactos para el Ejercicio 2 del TP 5
 
-#### 5- Opcional: Configurando TravisCI
-  - Configurar el mismo proyecto, pero para TravisCI. No es necesario publicar los artefactos porque TravisCI no dispone de esta funcionalidad.
-  - Como resultado de este ejercicio subir el archivo .travis.yml a la carpeta **spring-boot**
+#### 5- Crear una GitHub Action que genere los artefactos para el proyecto React
+  - En GitHub Actions generar una acción que genere una imagen de Docker para para el Ejercicio 2 del TP 5 y la suba a DockerHub
 
-#### 6- Opcional: Configurando Codefresh
-  - Configurar el mismo proyecto, pero para Codefresh. 
-  - Como resultado de este ejercicio subir el archivo codefresh.yml a la carpeta **spring-boot**
-
-#### 7- Opcional: Configurando Gitlab
+#### 6- Opcional: Configurando Gitlab
   - Configurar el mismo proyecto, pero para Gitlab. 
   - Como resultado de este ejercicio subir el archivo .gitlab-ci.yml a la carpeta **spring-boot**
