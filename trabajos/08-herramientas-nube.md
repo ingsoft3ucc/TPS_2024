@@ -12,6 +12,8 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
  - En este caso existen varias herramientas con funcionalidades similares en la nube:
    - [GitHub Actions](https://github.com/actions)
    - [Gitlab](https://about.gitlab.com/) - Trial de 30 días
+   - [Azure](https://portal.azure.com/)
+      
 
 ## 4- Desarrollo:
 
