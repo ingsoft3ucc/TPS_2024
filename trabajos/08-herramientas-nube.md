@@ -92,6 +92,9 @@ En tu repositorio de GitHub, ve a "Settings" (Configuración) > "Secrets" (Secre
 Haz clic en "New repository secret" (Nuevo secreto del repositorio).
 Define dos secretos: uno para el nombre de usuario de Docker Hub y otro para la contraseña de Docker Hub. Puedes nombrar estos secretos como DOCKERHUB_USERNAME y DOCKERHUB_PASSWORD, respectivamente.
 
+<img width="1235" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/6f68fde7-d353-4cb0-9d9c-2db4b7355b49">
+
+
 - Paso 2: Modificar tu archivo YAML de GitHub Actions para construir y subir la imagen de Docker:
 
 #### 4- Crear una GitHub Action que genere los artefactos para el proyecto React
