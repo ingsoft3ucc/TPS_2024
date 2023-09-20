@@ -11,9 +11,6 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
  - Para una mejor evaluación del trabajo práctico, incluir capturas de pantalla de los pasos donde considere necesario.
  - En este caso existen varias herramientas con funcionalidades similares en la nube:
    - [GitHub Actions](https://github.com/actions)
-   - [CircleCI](https://circleci.com/)
-   - [Travis CI](https://travis-ci.com/)
-   - [Codefresh](https://codefresh.io/)
    - [Gitlab](https://about.gitlab.com/) - Trial de 30 días
 
 ## 4- Desarrollo:
@@ -23,7 +20,7 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
   - Sacar conclusiones
 
 #### 2- Configurando GitHub Actions
-  - Repetir el ejercicio 6 del trabajo práctico [trabajo práctico 7](07-servidor-build.md) para el proyecto SimpleWebAPI, pero utilizando GitHub Actions.
+  - Repetir el ejercicio 6.1 del trabajo práctico [trabajo práctico 7](07-servidor-build.md) para el proyecto SimpleWebAPI, pero utilizando GitHub Actions.
   - En GitHub, en el repositorio donde se encuentra la aplicación **SimpleWebAPI**, ir a la opción **Actions** y crear un nuevo `workflow`.
   - El nombre de archivo puede ser main.xml y tendrá un contenido similar al siguiente (el path donde se encuentra el código puede ser diferente):
 
