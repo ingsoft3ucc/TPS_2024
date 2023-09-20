@@ -86,6 +86,14 @@ jobs:
   - En GitHub Actions generar una acción que genere una imagen de docker con nuestra aplicación **SimpleWebAPI** y la suba a DockerHub
   - Generar `secretos` y los `pasos` necesarios para subir la imagen a Docker Hub. [Referencia](https://github.com/actions/starter-workflows/blob/main/ci/docker-publish.yml)
 
+- Paso 1: Configurar las credenciales de Docker Hub en tu repositorio de GitHub:
+
+En tu repositorio de GitHub, ve a "Settings" (Configuración) > "Secrets" (Secretos).
+Haz clic en "New repository secret" (Nuevo secreto del repositorio).
+Define dos secretos: uno para el nombre de usuario de Docker Hub y otro para la contraseña de Docker Hub. Puedes nombrar estos secretos como DOCKERHUB_USERNAME y DOCKERHUB_PASSWORD, respectivamente.
+
+- Paso 2: Modificar tu archivo YAML de GitHub Actions para construir y subir la imagen de Docker:
+
 #### 4- Crear una GitHub Action que genere los artefactos para el proyecto React
   - En GitHub Actions generar una acción que genere los artefactos para el Ejercicio 2 del TP 5
 
