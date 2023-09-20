@@ -23,55 +23,62 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
   - Sacar conclusiones
 
 #### 2- Configurando GitHub Actions
-  - Repetir el ejercicio 6 del trabajo práctico [trabajo práctico 7](07-servidor-build.md) para el proyecto **spring-boot**, pero utilizando GitHub Actions.
-  - En GitHub, en el repositorio donde se encuentra la aplicación **spring-boot**, ir a la opción **Actions** y crear un nuevo `workflow`.
-  - El nombre de archivo puede ser build.xml y tendrá un contenido similar al siguiente (el path donde se encuentra el código puede ser diferente):
+  - Repetir el ejercicio 6 del trabajo práctico [trabajo práctico 7](07-servidor-build.md) para el proyecto SimpleWebAPI, pero utilizando GitHub Actions.
+  - En GitHub, en el repositorio donde se encuentra la aplicación **SimpleWebAPI**, ir a la opción **Actions** y crear un nuevo `workflow`.
+  - El nombre de archivo puede ser main.xml y tendrá un contenido similar al siguiente (el path donde se encuentra el código puede ser diferente):
 
 ```yaml
-# This is a basic workflow to help you get started with Actions
+name: Build and Publish
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the master branch
-  push:
-    paths:
-    - 'proyectos/spring-boot/**'
-    branches: [ master ]
-  pull_request:
-    paths:
-    - 'proyectos/spring-boot/**'  
-    branches: [ master ]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+  push:
+    branches:
+      - main
+ 
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v3
 
-      # Install Java JDK with maven
-      - name: Set up JDK 8
-        uses: actions/setup-java@v2
-        with:
-          java-version: '8'
-          distribution: 'adopt'
-          cache: maven
-          
-      # Compile the application
-      - name: Build with Maven
-        run: |
-          cd proyectos/spring-boot/
-          mvn -B package --file pom.xml
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 7.0.x
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build
+      run: dotnet build --configuration Release
+
+    - name: Publish
+      run: dotnet publish --configuration Release --output ./publish
+
+    - name: Upload Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: app
+        path: ./publish
+  
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Download Artifacts
+      uses: actions/download-artifact@v3
+      with:
+        name: app
+    - name: Output contents
+      run: ls
+    - name: Deploy to Server
+      run: |
+        echo "Deploy"
 ```
   - Guardar el archivo (hacemos commit directamente en GitHub por ejemplo) y ejecutamos manualmente el pipeline.
   - Explicar que realiza el pipeline anterior.
