@@ -121,6 +121,9 @@ jobs:
    
 ```
   - Guardar el archivo (hacemos commit directamente en GitHub por ejemplo) y vemos la ejecución del worflow y sus logs.
+
+   <img width="1103" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/c30255a1-fe44-4ea7-b189-775fc8ad795b">
+
   - Explicar paso a paso que realiza el pipeline anterior.
 
 #### 3- Configurar un worflow en GitHub Actions para generar una imagen de Docker de **SimpleWebApi** y subirla a DockerHub
