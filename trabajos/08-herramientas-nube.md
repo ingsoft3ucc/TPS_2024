@@ -18,10 +18,51 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
 ## 4- Desarrollo:
 
 #### 1- Pros y Contras
-  - Listar los pros y contras de este tipo de herramientas
-  - Sacar conclusiones
+Las herramientas de construcción en la nube como GitHub Actions, GitLab CI/CD y Azure Pipelines ofrecen varias ventajas y desventajas en comparación con herramientas locales como Jenkins. A continuación, se presentan algunos pros y contras de las herramientas de construcción en la nube en contraste con Jenkins:
+
+Ventajas de las herramientas de construcción en la nube:
+
+Facilidad de configuración y administración: Las herramientas en la nube generalmente son más fáciles de configurar y administrar que las soluciones locales como Jenkins. No es necesario preocuparse por la gestión de servidores, actualizaciones de software, ni la configuración inicial.
+
+Escalabilidad: Las herramientas en la nube generalmente se escalan automáticamente para manejar la carga según sea necesario. Esto es útil cuando se necesita aumentar o reducir la capacidad de construcción según las demandas del proyecto.
+
+Integración con servicios en la nube: Estas herramientas suelen estar integradas con servicios en la nube como AWS, Azure, Google Cloud, y otros, lo que facilita la implementación y la orquestación de recursos en la nube.
+
+Facilita la colaboración: Las herramientas en la nube suelen proporcionar una plataforma centralizada para que los equipos colaboren en la construcción, pruebas y despliegue de aplicaciones, lo que puede mejorar la eficiencia.
+
+Compatibilidad con control de versiones: Estas herramientas están diseñadas para integrarse fácilmente con sistemas de control de versiones como Git, lo que simplifica la automatización de flujos de trabajo basados en repositorios.
+
+Desventajas de las herramientas de construcción en la nube:
+
+Costos: Aunque algunas de estas herramientas ofrecen planes gratuitos, los proyectos más grandes pueden incurrir en costos significativos en función del uso. Jenkins, al ser de código abierto, generalmente no tiene costos de licencia asociados.
+
+Dependencia de la conectividad a Internet: Las herramientas en la nube requieren una conexión a Internet constante para funcionar. Si la conectividad es un problema, esto puede afectar la continuidad de los flujos de trabajo.
+
+Limitaciones en personalización: Algunas herramientas en la nube pueden no ser tan flexibles en términos de personalización y configuración avanzada en comparación con Jenkins, que permite una amplia gama de complementos y scripts personalizados.
+
+Privacidad y seguridad: Puede haber preocupaciones de seguridad al confiar en herramientas de terceros con datos y código fuente confidenciales. Las organizaciones deben evaluar cuidadosamente las políticas de seguridad y privacidad de estas herramientas.
+
+Posibles restricciones en recursos: En algunas ocasiones, las herramientas en la nube pueden imponer límites en la cantidad de recursos que se pueden utilizar para ejecutar trabajos de construcción, lo que puede ser una limitación en proyectos muy grandes o intensivos en recursos.
+
+En última instancia, la elección entre herramientas de construcción en la nube como GitHub Actions, GitLab CI/CD, Azure Pipelines y herramientas locales como Jenkins dependerá de las necesidades específicas de tu proyecto, los requisitos de seguridad y la infraestructura disponible.
 
 #### 2- Configurando GitHub Actions
+  - Workflows, Jobs, Steps, Acciones, Eventos y Runners.
+
+   <img width="1218" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/984508c4-5a89-4fd3-8580-08b49a856d75">
+   <img width="659" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/c58571dc-6bc2-4dd5-a635-e8d96390941a">
+   <img width="681" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/9e03b293-7be3-4279-808e-a32771361c01">
+   <img width="694" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/3d2c541c-92b4-499d-8dd3-0e04c842e574">
+
+   <img width="728" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/0b609878-793f-484e-8164-a98973c17118">
+   <img width="733" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/3b578407-57e6-46f7-b6b6-f966cd3d3ca4">
+
+<img width="691" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/9c44dfb6-00f4-46b6-83d7-a5812df3a4e8">
+
+
+
+
+  - Revisión Rápida de la sintaxis yml para los worflows
   - Repetir el ejercicio 6.1 del trabajo práctico [trabajo práctico 7](07-servidor-build.md) para el proyecto SimpleWebAPI, pero utilizando GitHub Actions.
   - En GitHub, en el repositorio donde se encuentra la aplicación **SimpleWebAPI**, ir a la opción **Actions** y crear un nuevo `workflow`.
   - El nombre de archivo puede ser main.yml y tendrá un contenido similar al siguiente:
