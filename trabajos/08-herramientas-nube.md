@@ -95,7 +95,54 @@ Define dos secretos: uno para el nombre de usuario de Docker Hub y otro para la 
 <img width="1235" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/6f68fde7-d353-4cb0-9d9c-2db4b7355b49">
 
 
-- Paso 2: Modificar tu archivo YAML de GitHub Actions para construir y subir la imagen de Docker:
+- Paso 2: Crear un workflow para construir y subir la imagen de Docker:
+
+```yaml
+name: Docker Image CI
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ${{ secrets.DOCKERHUB_USERNAME }}/simple-web-api-gh:latest
+    
+    - name: Log in to Docker Hub
+      run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
+    
+    - name: Push Docker image to Docker Hub
+      run: |
+        docker push ${{ secrets.DOCKERHUB_USERNAME }}/simple-web-api-gh:latest
+      
+    - name: Clean up
+      run: docker logout
+      if: always() # Se ejecutará incluso si un paso anterior falla
+
+ 
+   
+```
+  
+- Paso 3: Verificar en DockerHub que la imagen ha sido subida
+- Paso 4: Descargar la imagen
+```bash
+docker pull <dockerhub-username>/simple-web-api-gh:latest 
+```
+- Paso 5: Crear el contenedor
+```bash
+docker run --name myapi -d -p 8080:80 <dockerhub-username>/simple-web-api-gh
+```
+- Paso 6: Navegar a http://localhost:8080/weatherforecast
+
+<img width="1332" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/bd1fbf39-bbfb-448a-a59a-07265e100ddd">
+
 
 #### 4- Crear una GitHub Action que genere los artefactos para el proyecto React
   - En GitHub Actions generar una acción que genere los artefactos para el Ejercicio 2 del TP 5
