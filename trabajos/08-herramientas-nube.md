@@ -82,7 +82,8 @@ jobs:
   - Guardar el archivo (hacemos commit directamente en GitHub por ejemplo) y vemos la ejecución del worflow y sus logs.
   - Explicar paso a paso que realiza el pipeline anterior.
 
-#### 3- Utilizando nuestros proyectos con Docker
+#### 3- Configurar un worflow en GitHub Actions para generar una imagen de Docker de **SimpleWebApi** y subirla a DockerHub
+
   - En GitHub Actions generar una acción que genere una imagen de docker con nuestra aplicación **SimpleWebAPI** y la suba a DockerHub
   - Generar `secretos` y los `pasos` necesarios para subir la imagen a Docker Hub. [Referencia](https://github.com/actions/starter-workflows/blob/main/ci/docker-publish.yml)
 
@@ -147,7 +148,7 @@ docker run --name myapi -d -p 8080:80 <dockerhub-username>/simple-web-api-gh
 #### 4- Crear una GitHub Action que genere los artefactos para el proyecto React
   - En GitHub Actions generar una acción que genere los artefactos para el Ejercicio 2 del TP 5
 
-#### 5- Crear una GitHub Action que genere los artefactos para el proyecto React
+#### 5- Crear una GitHub Action que genere una imagen de Docker para el proyecto React y lo suba a DockerHub
   - En GitHub Actions generar una acción que genere una imagen de Docker para para el Ejercicio 2 del TP 5 y la suba a DockerHub
 
 #### 6- Opcional: Configurando Gitlab
