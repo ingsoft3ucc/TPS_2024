@@ -44,6 +44,56 @@ Si comienza a desarrollar pruebas para una base de código existente sin ninguna
 
 ## 4- Desarrollo:
 
+4.1 Preparamos el entorno:
+- Instalamos VS.Code: https://code.visualstudio.com/download
+
+- Desde linea de comandos clonamos el proyecto MiSimpleApp, entramos a la carpeta y abrimos VS.Code
+
+```bash
+git clone https://github.com/ingsoft3ucc/MiSimpleApp.git
+cd MiSimpleApp
+code .
+```
+- Cerramos VS.Code
+- Nos movemos una carpeta hacia arriba y creamos un nuevo proyecto de pruebas unitarias con NUnit:
+
+```bash
+dotnet new nunit -n MiSimpleAppTests
+```
+- Entramos a la carpeta del nuevo proyecto y agregamos los paquetes NUnit y NUnit.ConsoleRunner. Luego le agregamos al proyecto de pruebas una referencia al proyecto que vamos a probar. Nos movemos una carpeta hacia arriba y lo vemos en VS.Code
+
+```bash
+cd MiSimpleAppTests
+dotnet add package NUnit
+dotnet add package NUnit.ConsoleRunner
+dotnet add reference ../MiSimpleApp/MiSimpleApp.csproj
+cd ..
+code .
+```
+
+- Instalamos extensión ".NET Core Test Explorer"
+
+  <img width="938" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/eb7e5845-24ad-462e-90a6-9fbc4817e4f4">
+- Nos aparece un ícono de Pruebas, lo seleccionamos, hacemos click en ***Open Settings*** 
+
+<img width="424" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/7257a4e7-4aea-433b-9ef2-28089c1952d5">
+
+- Se abre el archivo settings.json y escribimos el nombre del proyecto de pruebas y el nombre de la dll resultante de la compilación del proyecto de pruebas:
+  
+```bash
+{
+    "dotnet-test-explorer.testProjectPath": "MiSimpleAppTests",
+    "dotnet-test-explorer.testFileSuffix": ".Tests.dll"
+}
+```
+- Guardamos el archivo, volvemos hacer click en el ícono de pruebas y ahora sí tenemos la posibilidad de correr pruebas haciendo click en el botón de ***Play***
+
+  <img width="432" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/a03973af-a77f-45d0-ac94-d3e7872e12b7">
+
+
+  
+
+
 #### 1- Familiarizarse con algunos conceptos del framework JUnit:
 
 | JUnit 4                            | Descripción                                                                                                                                                                                                                                                                                                                       |
