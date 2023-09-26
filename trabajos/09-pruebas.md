@@ -90,9 +90,48 @@ code .
 
   <img width="432" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/a03973af-a77f-45d0-ac94-d3e7872e12b7">
 
-
+- Revisamos el código del proyecto MiSimpleApp:
+	- Clases.cs:
+   	```csharp
+    	
+	    public class Reservation
+	    {
+	        public User MadeBy { get; set; }
+	
+	        public bool CanBeCancelledBy(User user)
+	        {
+	            if (user.IsAdmin)
+	                return true;
+	            if (MadeBy==user)
+	                return true;
+	            return false;
+	
+	            //return (user.IsAdmin || MadeBy == user);
+	        }
+	        
+	    }
+	
+	    public class User
+	    {
+	        public bool IsAdmin { get; set; }
+	    }
+	```
+	- Program.cs:
+	 ```csharp
+	  using System;
+	
+	class Program
+	{
+	    static void Main()
+	    {
+	        Reservation reservation = new Reservation();
+	        User user=new User();
+	        user.IsAdmin=true;
+	        bool result=reservation.CanBeCancelledBy(user);
+	        Console.WriteLine(result);
+	    }
+	}
   
-
 
 #### 1- Familiarizarse con algunos conceptos del framework JUnit:
 
