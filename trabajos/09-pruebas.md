@@ -1,4 +1,4 @@
-## Trabajo Práctico 9 - Pruebas de unidad
+![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/2007333b-bc01-4205-a106-49ccb2b90521)## Trabajo Práctico 9 - Pruebas de unidad
 
 ## 1- Objetivos de Aprendizaje
  - Adquirir conocimientos sobre conceptos referidos a pruebas de unidad (unit tests).
@@ -131,7 +131,111 @@ code .
 	        Console.WriteLine(result);
 	    }
 	}
+4.2: Creamos nuestros Tests:
+- Dado que el método ***CanBeCancelledBy*** de la clase ***Reservation*** tiene una lógica con 3 caminos posibles, debemos probar esos 3 caminos:
+- Modificamos nuestro archivo ***UnitTest1.cs*** del proyecto ***MiSimpleAppTests***
+
+```csharp
+namespace MiSimpleAppTests;
+
+[TestFixture]
+public class Tests
+{
+    [SetUp]
+    public void Setup()
+    {
+    }
+
+    [Test]
+    public void CanBeCancelledBy_AdminCancelling_ReturnsTrue()
+    {
+        //Arrange
+        
+        User user=new User();
+        user.IsAdmin=true;
+        Reservation reservation=new Reservation();
+        
+        //Act
+        
+        bool result=reservation.CanBeCancelledBy(user);
+
+        //Assert
+        
+        //Assert.IsTrue(result);
+        Assert.That(result,Is.True);
+        //Assert.That(result==true);
+    }
+
+    
+    [Test]
+    public void CanBeCancelledBy_SameUserCancelling_ReturnsTrue()
+    {
+        //Arrange
+        User user=new User();
+        Reservation reservation=new Reservation();
+        reservation.MadeBy=user;
+
+        //Act
+        bool result=reservation.CanBeCancelledBy(user);
+
+        //Assert
+        Assert.That(result,Is.True);
+
+    }
+
+    
+    [Test]
+    public void CanBeCancelledBy_AnotherUserCancelling_ReturnsFalse()
+    {
+        //Arrange
+        User user=new User();
+        Reservation reservation=new Reservation();
+        reservation.MadeBy=user;
+
+        //Act
+        User newUser=new User();
+        bool result=reservation.CanBeCancelledBy(newUser);
+
+        //Assert
+        Assert.That(result,Is.False);
+
+    }
+
+}
+```
+- Ejecutamos los tests:
+
+<img width="394" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/babadb4a-349a-42c7-b126-20b72618bc9a">
+
+- Modificamos la lógica de nuestro código bajo prueba haciendo que devuelva false la linea 9 (recordar guardar el archivo):
+
+<img width="581" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/2743ca29-bddc-46ca-aa26-521312bc1710">
+
+<img width="547" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/1ee56c1c-513b-4f07-834a-e67d6482bfa2">
+
+- Volvemos a ejecutar los tests:
+
+<img width="411" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/bad95a68-a616-4202-a9b1-c5ce3bf6e493">
+
+- Dejamos la línea 9 de nuestro código bajo prueba como estaba originalmente:
+
+<img width="581" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/2743ca29-bddc-46ca-aa26-521312bc1710">
+
+- Realizamos una refactorización de nuestro codigo y guardamos el archivo:
+
+<img width="529" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/bb7a1afe-6572-4915-aede-7a83ca64ef8b">
+
+
+- Por último ejecutamos nuestros tests desde la linea de comandos. Nos posicionamos en el directorio de nuestro proyecto de pruebas y ejecutamos el comando dotnet test
+
+```bash
+dotnet test
+```
+
+![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/916f6a78-b85a-42f9-89c5-d7d12746fd29)
+
   
+
 
 #### 1- Familiarizarse con algunos conceptos del framework JUnit:
 
