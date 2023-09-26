@@ -20,7 +20,7 @@ Repositorio Git de Ingeniería de Software 3
 
   * [Trabajo Práctico 8 - Herramientas de construcción en la nube](trabajos/08-herramientas-nube.md)  
 
-  * [Trabajo Práctico 9 - Pruebas de Unidad](trabajos/09-pruebas.md)  
+  * [Trabajo Práctico 9 - Pruebas](trabajos/09-pruebas.md)  
 
   * [Trabajo Práctico 10 - Pruebas de Integración](trabajos/10-pruebas-integracion.md)  
  
