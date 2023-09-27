@@ -163,8 +163,7 @@ code .
 	            if (MadeBy==user)
 	                return true;
 	            return false;
-	
-	            //return (user.IsAdmin || MadeBy == user);
+
 	        }
 	        
 	    }
