@@ -1,7 +1,7 @@
-## Trabajo Práctico 9 - Pruebas de unidad
+## Trabajo Práctico 9 - Pruebas
 
 ## 1- Objetivos de Aprendizaje
- - Adquirir conocimientos sobre conceptos referidos a pruebas de unidad (unit tests).
+ - Adquirir conocimientos sobre conceptos referidos a pruebas de unidad (unit tests) y de integración (integration tests).
  - Generar y ejecutar pruebas unitarias utilizado frameworks disponibles.
 
 ## 2- Unidad temática que incluye este trabajo práctico
@@ -345,32 +345,73 @@ namespace SimpleWebAPI.Tests
 
 
 ## 7- Familiarizarse con algunos conceptos de Mock
-Mockito es un framework de simulación popular que se puede usar junto con JUnit. Mockito permite crear y configurar objetos falsos. El uso de Mockito simplifica significativamente el desarrollo de pruebas para clases con dependencias externas.
 
-Si se usa Mockito en las pruebas, normalmente:
- 1. Se burlan las dependencias externas e insertan los mocks en el código bajo prueba
- 2. Se ejecuta el código bajo prueba
- 3. Se valida que el código se ejecutó correctamente
+- Las pruebas unitarias se centran en evaluar unidades de código de manera aislada, sin depender de las implementaciones reales de las dependencias externas. Esto significa que, en las pruebas unitarias, se utilizan mocks o simulaciones para representar las dependencias externas y controlar su comportamiento. El objetivo principal de las pruebas unitarias es verificar que cada unidad de código (como una función, método o clase) funcione correctamente por sí misma, independientemente de las dependencias externas.
 
-Referencia: https://www.vogella.com/tutorials/Mockito/article.html
+- Las pruebas de integración, por otro lado, tienen como objetivo evaluar la interacción y la integración de múltiples unidades de código o componentes, incluyendo sus dependencias externas. En las pruebas de integración, se prueban escenarios en los que varias partes del sistema trabajan juntas, y se verifica que se comuniquen y se integren de manera adecuada.
 
-- Analizar el código del test
-```java
-public class ExampleInfoContributorTest {
+- Es decir que las pruebas unitarias se realizan sin depender de las implementaciones reales de las dependencias externas, utilizando mocks o simulaciones, con el objetivo de probar unidades de código de forma aislada. 
 
-	@Test
-	public void infoMap() {
-		Info.Builder builder = mock(Info.Builder.class);
-		
-		ExampleInfoContributor exampleInfoContributor = new ExampleInfoContributor();
-		exampleInfoContributor.contribute(builder);
-		
-		verify(builder).withDetail(any(),any());
-	}
+- Para reemplazar estas dependencias reales por "dobles" o "fakes" se utilizan frameworks de Mock que simplifican significativamente el desarrollo de pruebas para clases con dependencias externas.
+
+- El framework de Mock (mocking framework) más comúnmente utilizado en el contexto de .NET Core es "Moq". Moq es una biblioteca de código abierto que permite crear objetos simulados (mocks) para representar dependencias externas y controlar su comportamiento durante las pruebas unitarias.
+
+- Un ejemplo común de lo que se "mockea" en las pruebas unitarias es una dependencia externa que involucre una llamada a una base de datos o un servicio web. Al mockear esta dependencia, se puede aislar la unidad de código que se está probando y evitar la necesidad de interactuar con una base de datos real o un servicio externo durante las pruebas. 
+
+- Supongamos que tenemos una clase UserService que tiene un método GetUserById que obtiene información de un usuario de una base de datos. La clase UserService utiliza una dependencia de acceso a datos, como una instancia de IDbConnection, para realizar la consulta a la base de datos. Para probar UserService, querríamos evitar la interacción con una base de datos real y, en su lugar, usar un mock para representar la dependencia de acceso a datos.
+
+- De esta manera se podría usar Moq para mockear la dependencia de acceso a datos en una prueba unitaria de UserService:
+
+```csharp
+// Define una interfaz que representa la dependencia de acceso a datos.
+public interface IDbConnection
+{
+    User GetUserById(int userId);
 }
-```
 
-#### 4- Utilizando Mocks
+public class UserService
+{
+    private readonly IDbConnection _dbConnection;
+
+    public UserService(IDbConnection dbConnection)
+    {
+        _dbConnection = dbConnection;
+    }
+
+    public User GetUserById(int userId)
+    {
+        // Lógica para obtener un usuario de la base de datos.
+        return _dbConnection.GetUserById(userId);
+    }
+}
+
+[TestFixture]
+public class UserServiceTests
+{
+    [Test]
+    public void GetUserById_ReturnsUser()
+    {
+        // Arrange
+        var mockDbConnection = new Mock<IDbConnection>();
+        var userService = new UserService(mockDbConnection.Object);
+
+        // Configura el comportamiento del mock.
+        mockDbConnection.Setup(c => c.GetUserById(1)).Returns(new User { Id = 1, Name = "John" });
+
+        // Act
+        var user = userService.GetUserById(1);
+
+        // Assert
+        Assert.IsNotNull(user);
+        Assert.AreEqual(1, user.Id);
+        Assert.AreEqual("John", user.Name);
+    }
+}
+
+```
+- En este ejemplo, mockDbConnection es un mock de IDbConnection que se utiliza para representar la dependencia de acceso a datos. Se puede configurar el comportamiento del mock usando Setup, lo que permite especificar qué valor debe devolver el método GetUserById cuando se llama con ciertos parámetros. De esta manera, se puede simular la respuesta de la base de datos y probar UserService de manera aislada sin interactuar con una base de datos real.
+
+## 8- Utilizando Moq
 
 - Agregar un unit test a la clase **HelloWorldServiceTest** 
   - Cuando se llame por primera vez al método **getHelloMessage** retorne "Hola Hola"
