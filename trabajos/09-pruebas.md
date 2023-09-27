@@ -413,73 +413,23 @@ public class UserServiceTests
 
 ## 8- Utilizando Moq
 
-- Agregar un unit test a la clase **HelloWorldServiceTest** 
-  - Cuando se llame por primera vez al método **getHelloMessage** retorne "Hola Hola"
-  - Cuando se llame por segunda vez al método **getHelloMessage** retorne "Hello Hello"
+8.1 Preparamos el entorno. Clonamos una app de consola en .NET Core que hace uso de un servicio externo (una llamada a una API Rest) y la abrimos en VS.Code
 
-- Crear la siguiente clase **AbstractTest**
-```java
-package sample.actuator;
-
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
-
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(classes = SampleActuatorApplication.class)
-@WebAppConfiguration
-public abstract class AbstractTest {
-    protected MockMvc mvc;
-
-    @Autowired
-    WebApplicationContext webApplicationContext;
-
-    protected void setUp() {
-        mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
-    }
-}
+```bash
+git clone https://github.com/ingsoft3ucc/MiNotSoSimpleApp.git
+cd MiNotSoSimpleApp
+code .
 ```
 
-- Agregar esta otra clase también en el mismo directorio
+8.2 Ejecutamos la app y vemos como nos devuelve 100 items desde la API:
 
-```java
-package sample.actuator;
+<img width="757" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/2be72558-f8b3-4d54-a2cf-eb043117419a">
 
-import static org.junit.Assert.assertEquals;
+8.3 Analizamos el código
 
-import org.junit.Before;
-import org.junit.Test;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MvcResult;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+8.4 Identificamos el servicio externo y su interfaz a mockear.
 
 
-public class SampleControllerTest extends AbstractTest {
-
-    @Override
-    @Before
-    public void setUp() {
-        super.setUp();
-    }
-
-    @Test
-    public void testRootMessage() throws Exception {
-        String uri = "/";
-        MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
-                .accept( MediaType.APPLICATION_JSON_VALUE)).andReturn();
-
-        String content = mvcResult.getResponse().getContentAsString();
-        int status = mvcResult.getResponse().getStatus();
-        assertEquals(200, status);
-        assertEquals(content,"Expected correct message","{\"message\":\"Spring boot says hello from a Docker container\"}");
-    }
-}
-```
 
   - Analizar estos tests
 
