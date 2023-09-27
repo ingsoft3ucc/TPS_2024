@@ -2,13 +2,12 @@
 
 ## 1- Objetivos de Aprendizaje
  - Adquirir conocimientos sobre conceptos referidos a pruebas de unidad (unit tests).
- - Generar y ejecutar pruebas unitarias utilizado frameworks disponibles.
+ - Generar y ejecutar pruebas unitarias utilizando frameworks disponibles.
 
 ## 2- Unidad temática que incluye este trabajo práctico
 Este trabajo práctico corresponde a la unidad Nº: 5 (Libro Ingeniería de Software: Cap 8)
 
 ## 3- Consignas a desarrollar en el trabajo práctico:
-### Conceptos generales explicaciones de los mismos
 
 #### ¿Qué son las pruebas de software?
 Una prueba de software es una pieza de software que ejecuta otra pieza de software. Valida si ese código da como resultado el estado esperado (prueba de estado) o ejecuta la secuencia de eventos esperados (prueba de comportamiento).
