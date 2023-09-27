@@ -293,6 +293,7 @@ dotnet new nunit -n SimpleWebAPITests
 - Entramos a la carpeta del nuevo proyecto y le agregamos al proyecto de pruebas una referencia al proyecto que vamos a probar. Nos movemos una carpeta hacia arriba y lo vemos en VS.Code
 
 ```bash
+cd SimpleWebAPITests
 dotnet add reference ../SimpleWebAPI/SimpleWebAPI/SimpleWebAPI.csproj
 cd ..
 code .
