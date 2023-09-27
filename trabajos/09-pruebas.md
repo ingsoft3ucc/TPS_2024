@@ -1,4 +1,4 @@
-![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/2007333b-bc01-4205-a106-49ccb2b90521)## Trabajo Práctico 9 - Pruebas de unidad
+## Trabajo Práctico 9 - Pruebas de unidad
 
 ## 1- Objetivos de Aprendizaje
  - Adquirir conocimientos sobre conceptos referidos a pruebas de unidad (unit tests).
@@ -237,31 +237,46 @@ dotnet test
   
 
 
-#### 1- Familiarizarse con algunos conceptos del framework JUnit:
+#### 5- Familiarizarse con algunos Decoradores y Assert más comunes:
 
-| JUnit 4                            | Descripción                                                                                                                                                                                                                                                                                                                       |
-|------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| import org.junit.*                 | Instrucción de importación para usar las siguientes anotaciones.                                                                                                                                                                                                                                                                  |
-| @Test                              | Identifica un método como un método de prueba.                                                                                                                                                                                                                                                                                    |
-| @Before                            | Ejecutado antes de cada prueba. Se utiliza para preparar el entorno de prueba (por ejemplo, leer datos de entrada, inicializar la clase).                                                                                                                                                                                         |
-| @After                             | Ejecutado después de cada prueba. Se utiliza para limpiar el entorno de prueba (por ejemplo, eliminar datos temporales, restablecer los valores predeterminados). También puede ahorrar memoria limpiando costosas estructuras de memoria.                                                                                        |
-| @BeforeClass                       | Ejecutado una vez, antes del comienzo de todas las pruebas. Se usa para realizar actividades intensivas de tiempo, por ejemplo, para conectarse a una base de datos. Los métodos marcados con esta anotación deben definirse static para que funcionen con JUnit.                                                                  |
-| @AfterClass                        | Ejecutado una vez, después de que se hayan terminado todas las pruebas. Se utiliza para realizar actividades de limpieza, por ejemplo, para desconectarse de una base de datos. Los métodos anotados con esta anotación deben definirse static para que funcionen con JUnit.                                                       |
-| @Ignore o @Ignore("Why disabled")  | Marca que la prueba debe ser deshabilitada. Esto es útil cuando se ha cambiado el código subyacente y el caso de prueba aún no se ha adaptado. O si el tiempo de ejecución de esta prueba es demasiado largo para ser incluido. Es una mejor práctica proporcionar la descripción opcional, por qué la prueba está deshabilitada. |
-| @Test (expected = Exception.class) | Falla si el método no arroja la excepción nombrada.                                                                                                                                                                                                                                                                               |
-| @Test(timeout=100)                 | Falla si el método tarda más de 100 milisegundos.                                                                                                                                                                                                                                                                                 |
+En el contexto de pruebas unitarias y en lenguajes de programación como C# y Java, los "decoradores" son en realidad "atributos" o "anotaciones" en C# y Java, respectivamente. Los atributos son metadatos que se utilizan para proporcionar información adicional sobre clases, métodos, propiedades y otros elementos del código. Estos atributos no afectan directamente el comportamiento del código en sí, pero permiten que el entorno de desarrollo o las bibliotecas externas realicen acciones específicas en función de la información proporcionada por los atributos.
 
-| Declaración                                          | Descripción                                                                                                                                                                                                                    |
-|------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| fail ([mensaje])                                   | Deja que el método falle. Se puede usar para verificar que no se llegue a una determinada parte del código o para realizar una prueba de falla antes de implementar el código de prueba. El parámetro del mensaje es opcional. |
-| assertTrue ([mensaje,] condición booleana)           | Comprueba que la condición booleana es verdadera.                                                                                                                                                                              |
-| assertFalse ([mensaje,] condición booleana)          | Comprueba que la condición booleana es falsa.                                                                                                                                                                                  |
-| assertEquals ([mensaje,] esperado, real)             | Comprueba que dos valores son iguales. Nota: para las matrices, la referencia no se verifica en el contenido de las matrices.                                                                                                  |
-| assertEquals ([mensaje,] esperado, real, tolerancia) | Pruebe que los valores float o double coincidan. La tolerancia es el número de decimales que debe ser el mismo.                                                                                                                |
-| assertNull (objeto [mensaje,])                       | Verifica que el objeto sea nulo.                                                                                                                                                                                               |
-| assertNotNull (objeto [mensaje,])                    | Verifica que el objeto no sea nulo.                                                                                                                                                                                            |
-| assertSame ([mensaje,] esperado, real)               | Comprueba que ambas variables se refieren al mismo objeto.                                                                                                                                                                     |
-| assertNotSame ([mensaje,] esperado, real)            | Comprueba que ambas variables se refieren a diferentes objetos.                                                                                                                                                                |
+Estos atributos (decoradores) proporcionan información importante al marco de pruebas NUnit y permiten la configuración y ejecución de pruebas unitarias de manera controlada y estructurada.
+
+| Decorador               | Objetivo                                                                                           |
+| ----------------------- | -------------------------------------------------------------------------------------------------- |
+| `[TestFixture]`         | Marca una clase como una clase de prueba que contiene métodos de prueba.                           |
+| `[Test]`                | Marca un método como una prueba unitaria.                                                           |
+| `[SetUp]`               | Marca un método que se ejecutará antes de cada prueba en la clase de prueba.                        |
+| `[TearDown]`            | Marca un método que se ejecutará después de cada prueba en la clase de prueba.                     |
+| `[TestCase]`            | Permite especificar múltiples conjuntos de datos de prueba para un método de prueba.               |
+| `[TestCaseSource]`      | Permite especificar una fuente externa de datos para alimentar los casos de prueba de un método.   |
+| `[Ignore]`              | Marca una prueba o una clase de prueba para que se ignore durante la ejecución de las pruebas.    |
+| `[Category]`            | Etiqueta una prueba con una categoría específica.                                                  |
+| `[MaxTime]`             | Establece un límite de tiempo máximo para la ejecución de una prueba.                                |
+| `[Description]`         | Proporciona una descripción adicional para una prueba o una clase de prueba.                          |
+| `[Parallelizable]`      | Indica que las pruebas pueden ejecutarse en paralelo.                                               |
+| `[OneTimeSetUp]`        | Marca métodos que se ejecutan una vez antes de todas las pruebas en una clase de prueba.           |
+| `[OneTimeTearDown]`     | Marca métodos que se ejecutan una vez después de todas las pruebas en una clase de prueba.        |
+
+
+En NUnit, los comandos Assert se utilizan para verificar las condiciones y resultados de las pruebas unitarias. A continuación, se muestra una lista de algunos de los comandos Assert más comúnmente utilizados en NUnit:
+
+| Comando                                  | Descripción                                                                                       |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `Assert.AreEqual(expected, actual)`      | Verifica si el valor `actual` es igual al valor `expected`.                                       |
+| `Assert.AreNotEqual(notExpected, actual)` | Verifica si el valor `actual` no es igual al valor `notExpected`.                                  |
+| `Assert.IsTrue(condition)`              | Verifica si la condición especificada es `true`.                                                  |
+| `Assert.IsFalse(condition)`             | Verifica si la condición especificada es `false`.                                                 |
+| `Assert.IsNull(object)`                 | Verifica si el objeto especificado es nulo.                                                         |
+| `Assert.IsNotNull(object)`              | Verifica si el objeto especificado no es nulo.                                                     |
+| `Assert.Throws<ExceptionType>(delegate)` | Verifica si se produce una excepción del tipo `ExceptionType` al ejecutar el delegado especificado. |
+| `Assert.That(actual, expression)`        | Permite escribir aserciones más expresivas utilizando una sintaxis más flexible y legible.         |
+| `Assert.IsEmpty(collection)`            | Verifica si una colección está vacía.                                                               |
+| `Assert.IsNotEmpty(collection)`         | Verifica si una colección no está vacía.                                                            |
+| `Assert.Contains(expectedItem, collection)` | Verifica si una colección contiene un elemento específico.                                        |
+| `Assert.AreEqual(expectedCollection, actualCollection)` | Compara dos colecciones para verificar si son iguales en términos de contenido y orden. |
+                                                                                                                                                            |
 #### 1- Utilizando Unit test
   - ¿En el proyecto **spring-boot** para qué está esta dependencia en el pom.xml?
 ```xml
