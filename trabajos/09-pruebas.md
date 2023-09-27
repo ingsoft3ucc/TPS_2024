@@ -42,9 +42,50 @@ En general, es seguro ignorar el código trivial. Por ejemplo, es inútil escrib
 
 Si comienza a desarrollar pruebas para una base de código existente sin ninguna prueba, es una buena práctica comenzar a escribir pruebas para el código en el que la mayoría de los errores ocurrieron en el pasado. De esta manera puede enfocarse en las partes críticas de su aplicación.
 
-## 4- Desarrollo:
+#### 5- Familiarizarse con algunos Decoradores y Assert más comunes:
 
-4.1 Preparamos el entorno:
+En el contexto de pruebas unitarias y en lenguajes de programación como C# y Java, los "decoradores" son en realidad "atributos" o "anotaciones" en C# y Java, respectivamente. Los atributos son metadatos que se utilizan para proporcionar información adicional sobre clases, métodos, propiedades y otros elementos del código. Estos atributos no afectan directamente el comportamiento del código en sí, pero permiten que el entorno de desarrollo o las bibliotecas externas realicen acciones específicas en función de la información proporcionada por los atributos.
+
+Estos atributos (decoradores) proporcionan información importante al marco de pruebas NUnit y permiten la configuración y ejecución de pruebas unitarias de manera controlada y estructurada.
+
+| Decorador               | Objetivo                                                                                           |
+| ----------------------- | -------------------------------------------------------------------------------------------------- |
+| `[TestFixture]`         | Marca una clase como una clase de prueba que contiene métodos de prueba.                           |
+| `[Test]`                | Marca un método como una prueba unitaria.                                                           |
+| `[SetUp]`               | Marca un método que se ejecutará antes de cada prueba en la clase de prueba.                        |
+| `[TearDown]`            | Marca un método que se ejecutará después de cada prueba en la clase de prueba.                     |
+| `[TestCase]`            | Permite especificar múltiples conjuntos de datos de prueba para un método de prueba.               |
+| `[TestCaseSource]`      | Permite especificar una fuente externa de datos para alimentar los casos de prueba de un método.   |
+| `[Ignore]`              | Marca una prueba o una clase de prueba para que se ignore durante la ejecución de las pruebas.    |
+| `[Category]`            | Etiqueta una prueba con una categoría específica.                                                  |
+| `[MaxTime]`             | Establece un límite de tiempo máximo para la ejecución de una prueba.                                |
+| `[Description]`         | Proporciona una descripción adicional para una prueba o una clase de prueba.                          |
+| `[Parallelizable]`      | Indica que las pruebas pueden ejecutarse en paralelo.                                               |
+| `[OneTimeSetUp]`        | Marca métodos que se ejecutan una vez antes de todas las pruebas en una clase de prueba.           |
+| `[OneTimeTearDown]`     | Marca métodos que se ejecutan una vez después de todas las pruebas en una clase de prueba.        |
+
+
+En NUnit, los comandos Assert se utilizan para verificar las condiciones y resultados de las pruebas unitarias. A continuación, se muestra una lista de algunos de los comandos Assert más comúnmente utilizados en NUnit:
+
+| Comando                                  | Descripción                                                                                       |
+| ---------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `Assert.AreEqual(expected, actual)`      | Verifica si el valor `actual` es igual al valor `expected`.                                       |
+| `Assert.AreNotEqual(notExpected, actual)` | Verifica si el valor `actual` no es igual al valor `notExpected`.                                  |
+| `Assert.IsTrue(condition)`              | Verifica si la condición especificada es `true`.                                                  |
+| `Assert.IsFalse(condition)`             | Verifica si la condición especificada es `false`.                                                 |
+| `Assert.IsNull(object)`                 | Verifica si el objeto especificado es nulo.                                                         |
+| `Assert.IsNotNull(object)`              | Verifica si el objeto especificado no es nulo.                                                     |
+| `Assert.Throws<ExceptionType>(delegate)` | Verifica si se produce una excepción del tipo `ExceptionType` al ejecutar el delegado especificado. |
+| `Assert.That(actual, expression)`        | Permite escribir aserciones más expresivas utilizando una sintaxis más flexible y legible.         |
+| `Assert.IsEmpty(collection)`            | Verifica si una colección está vacía.                                                               |
+| `Assert.IsNotEmpty(collection)`         | Verifica si una colección no está vacía.                                                            |
+| `Assert.Contains(expectedItem, collection)` | Verifica si una colección contiene un elemento específico.                                        |
+| `Assert.AreEqual(expectedCollection, actualCollection)` | Compara dos colecciones para verificar si son iguales en términos de contenido y orden. |
+                                                                                                                                                            |
+
+## 5- Desarrollo de Pruebas Unitarias
+
+5.1 Preparamos el entorno:
 - Instalamos VS.Code: https://code.visualstudio.com/download
 
 - Desde linea de comandos clonamos el proyecto MiSimpleApp, entramos a la carpeta y abrimos VS.Code
@@ -131,7 +172,7 @@ code .
 	        Console.WriteLine(result);
 	    }
 	}
-4.2: Creamos nuestros Tests:
+5.2: Creamos nuestros Tests:
 - Dado que el método ***CanBeCancelledBy*** de la clase ***Reservation*** tiene una lógica con 3 caminos posibles, debemos probar esos 3 caminos:
 - Modificamos nuestro archivo ***UnitTest1.cs*** del proyecto ***MiSimpleAppTests***
 
@@ -203,7 +244,7 @@ public class Tests
 
 }
 ```
-- Ejecutamos los tests:
+5.3 Ejecutamos los tests:
 
 <img width="394" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/babadb4a-349a-42c7-b126-20b72618bc9a">
 
@@ -236,70 +277,6 @@ dotnet test
 
   
 
-
-#### 5- Familiarizarse con algunos Decoradores y Assert más comunes:
-
-En el contexto de pruebas unitarias y en lenguajes de programación como C# y Java, los "decoradores" son en realidad "atributos" o "anotaciones" en C# y Java, respectivamente. Los atributos son metadatos que se utilizan para proporcionar información adicional sobre clases, métodos, propiedades y otros elementos del código. Estos atributos no afectan directamente el comportamiento del código en sí, pero permiten que el entorno de desarrollo o las bibliotecas externas realicen acciones específicas en función de la información proporcionada por los atributos.
-
-Estos atributos (decoradores) proporcionan información importante al marco de pruebas NUnit y permiten la configuración y ejecución de pruebas unitarias de manera controlada y estructurada.
-
-| Decorador               | Objetivo                                                                                           |
-| ----------------------- | -------------------------------------------------------------------------------------------------- |
-| `[TestFixture]`         | Marca una clase como una clase de prueba que contiene métodos de prueba.                           |
-| `[Test]`                | Marca un método como una prueba unitaria.                                                           |
-| `[SetUp]`               | Marca un método que se ejecutará antes de cada prueba en la clase de prueba.                        |
-| `[TearDown]`            | Marca un método que se ejecutará después de cada prueba en la clase de prueba.                     |
-| `[TestCase]`            | Permite especificar múltiples conjuntos de datos de prueba para un método de prueba.               |
-| `[TestCaseSource]`      | Permite especificar una fuente externa de datos para alimentar los casos de prueba de un método.   |
-| `[Ignore]`              | Marca una prueba o una clase de prueba para que se ignore durante la ejecución de las pruebas.    |
-| `[Category]`            | Etiqueta una prueba con una categoría específica.                                                  |
-| `[MaxTime]`             | Establece un límite de tiempo máximo para la ejecución de una prueba.                                |
-| `[Description]`         | Proporciona una descripción adicional para una prueba o una clase de prueba.                          |
-| `[Parallelizable]`      | Indica que las pruebas pueden ejecutarse en paralelo.                                               |
-| `[OneTimeSetUp]`        | Marca métodos que se ejecutan una vez antes de todas las pruebas en una clase de prueba.           |
-| `[OneTimeTearDown]`     | Marca métodos que se ejecutan una vez después de todas las pruebas en una clase de prueba.        |
-
-
-En NUnit, los comandos Assert se utilizan para verificar las condiciones y resultados de las pruebas unitarias. A continuación, se muestra una lista de algunos de los comandos Assert más comúnmente utilizados en NUnit:
-
-| Comando                                  | Descripción                                                                                       |
-| ---------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| `Assert.AreEqual(expected, actual)`      | Verifica si el valor `actual` es igual al valor `expected`.                                       |
-| `Assert.AreNotEqual(notExpected, actual)` | Verifica si el valor `actual` no es igual al valor `notExpected`.                                  |
-| `Assert.IsTrue(condition)`              | Verifica si la condición especificada es `true`.                                                  |
-| `Assert.IsFalse(condition)`             | Verifica si la condición especificada es `false`.                                                 |
-| `Assert.IsNull(object)`                 | Verifica si el objeto especificado es nulo.                                                         |
-| `Assert.IsNotNull(object)`              | Verifica si el objeto especificado no es nulo.                                                     |
-| `Assert.Throws<ExceptionType>(delegate)` | Verifica si se produce una excepción del tipo `ExceptionType` al ejecutar el delegado especificado. |
-| `Assert.That(actual, expression)`        | Permite escribir aserciones más expresivas utilizando una sintaxis más flexible y legible.         |
-| `Assert.IsEmpty(collection)`            | Verifica si una colección está vacía.                                                               |
-| `Assert.IsNotEmpty(collection)`         | Verifica si una colección no está vacía.                                                            |
-| `Assert.Contains(expectedItem, collection)` | Verifica si una colección contiene un elemento específico.                                        |
-| `Assert.AreEqual(expectedCollection, actualCollection)` | Compara dos colecciones para verificar si son iguales en términos de contenido y orden. |
-                                                                                                                                                            |
-#### 1- Utilizando Unit test
-  - ¿En el proyecto **spring-boot** para qué está esta dependencia en el pom.xml?
-```xml
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-```
-  - Analizar y ejectuar el metodo de unit test:
-
-```java
-public class HelloWorldServiceTest {
-
-	@Test
-	public void expectedMessage() {
-		HelloWorldService helloWorldService = new HelloWorldService();
-		assertEquals("Expected correct message","Spring boot says hello from a Docker container",helloWorldService.getHelloMessage());
-	}
-	
-}
-```
-  - Ejecutar los tests utilizando la IDE
 
 #### 3- Familiarizarse con algunos conceptos de Mockito
 Mockito es un framework de simulación popular que se puede usar junto con JUnit. Mockito permite crear y configurar objetos falsos. El uso de Mockito simplifica significativamente el desarrollo de pruebas para clases con dependencias externas.
