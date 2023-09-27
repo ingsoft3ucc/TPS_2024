@@ -42,7 +42,7 @@ En general, es seguro ignorar el código trivial. Por ejemplo, es inútil escrib
 
 Si comienza a desarrollar pruebas para una base de código existente sin ninguna prueba, es una buena práctica comenzar a escribir pruebas para el código en el que la mayoría de los errores ocurrieron en el pasado. De esta manera puede enfocarse en las partes críticas de su aplicación.
 
-#### 5- Familiarizarse con algunos Decoradores y Assert más comunes:
+## 4- Familiarizarse con algunos Decoradores y Assert más comunes:
 
 En el contexto de pruebas unitarias y en lenguajes de programación como C# y Java, los "decoradores" son en realidad "atributos" o "anotaciones" en C# y Java, respectivamente. Los atributos son metadatos que se utilizan para proporcionar información adicional sobre clases, métodos, propiedades y otros elementos del código. Estos atributos no afectan directamente el comportamiento del código en sí, pero permiten que el entorno de desarrollo o las bibliotecas externas realicen acciones específicas en función de la información proporcionada por los atributos.
 
@@ -81,9 +81,9 @@ En NUnit, los comandos Assert se utilizan para verificar las condiciones y resul
 | `Assert.IsNotEmpty(collection)`         | Verifica si una colección no está vacía.                                                            |
 | `Assert.Contains(expectedItem, collection)` | Verifica si una colección contiene un elemento específico.                                        |
 | `Assert.AreEqual(expectedCollection, actualCollection)` | Compara dos colecciones para verificar si son iguales en términos de contenido y orden. |
-                                                                                                                                                            |
+                                                                                                                                                            
 
-## 5- Desarrollo de Pruebas Unitarias
+## 5- Desarrollo de Pruebas Unitarias sobre una aplicación de consola.
 
 5.1 Preparamos el entorno:
 - Instalamos VS.Code: https://code.visualstudio.com/download
@@ -275,10 +275,76 @@ dotnet test
 
 ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/916f6a78-b85a-42f9-89c5-d7d12746fd29)
 
+## 6- Desarrollo de Pruebas Unitarias sobre una WebAPI:
+
+6.1 Preparamos el entorno:
+- Clonamos nuestro repo **SimpleWebAPI**
+
+```bash
+git clone https://github.com/ingsoft3ucc/SimpleWebAPI.git
+```
+
+- Creamos proyecto de pruebas
+
+```bash
+dotnet new nunit -n SimpleWebAPITests
+```
+
+- Entramos a la carpeta del nuevo proyecto y le agregamos al proyecto de pruebas una referencia al proyecto que vamos a probar. Nos movemos una carpeta hacia arriba y lo vemos en VS.Code
+
+```bash
+dotnet add reference ../SimpleWebAPI/SimpleWebAPI/SimpleWebAPI.csproj
+cd ..
+code .
+```
+
+- Se abre el archivo settings.json y escribimos el nombre del proyecto de pruebas y el nombre de la dll resultante de la compilación del proyecto de pruebas:
+
+```
+{
+    "dotnet-test-explorer.testProjectPath": "SimpleWebAPITests",
+    "dotnet-test-explorer.testFileSuffix": ".Tests.dll"
+}
+```
+
+- Reemplazamos el codigo de ***UnitTest1.cs*** por:
+
+```csharp
+using Microsoft.Extensions.Logging;
+using NUnit.Framework;
+using SimpleWebAPI.Controllers;
+using System;
+using System.Linq;
+
+namespace SimpleWebAPI.Tests
+{
+    [TestFixture]
+    public class WeatherForecastControllerTests
+    {
+        [Test]
+        public void Get_ReturnsWeatherForecasts()
+        {
+            // Arrange
+            ILogger<WeatherForecastController> logger = new LoggerFactory().CreateLogger<WeatherForecastController>();
+            var controller = new WeatherForecastController(logger);
+
+            // Act
+            var result = controller.Get();
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.AreEqual(5, result.Count());
+        }
+    }
+}
+```
   
+- Ejecutamos el test:
+
+<img width="1006" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/d9473d6c-37d8-4c27-8331-eb92febbe42d">
 
 
-#### 3- Familiarizarse con algunos conceptos de Mockito
+## 7- Familiarizarse con algunos conceptos de Mock
 Mockito es un framework de simulación popular que se puede usar junto con JUnit. Mockito permite crear y configurar objetos falsos. El uso de Mockito simplifica significativamente el desarrollo de pruebas para clases con dependencias externas.
 
 Si se usa Mockito en las pruebas, normalmente:
