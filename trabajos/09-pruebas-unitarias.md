@@ -262,7 +262,9 @@ public class Tests
 
 }
 ```
-5.3 Ejecutamos los tests:
+5.3 Explicamos detalladamente los tests en el entregable
+
+5.4 Ejecutamos los tests:
 
 <img width="394" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/babadb4a-349a-42c7-b126-20b72618bc9a">
 
@@ -326,7 +328,7 @@ code .
 }
 ```
 
-5.2 : Creamos Tests
+6.2 : Creamos Tests
 
 - Reemplazamos el codigo de ***UnitTest1.cs*** por:
 
@@ -359,8 +361,9 @@ namespace SimpleWebAPI.Tests
     }
 }
 ```
-  
-5.3 Ejecutamos el test:
+6.3 Explicamos en el entregable que hace nuestro test
+
+6.4 Ejecutamos el test:
 
 <img width="1006" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/d9473d6c-37d8-4c27-8331-eb92febbe42d">
 
@@ -536,22 +539,23 @@ namespace MiNotSoSimpleAppTests
 }
 ```
 
-  - Incluir en la entrega una explicación del código
+8.3  Incluir en la entrega una explicación del código, centrado en explicar cómo se reemplaza el servicio real por el mock, que líneas de nuestro código de test se encargan de hacerlo y cómo funciona el mecanismo.
 
-8.3 Ejecutamos Test en VSCode y en linea de consola.
+8.4 Ejecutamos Test en VSCode y en linea de consola.
 
-8.4 Hacerlo falllar, arreglarlo y volverlo a correr. 
+8.5 Hacerlo falllar, arreglarlo y volverlo a correr. 
 
-8.5 Modificar el mock para que devuelva una colección de Posts y en un nuevo test verificar que la cantidad devuelta por el mock coincida con la esperada en el nuevo test.
+8.6 Modificar el mock para que devuelva una colección de Posts y en un nuevo test verificar que la cantidad devuelta por el mock coincida con la esperada en el nuevo test.
 
-8.6 Detallar todo lo realizado en el entregable.
+8.7 Detallar todo lo realizado en el entregable.
 
 ## 9- Capturar los unit tests como parte del proceso de CI/CD
   - Subir el proyecto a GITHUB
   - Configurar una GitHubAction que haga el build, corra el test y si funcionó, haga el deploy en una imagen que se suba a Docker.
+  - Incluir link al repo y print de corridas correctas y falidas.
+    
+## 10. IMPORTANTE PARA EL ENTREGABLE:
 
-## 10. PARA EL ENTREGABLE:
-
-Se espera que el pdf entregable se corresponda con el repo resultante y contenga todos los prints screens q demuestren la reaización de todos los pasos del trabajo.
+Se espera que el pdf entregable se corresponda con el repo resultante y contenga todos los prints screens q demuestren la reaización de todos los pasos del trabajo y la explicación EN SUS PROPIAS PALABRAS de lo que se hace en cada caso. 
 
 
