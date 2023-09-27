@@ -548,7 +548,7 @@ namespace MiNotSoSimpleAppTests
 
 ## 9- Capturar los unit tests como parte del proceso de CI/CD
   - Subir el proyecto a GITHUB
-  - Configurar una GitHubAction que haga ell build, corra el test y si funcionó, haga el deploy en una imagen que se suba a Docker.
+  - Configurar una GitHubAction que haga el build, corra el test y si funcionó, haga el deploy en una imagen que se suba a Docker.
 
 ## 10. PARA EL ENTREGABLE:
 
