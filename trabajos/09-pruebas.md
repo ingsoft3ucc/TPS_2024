@@ -1,7 +1,7 @@
 ## Trabajo Práctico 9 - Pruebas
 
 ## 1- Objetivos de Aprendizaje
- - Adquirir conocimientos sobre conceptos referidos a pruebas de unidad (unit tests) y de integración (integration tests).
+ - Adquirir conocimientos sobre conceptos referidos a pruebas de unidad (unit tests).
  - Generar y ejecutar pruebas unitarias utilizado frameworks disponibles.
 
 ## 2- Unidad temática que incluye este trabajo práctico
@@ -30,17 +30,35 @@ Una prueba unitaria se dirige a una pequeña unidad de código, por ejemplo, un 
 
 Las pruebas unitarias no son adecuadas para probar la interfaz de usuario compleja o la interacción de componentes. Para esto, debes desarrollar pruebas de integración.
 
-#### Frameworks de pruebas unitarias para Java
-Hay varios frameworks de prueba disponibles para Java. Los más populares son JUnit y TestNG
+#### Frameworks de pruebas unitarias
+Hay varios frameworks de prueba disponibles para distintos entornos de programación como NUnit, JUnit,  XUnit, MSTest. En este práctico nos enfocaremos en NUnit.
 
 #### ¿Qué parte del software debería probarse?
-Lo que debe probarse es un tema muy controvertido. Algunos desarrolladores creen que cada declaración en su código debe ser probada.
+Funcionalidad específica de una unidad de código: Una prueba unitaria debe evaluar una única unidad de código, como una función, método o clase. Debe centrarte en probar su funcionalidad específica y sus resultados esperados.
 
-En cualquier caso, debe escribir pruebas de software para las partes críticas y complejas de su aplicación. Si introduce nuevas funciones, un banco de pruebas sólido también lo protege contra la regresión en el código existente.
+Caminos de ejecución: Asegurarse de probar todos los caminos de ejecución posibles dentro de la unidad de código. Esto incluye casos de éxito y casos de error.
 
-En general, es seguro ignorar el código trivial. Por ejemplo, es inútil escribir pruebas para los métodos getter y setter que simplemente asignan valores a los campos. Escribir pruebas para estas afirmaciones consume mucho tiempo y no tiene sentido, ya que estaría probando la máquina virtual Java. La propia JVM ya tiene casos de prueba para esto. Si está desarrollando aplicaciones de usuario final, puede suponer que una asignación de campo funciona en Java.
+Entradas y salidas: Verificar que la unidad de código maneje correctamente las entradas proporcionadas y produzca las salidas esperadas. Esto implica probar con una variedad de valores de entrada, incluyendo valores límite y casos extremos.
 
-Si comienza a desarrollar pruebas para una base de código existente sin ninguna prueba, es una buena práctica comenzar a escribir pruebas para el código en el que la mayoría de los errores ocurrieron en el pasado. De esta manera puede enfocarse en las partes críticas de su aplicación.
+Manejo de excepciones: Si la unidad de código maneja excepciones, asegurarse de probar los casos en los que se lanzan excepciones y verifica que se manejen adecuadamente.
+
+#### Convenciones de nombre:
+
+Por lo general se utiliza la siguiente convención para nombrar a los tests unitarios: 
+
+**Metodo a probar** _ **escenario** _ **resultadoEsperado**
+
+Ejemplo:
+
+**CanBeCancelledBy** _ **UserIsAdmin** _ **ReturnsTrue**
+
+Dentro del código del test se debe utilizar el patrón Arrange, Act y Assert. Ejemplo:
+
+**Arrange:** Crear el objeto o función a probar.
+
+**Act**: Llamar al metodo con  sus parámetros
+
+**Assert**: Evaluar el resultado
 
 ## 4- Familiarizarse con algunos Decoradores y Assert más comunes:
 
@@ -308,6 +326,8 @@ code .
 }
 ```
 
+5.2 : Creamos Tests
+
 - Reemplazamos el codigo de ***UnitTest1.cs*** por:
 
 ```csharp
@@ -340,7 +360,7 @@ namespace SimpleWebAPI.Tests
 }
 ```
   
-- Ejecutamos el test:
+5.3 Ejecutamos el test:
 
 <img width="1006" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/d9473d6c-37d8-4c27-8331-eb92febbe42d">
 
@@ -414,7 +434,8 @@ public class UserServiceTests
 
 ## 8- Utilizando Moq
 
-8.1 Preparamos el entorno. Clonamos una app de consola en .NET Core que hace uso de un servicio externo (una llamada a una API Rest) y la abrimos en VS.Code
+8.1 Preparamos el entorno. 
+- Clonamos una app de consola en .NET Core que hace uso de un servicio externo (una llamada a una API Rest) y la abrimos en VS.Code
 
 ```bash
 git clone https://github.com/ingsoft3ucc/MiNotSoSimpleApp.git
@@ -422,22 +443,115 @@ cd MiNotSoSimpleApp
 code .
 ```
 
-8.2 Ejecutamos la app y vemos como nos devuelve 100 items desde la API:
+- Ejecutamos la app y vemos como nos devuelve 100 items desde la API:
 
 <img width="757" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/2be72558-f8b3-4d54-a2cf-eb043117419a">
 
-8.3 Analizamos el código
+- Analizamos el código
 
-8.4 Identificamos el servicio externo y su interfaz a mockear.
+- Identificamos el servicio externo y su interfaz a mockear. **Incluir en la entrega una explicación del código**
 
+- Cerramos VS.Code y creamos el proyecto de NUnit:
 
+```bash
+cd ..
 
-  - Analizar estos tests
+dotnet new nunit -n MiNotSoSimpleAppTests
+cd MiNotSoSimpleAppTests
+dotnet add reference ../MiNotSoSimpleApp/MiNotSoSimpleApp.csproj
+dotnet add package NUnit
+dotnet add package Moq
+dotnet add package NUnit3TestAdapter
+dotnet add package Microsoft.Extensions.Http
+dotnet add package Microsoft.Extensions.DependencyInjection
 
+```
 
-#### 5- Opcional: Agregar otros unit tests
-  - Agregar unit tests para mejorar la cobertura, pueden ser test simples que validen getter y setters.
-  
-#### 6- Capturar los unit tests como parte del proceso de CI/CD
-  - Hacer los cambios en Jenkins (o en la herramienta de CICD utilizada) si es necesario, para capturar los resultados de los unit tests y mostrarlos en la ejecución del build.
+- Abrimos VS.Code y configuramos settings:
+
+```bash
+cd ..
+code .
+```
+
+- Seleccionamos el icono de Test y OpenSettings
+Se abre el archivo settings.json y escribimos el nombre del proyecto de pruebas y el nombre de la dll resultante de la compilación del proyecto de pruebas:
+```bash
+{
+    "dotnet-test-explorer.testProjectPath": "MiNotSoSimpleAppTests",
+    "dotnet-test-explorer.testFileSuffix": ".Tests.dll"
+}
+```
+- Guardamos el archivo.
+
+8.2 Escribimos Test:
+
+Reemplazamos el codigo de UnitTest1.cs por:
+
+```csharp
+using System;
+using System.Collections.Generic;
+using System.Net;
+using System.Net.Http;
+using System.Net.Http.Json;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
+using Moq;
+using NUnit.Framework;
+using Moq.Protected;
+
+namespace MiNotSoSimpleAppTests
+{
+    public class ApiServiceTests
+    {
+        [Test]
+        public async Task GetMyModelsAsync_ReturnsDataFromHttpClient()
+        {
+            // Arrange
+            var serviceCollection = new ServiceCollection();
+            var mockResponse = new HttpResponseMessage(HttpStatusCode.OK)
+            {
+                Content = new StringContent("[{ \"UserId\": 1, \"Id\": 1, \"Title\": \"Test Title\", \"Body\": \"Test Body\" }]")
+            };
+
+            var mockHttpMessageHandler = new Mock<HttpMessageHandler>();
+            mockHttpMessageHandler.Protected()
+                .Setup<Task<HttpResponseMessage>>("SendAsync", ItExpr.IsAny<HttpRequestMessage>(), ItExpr.IsAny<CancellationToken>())
+                .ReturnsAsync(mockResponse);
+
+            serviceCollection.AddTransient<IApiService>(_ => new ApiService(new HttpClient(mockHttpMessageHandler.Object)));
+            var serviceProvider = serviceCollection.BuildServiceProvider();
+
+            var apiService = serviceProvider.GetRequiredService<IApiService>();
+
+            // Act
+            var result = await apiService.GetMyModelsAsync();
+
+            // Assert
+            Assert.IsNotNull(result);
+            Assert.AreEqual(1, result.Count());
+            Assert.AreEqual("Test Title", result.FirstOrDefault().Title);
+        }
+    }
+}
+```
+
+  - Incluir en la entrega una explicación del código
+
+8.3 Ejecutamos Test en VSCode y en linea de consola.
+
+8.4 Hacerlo falllar, arreglarlo y volverlo a correr. 
+
+8.5 Modificar el mock para que devuelva una colección de Posts y en un nuevo test verificar que la cantidad devuelta por el mock coincida con la esperada en el nuevo test.
+
+8.6 Detallar todo lo realizado en el entregable.
+
+## 9- Capturar los unit tests como parte del proceso de CI/CD
+  - Subir el proyecto a GITHUB
+  - Configurar una GitHubAction que haga ell build, corra el test y si funcionó, haga el deploy en una imagen que se suba a Docker.
+
+## 10. PARA EL ENTREGABLE:
+
+Se espera que el pdf entregable se corresponda con el repo resultante y contenga todos los prints screens q demuestren la reaización de todos los pasos del trabajo.
+
 
