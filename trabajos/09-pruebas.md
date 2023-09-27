@@ -1,4 +1,4 @@
-## Trabajo Práctico 9 - Pruebas
+## Trabajo Práctico 9 - Pruebas Unitarias
 
 ## 1- Objetivos de Aprendizaje
  - Adquirir conocimientos sobre conceptos referidos a pruebas de unidad (unit tests).
