@@ -577,6 +577,6 @@ namespace MiNotSoSimpleAppTests
     
 ## 10. IMPORTANTE PARA EL ENTREGABLE:
 
-Se espera que el pdf entregable se corresponda con el repo resultante y contenga todos los prints screens q demuestren la reaización de todos los pasos del trabajo y la explicación EN SUS PROPIAS PALABRAS de lo que se hace en cada caso. 
+Se espera que el pdf entregable se corresponda con el repo resultante y contenga todos los prints screens q demuestren la reaización de todos los pasos del trabajo y la explicación -con palabras propias- de lo que se hace en cada caso. 
 
 
