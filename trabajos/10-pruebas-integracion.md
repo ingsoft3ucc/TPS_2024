@@ -46,38 +46,29 @@ Codeceptjs es un framework end to end para pruebas de integración y de aceptaci
 npx create-codeceptjs .
 ```
 
-- Si esta utilizando codeceptjs 3.0.0, hay que actualizar a uno superior, por ejemplo 3.0.1
-- Cambiar en packages.json `"codeceptjs": "^3.0.0",` por `"codeceptjs": "^3.0.1",` y ejecutar `npm install`
 - Ininicializar un nuevo proyecto CodeceptJS:
 ```bash
 npx codeceptjs init
 ```
 - Elegimos las opciones por defecto, ponemos **sample** cuando se nos pregunte por el nombre del primer test:
 
-<img width="628" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/d2caac17-8ea6-46d9-80d6-bd8395c491c9">
-
-<img width="701" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/080dec03-5c15-4d1a-90b3-0e9c07039e31">
+<img width="910" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/de7b784f-49c2-40ac-97fb-2ff4dd87e693">
 
 
 - Editar el archivo **sample_test.js** generado:
 ```
 Feature('My First Test');
-Scenario('test something', (I) => {
 
-});
-```
-
-- Escribir un escenario de prueba:
-```Feature('My First Test');
-
-Scenario('test something', (I) => {
+Scenario('test something', ({ I }) => {
   I.amOnPage('https://github.com');
   I.see('GitHub');
 });
 ```
 
 - Finalmente correr el test:
-```npx codeceptjs run --steps```
+```npx codeceptjs run```
+
+<img width="463" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/90911ffb-6882-47c0-bbf3-c40bfafeba13">
 
 - Agregamos otras validaciones
 ```javascript
@@ -89,6 +80,24 @@ Scenario('test something', ({ I }) => {
     I.seeElement("//li[contains(.,'© 2022 GitHub, Inc.')]")
 });
 ```
+- En el resultado vemos que falla, dado que la página de github ha cambiado.
+- Actualizamos nuestro escenario:
+
+```
+Feature('My First Test');
+
+Scenario('test something', ({ I }) => {
+    I.amOnPage('https://github.com');
+    I.see('GitHub');
+    I.see('Let’s build from here')
+    I.scrollPageToBottom()
+    I.seeElement("//li[contains(.,'© 2023 GitHub, Inc.')]")
+});
+```
+- Volvemos a correr el test:
+```npx codeceptjs run```
+- Verificamos que el test haya sido exitoso
+
 - Para generar selectores fácilmente utilizamos plugins como (Firefox o Chrome)
   - TruePath https://addons.mozilla.org/en-US/firefox/addon/truepath/
   - ChroPath https://chrome.google.com/webstore/detail/chropath/ljngjbnaijcbncmcnjfhigebomdlkcjo
