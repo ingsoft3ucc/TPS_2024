@@ -112,10 +112,12 @@ git clone https://github.com/ingsoft3ucc/MiSimpleApp.git
 cd MiSimpleApp
 code .
 ```
+- Revisamos el código
 - Cerramos VS.Code
 - Nos movemos una carpeta hacia arriba y creamos un nuevo proyecto de pruebas unitarias con NUnit:
 
 ```bash
+cd ..
 dotnet new nunit -n MiSimpleAppTests
 ```
 - Entramos a la carpeta del nuevo proyecto y agregamos los paquetes NUnit y NUnit.ConsoleRunner. Luego le agregamos al proyecto de pruebas una referencia al proyecto que vamos a probar. Nos movemos una carpeta hacia arriba y lo vemos en VS.Code
@@ -128,6 +130,9 @@ dotnet add reference ../MiSimpleApp/MiSimpleApp.csproj
 cd ..
 code .
 ```
+- Si nos aparece este cartel, le decimos que si:
+
+  <img width="497" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/fa6e6bc4-148c-442f-afab-04686a705861">
 
 - Instalamos extensión ".NET Core Test Explorer"
 
