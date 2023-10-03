@@ -52,51 +52,14 @@ npx create-codeceptjs .
 ```bash
 npx codeceptjs init
 ```
-- Elegimos las opciones por defecto, ponemos **github** cuando se nos pregunte por el nombre del primer test:
-```powershell
-D:\repos\ucc\ing-soft-3-2020\proyectos\ut>npx codeceptjs init
+- Elegimos las opciones por defecto, ponemos **sample** cuando se nos pregunte por el nombre del primer test:
 
-  Welcome to CodeceptJS initialization tool
-  It will prepare and configure a test environment for you
+<img width="628" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/d2caac17-8ea6-46d9-80d6-bd8395c491c9">
 
-Installing to D:\repos\ucc\ing-soft-3-2020\proyectos\ut
-? Where are your tests located? ./*_test.js
-? What helpers do you want to use? (Use arrow keys)
-> Playwright
-  WebDriver
-  Puppeteer
-  TestCafe
-  Protractor
-  Nightmare
-  Appium
-? Where should logs, screenshots, and reports to be stored? ./output
-? Do you want localization for tests? (See https://codecept.io/translation/) English (no localization)
-Configure helpers...
-? [Playwright] Base url of site to be tested http://localhost
-? [Playwright] Show browser window Yes
-? [Playwright] Browser in which testing will be performed. Possible options: chromium, firefox or webkit chromium
+<img width="701" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/080dec03-5c15-4d1a-90b3-0e9c07039e31">
 
-Steps file created at ./steps_file.js
-Config created at D:\repos\ucc\ing-soft-3-2020\proyectos\ut\codecept.conf.js
-Directory for temporary output files created at './output'
-Intellisense enabled in D:\repos\ucc\ing-soft-3-2020\proyectos\ut\jsconfig.json
-TypeScript Definitions provide autocompletion in Visual Studio Code and other IDEs
-Definitions were generated in steps.d.ts
 
- Almost ready... Next step:
-Creating a new test...
-----------------------
-? Feature which is being tested (ex: account, login, etc) github
-? Filename of a test github_test.js
-
-Test for github_test.js was created in D:\repos\ucc\ing-soft-3-2020\proyectos\ut\github_test.js
-
---
-CodeceptJS Installed! Enjoy supercharged testing! �
-Find more information at https://codecept.io
-```
-
-- Editar el archivo generado:
+- Editar el archivo **sample_test.js** generado:
 ```
 Feature('My First Test');
 Scenario('test something', (I) => {
