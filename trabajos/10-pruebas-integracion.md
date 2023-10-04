@@ -102,8 +102,30 @@ Scenario('test something', ({ I }) => {
   - TruePath https://addons.mozilla.org/en-US/firefox/addon/truepath/
   - ChroPath https://chrome.google.com/webstore/detail/chropath/ljngjbnaijcbncmcnjfhigebomdlkcjo
   
-#### 3- Testeando la aplicación spring-boot
-  - En un directorio, por ejemplo **.\proyectos\spring-boot-it** ejecutar:
+#### 3- Testeando una aplicación Angular
+
+- Clonar repo
+```
+git clone https://github.com/ingsoft3ucc/angular-sample.git
+```
+- Instalamos dependecias con npm
+
+```
+cd angular-sample
+npm install
+```
+- Corremos el proyecto
+
+```
+ng serve
+```
+
+- Navegamos a http://localhost:4200
+
+  ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/bab4c8e4-a151-4bc4-8b82-53105a922b58)
+
+  
+- Creamos el proyecto de codeceptjs
 
 ```bash
 npx create-codeceptjs .
@@ -115,10 +137,10 @@ npx create-codeceptjs .
  - Inicializar CodeceptJS: ```npx codeceptjs init```
 
 
-- Responder las preguntas. Aceptar valores por defecto. Cuando pregunte por url colocar `http://localhost:8080` y y el nombre de los tests poner `spring-boot`
+- Responder las preguntas. Aceptar valores por defecto. Cuando pregunte por url colocar `http://localhost:4200` y y el nombre de los tests poner `angular-sample`
 
 
-- Editar el archivo generado `spring-boot_tests.js`:
+- Editar el archivo generado `angular-sample_tests.js`:
 ```javascript
 Feature('spring-boot');
 
@@ -142,7 +164,7 @@ Scenario('Verify return value', async () => {
 ```javascript
 	helpers: {
 		REST: {
-			endpoint: "http://localhost:8080",
+			endpoint: "http://localhost:4200",
 			onRequest: () => {
 			}
 		}
