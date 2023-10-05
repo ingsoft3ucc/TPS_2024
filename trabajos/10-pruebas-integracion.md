@@ -108,7 +108,7 @@ Scenario('test something', ({ I }) => {
 ```
 git clone https://github.com/ingsoft3ucc/angular-sample.git
 ```
-- Instalamos dependecias con npm
+- Instalamos dependencias con npm
 
 ```
 cd angular-sample
@@ -131,9 +131,6 @@ ng serve
 npx create-codeceptjs .
 ```
 
- - Instalar CodeceptJS con la librería webdriverio
-```npm install codeceptjs chai --save-dev```
-
  - Inicializar CodeceptJS: ```npx codeceptjs init```
 
 
@@ -142,24 +139,10 @@ npx create-codeceptjs .
 
 - Editar el archivo generado `angular-sample_tests.js`:
 ```javascript
-Feature('spring-boot');
 
-const expect = require('chai').expect;
-const {I} = inject();
-
-Scenario('Verify a successful call', async () => {
-	const res = await I.sendGetRequest('/');
-	expect(res.status).to.eql(200);
-});
-
-Scenario('Verify return value', async () => {
-	const res = await I.sendGetRequest('/');
-	//console.log(res);
-	expect(res.data.message).to.eql('Spring boot says hello from a Docker container');
-});
 ```
 
-- Reemplazar la sección helpers de codecept.conf.js por:
+- REVISAR!!!!!!!!! Reemplazar la sección helpers de codecept.conf.js por:
 
 ```javascript
 	helpers: {
@@ -171,12 +154,11 @@ Scenario('Verify return value', async () => {
 	}
 ```
 
-- Levantar la aplicación spring-boot en otra consola (usando java o Docker):
+- Levantar la aplicación en otra consola :
 ```bash
-cd ./proyectos/spring-boot
-java -jar target/spring-boot-sample-actuator-2.0.2.jar
+ng serve
 ```
-- Ejecutar los tests desde la carpeta `.\proyectos\spring-boot-it`
+- Ejecutar los tests
 
 ```
 npx codeceptjs run --steps
@@ -184,7 +166,7 @@ npx codeceptjs run --steps
 
 - Analizar resultados
 
-#### 4- Habilitar reportes para utilizarlos en CICD
+#### 4- REVISARRR Habilitar reportes para utilizarlos en CICD
 - Instalar el módulo para reporting
 ```bash
 npm i mocha-junit-reporter mocha-multi --save
@@ -218,5 +200,113 @@ npx codeceptjs run --steps --reporter mocha-multi
  
 - La salida compatible con Jenkins esta en ./output/results.xml
 
+- Hacemos un push hacia nuestro repo
+
 #### 5- Integrar la ejecución en Jenkins
-- Utilizando la funcionalidad de Junit test en Jenkins colectar estos resultados de la ejecución después del deployment.
+- En Jenkins configuramos un pipeline para hacer un build de nuestra app Angular y ejecutar nuestros test.
+- Creamos una nueva imagen de Jenkins que incluya nodejs para poder correr Angular con  este Dockerfile:
+```
+FROM jenkins/jenkins:lts
+
+USER root
+
+# Instala dependencias necesarias
+RUN apt-get update && apt-get install -y nodejs npm \
+    apt-transport-https \
+    software-properties-common \
+    wget
+
+# Agrega el repositorio de Microsoft y actualiza
+RUN wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb && \
+    apt-get update
+
+# Instala el SDK de .NET Core
+RUN apt-get install -y dotnet-sdk-7.0
+```
+- Desde DockerDesktop o desde la terminal borramos el volumen jenkins_home si es que existe.
+- Creamos la imagen a partir del dockkerfile:
+```
+docker build -t jenkins-ingsoft3 -f Dockerfile .
+```
+- Levantamos un contenedor con nuestra imagen:
+```
+cd  ~/jenkins
+rm -rf jenjins
+mkdir -p ~/jenkins
+docker run -d -p 8080:8080 -p 50000:50000 --name jenkins \
+-v jenkins_home:/var/jenkins_home \
+jenkins-ingsoft3
+```
+- Inicializamos Jenkins como se indica en el TP7
+- Creamos un pipeline llamado angular-sample reemplazando [MIREPO] :
+```
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                script {
+                    // Print Node.js and npm versions
+                    sh 'node --version'
+                    sh 'npm --version'
+
+                    // Get some code from a GitHub repository
+                    git branch: 'master', url: 'https://github.com/[MIREPO]/angular-sample.git'
+
+                    // Install dependencies using npm
+                    def npmInstall = sh(script: 'npm install', returnStatus: true)
+                    if (npmInstall != 0) {
+                        error "npm install failed"
+                    }
+
+                    // Install Angular CLI globally
+                    def ngInstall = sh(script: 'npm install -g @angular/cli', returnStatus: true)
+                    if (ngInstall != 0) {
+                        error "Angular CLI installation failed"
+                    }
+
+                    // Build the Angular project
+                    def ngBuild = sh(script: 'ng build', returnStatus: true)
+                    if (ngBuild != 0) {
+                        error "ng build failed"
+                    }
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                script {
+                    // Install CodeceptJS globally
+                    def codeceptInstall = sh(script: 'npm install -g codeceptjs', returnStatus: true)
+                    if (codeceptInstall != 0) {
+                        error "CodeceptJS installation failed"
+                    }
+
+                    // Install Playwright dependencies
+                    def playwrightDeps = sh(script: 'npx playwright install-deps', returnStatus: true)
+                    if (playwrightDeps != 0) {
+                        error "Playwright dependencies installation failed"
+                    }
+
+                    // Install Playwright
+                    def playwrightInstall = sh(script: 'npx playwright install', returnStatus: true)
+                    if (playwrightInstall != 0) {
+                        error "Playwright installation failed"
+                    }
+
+                    // Run CodeceptJS tests
+                    def codeceptRun = sh(script: 'npx codeceptjs run', returnStatus: true)
+                    if (codeceptRun != 0) {
+                        error "CodeceptJS tests failed"
+                    }
+                }
+            }
+        }
+    }
+}
+
+```
+
