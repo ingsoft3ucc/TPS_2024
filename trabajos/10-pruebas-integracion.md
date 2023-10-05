@@ -182,23 +182,39 @@ npm i mocha-junit-reporter mochawsome --save
 - Reemplazar la key mocha en el archivo codecept.conf.js por:
 
 ```javascript
-	mocha:  {
-    "reporterOptions": {
-      "codeceptjs-cli-reporter": {
-        "stdout": "-",
-        "options": {
-          "steps": true,
-        }
-      },
-      "mocha-junit-reporter": {
-        "stdout": "./output/console.log",
-        "options": {
-          "mochaFile": "./output/result.xml"
-        },
-        "attachments": true //add screenshot for a failed test
-		  }
-		}
-	}
+const { setHeadlessWhen, setCommonPlugins } = require('@codeceptjs/configure');
+// turn on headless mode when running with HEADLESS=true environment variable
+// export HEADLESS=true && npx codeceptjs run
+setHeadlessWhen(process.env.HEADLESS);
+
+// enable all common plugins https://github.com/codeceptjs/configure#setcommonplugins
+setCommonPlugins();
+
+/** @type {CodeceptJS.MainConfig} */
+exports.config = {
+  tests: './*_test.js',
+  output: './output',
+  helpers: {
+    Playwright: {
+      browser: 'chromium',
+      url: 'http://localhost:4200',
+      show: false
+    }
+  },
+  include: {
+    I: './steps_file.js'
+  },
+  
+  mocha: {
+     reporter: 'mochawesome',
+     reporterOptions: {
+       reportDir: './output',
+       reportFilename: 'mochawesome-report',
+     },
+   },
+  
+  name: 'angular-sample'
+}
 ```
 
 - Ejecutar los tests nuevamente
@@ -261,13 +277,16 @@ pipeline {
                     sh 'npm --version'
 
                     // Get some code from a GitHub repository
-                    git branch: 'master', url: 'https://github.com/[MIREPO]/angular-sample.git'
+                    git branch: 'master', url: 'https://github.com/arielsch74/angular-sample.git'
 
                     // Install dependencies using npm
                     def npmInstall = sh(script: 'npm install', returnStatus: true)
                     if (npmInstall != 0) {
                         error "npm install failed"
                     }
+                    
+                      // Create the "assets" directory
+                    sh 'mkdir -p output/assets'
 
                     // Install Angular CLI globally
                     def ngInstall = sh(script: 'npm install -g @angular/cli', returnStatus: true)
@@ -305,8 +324,13 @@ pipeline {
                         error "Playwright installation failed"
                     }
 
-                    // Run CodeceptJS tests
-                    def codeceptRun = sh(script: 'npx codeceptjs run', returnStatus: true)
+                    // Install mocha-junit-reporter and mocha-multi
+                    def mochaInstall = sh(script: 'npm install mocha-junit-reporter mochawesome --save', returnStatus: true)
+                    if (mochaInstall != 0) {
+                        error "Mocha dependencies installation failed"
+                    }
+                    // Run CodeceptJS tests with JUnit reporter
+                    def codeceptRun = sh(script: 'npx codeceptjs run --reporter mochawesome', returnStatus: true)
                     if (codeceptRun != 0) {
                         error "CodeceptJS tests failed"
                     }
@@ -314,7 +338,15 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            archiveArtifacts 'output/**/*'
+            
+            
+        }
+    }
 }
+
 
 ```
 
