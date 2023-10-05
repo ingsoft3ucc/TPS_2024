@@ -158,19 +158,27 @@ npx create-codeceptjs .
 ```bash
 ng serve
 ```
+
+<img width="800" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/e9a6984b-b8ca-4f58-ad1a-9ac2cbd6503f">
+
+
 - Ejecutar los tests
 
 ```
 npx codeceptjs run --steps
 ```
+<img width="556" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/789f6036-bed3-4f2c-ae17-2b94b63b6e76">
+
 
 - Analizar resultados
 
-#### 4- REVISARRR Habilitar reportes para utilizarlos en CICD
+#### 4- Habilitar reportes para utilizarlos en CICD
 - Instalar el módulo para reporting
 ```bash
-npm i mocha-junit-reporter mocha-multi --save
+npm i mocha-junit-reporter mochawsome --save
 ```
+<img width="754" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/755e4412-dbfa-42a6-81cd-cb9012de60b3">
+
 - Reemplazar la key mocha en el archivo codecept.conf.js por:
 
 ```javascript
@@ -195,7 +203,7 @@ npm i mocha-junit-reporter mocha-multi --save
 
 - Ejecutar los tests nuevamente
 ```bash
-npx codeceptjs run --steps --reporter mocha-multi
+npx codeceptjs run --steps --reporter mochawsome
 ```
  
 - La salida compatible con Jenkins esta en ./output/results.xml
