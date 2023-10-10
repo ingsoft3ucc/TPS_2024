@@ -153,7 +153,7 @@ npx codeceptjs run --steps
 #### 4- Habilitar reportes
 - Instalar el módulo para reporting
 ```bash
-npm i mocha-junit-reporter mochawsome --save
+npm i mocha-junit-reporter mocha-multi --save
 ```
 <img width="754" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/755e4412-dbfa-42a6-81cd-cb9012de60b3">
 
