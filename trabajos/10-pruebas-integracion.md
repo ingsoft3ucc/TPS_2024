@@ -20,7 +20,7 @@ Este tipo de pruebas le permiten traducir sus historias de usuario en un conjunt
 
 Existen una gran variedad de herramientas o frameworks disponibles para las pruebas de integración, tanto para componentes del backend como del frontend. Estas pueden ser comerciales, de código abierto o desarrolladas y utilizadas internamente por las compañías de software.
 
-Para este trabajo práctico vamos a probar aplicaciones web y rest y para ello utilizaremos Codeceptjs como ejemplo.
+En este trabajo práctico utilizaremos Codeceptjs como ejemplo.
 
 #### Selenium
 
@@ -133,22 +133,7 @@ npx create-codeceptjs .
 - Responder las preguntas. Aceptar valores por defecto. Cuando pregunte por url colocar `http://localhost:4200` y y el nombre de los tests poner `angular-sample`
 
 
-- Editar el archivo generado `angular-sample_tests.js`:
-```javascript
-
-```
-
-- REVISAR!!!!!!!!! Reemplazar la sección helpers de codecept.conf.js por:
-
-```javascript
-	helpers: {
-		REST: {
-			endpoint: "http://localhost:4200",
-			onRequest: () => {
-			}
-		}
-	}
-```
+- Editar el archivo generado `angular-sample_tests.js` de manera tal que se pruebe la funcionalidad de login en los escenarios login correcto y login incorrecto
 
 - Levantar la aplicación en otra consola :
 ```bash
@@ -164,9 +149,6 @@ ng serve
 npx codeceptjs run --steps
 ```
 <img width="556" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/789f6036-bed3-4f2c-ae17-2b94b63b6e76">
-
-
-- Analizar resultados
 
 #### 4- Habilitar reportes
 - Instalar el módulo para reporting
@@ -218,131 +200,9 @@ exports.config = {
 npx codeceptjs run --steps --reporter mochawsome
 ```
  
-- La salida compatible con Jenkins esta en ./output/results.xml
 
 - Hacemos un push hacia nuestro repo
 
-#### 5- Integrar la ejecución en Jenkins
-- En Jenkins configuramos un pipeline para hacer un build de nuestra app Angular y ejecutar nuestros test.
-- Creamos una nueva imagen de Jenkins que incluya nodejs para poder correr Angular con  este Dockerfile:
-```
-FROM jenkins/jenkins:lts
-
-USER root
-
-# Instala dependencias necesarias
-RUN apt-get update && apt-get install -y nodejs npm \
-    apt-transport-https \
-    software-properties-common \
-    wget
-
-# Agrega el repositorio de Microsoft y actualiza
-RUN wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
-    dpkg -i packages-microsoft-prod.deb && \
-    apt-get update
-
-# Instala el SDK de .NET Core
-RUN apt-get install -y dotnet-sdk-7.0
-```
-- Desde DockerDesktop o desde la terminal borramos el volumen jenkins_home si es que existe.
-- Creamos la imagen a partir del dockkerfile:
-```
-docker build -t jenkins-ingsoft3 -f Dockerfile .
-```
-- Levantamos un contenedor con nuestra imagen:
-```
-cd  ~/jenkins
-rm -rf jenjins
-mkdir -p ~/jenkins
-docker run -d -p 8080:8080 -p 50000:50000 --name jenkins \
--v jenkins_home:/var/jenkins_home \
-jenkins-ingsoft3
-```
-- Inicializamos Jenkins como se indica en el TP7
-- Creamos un pipeline llamado angular-sample reemplazando [MIREPO] :
-```
-pipeline {
-    agent any
-
-    stages {
-        stage('Build') {
-            steps {
-                script {
-                    // Print Node.js and npm versions
-                    sh 'node --version'
-                    sh 'npm --version'
-
-                    // Get some code from a GitHub repository
-                    git branch: 'master', url: 'https://github.com/arielsch74/angular-sample.git'
-
-                    // Install dependencies using npm
-                    def npmInstall = sh(script: 'npm install', returnStatus: true)
-                    if (npmInstall != 0) {
-                        error "npm install failed"
-                    }
-                    
-                      // Create the "assets" directory
-                    sh 'mkdir -p output/assets'
-
-                    // Install Angular CLI globally
-                    def ngInstall = sh(script: 'npm install -g @angular/cli', returnStatus: true)
-                    if (ngInstall != 0) {
-                        error "Angular CLI installation failed"
-                    }
-
-                    // Build the Angular project
-                    def ngBuild = sh(script: 'ng build', returnStatus: true)
-                    if (ngBuild != 0) {
-                        error "ng build failed"
-                    }
-                }
-            }
-        }
-
-        stage('Test') {
-            steps {
-                script {
-                    // Install CodeceptJS globally
-                    def codeceptInstall = sh(script: 'npm install -g codeceptjs', returnStatus: true)
-                    if (codeceptInstall != 0) {
-                        error "CodeceptJS installation failed"
-                    }
-
-                    // Install Playwright dependencies
-                    def playwrightDeps = sh(script: 'npx playwright install-deps', returnStatus: true)
-                    if (playwrightDeps != 0) {
-                        error "Playwright dependencies installation failed"
-                    }
-
-                    // Install Playwright
-                    def playwrightInstall = sh(script: 'npx playwright install', returnStatus: true)
-                    if (playwrightInstall != 0) {
-                        error "Playwright installation failed"
-                    }
-
-                    // Install mocha-junit-reporter and mocha-multi
-                    def mochaInstall = sh(script: 'npm install mocha-junit-reporter mochawesome --save', returnStatus: true)
-                    if (mochaInstall != 0) {
-                        error "Mocha dependencies installation failed"
-                    }
-                    // Run CodeceptJS tests with JUnit reporter
-                    def codeceptRun = sh(script: 'npx codeceptjs run --reporter mochawesome', returnStatus: true)
-                    if (codeceptRun != 0) {
-                        error "CodeceptJS tests failed"
-                    }
-                }
-            }
-        }
-    }
-    post {
-        always {
-            archiveArtifacts 'output/**/*'
-            
-            
-        }
-    }
-}
-
-
-```
+#### 5 - Presentación
+Subir todo el código, ejemplos y respuestas a una carpeta trabajo-practico-10.
 
