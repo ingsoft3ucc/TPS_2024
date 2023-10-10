@@ -40,7 +40,7 @@ Codeceptjs es un framework end to end para pruebas de integración y de aceptaci
 #### 2- Testeando la página de GitHub
 
 - Instalar NodeJs v12 o superior: https://nodejs.org/en/download/
-- En un directorio, por ejemplo **.\proyectos\ut** ejecutar:
+- En un directorio, por ejemplo **.\proyectos\tp10** ejecutar:
 
 ```bash
 npx create-codeceptjs .
@@ -97,10 +97,6 @@ Scenario('test something', ({ I }) => {
 - Volvemos a correr el test:
 ```npx codeceptjs run```
 - Verificamos que el test haya sido exitoso
-
-- Para generar selectores fácilmente utilizamos plugins como (Firefox o Chrome)
-  - TruePath https://addons.mozilla.org/en-US/firefox/addon/truepath/
-  - ChroPath https://chrome.google.com/webstore/detail/chropath/ljngjbnaijcbncmcnjfhigebomdlkcjo
   
 #### 3- Testeando una aplicación Angular
 
@@ -172,7 +168,7 @@ npx codeceptjs run --steps
 
 - Analizar resultados
 
-#### 4- Habilitar reportes para utilizarlos en CICD
+#### 4- Habilitar reportes
 - Instalar el módulo para reporting
 ```bash
 npm i mocha-junit-reporter mochawsome --save
