@@ -197,6 +197,8 @@ npx codeceptjs run --steps
 - Instalar el módulo para reporting
 ```bash
 npm i mocha-junit-reporter mocha-multi --save
+npm i mochawesome
+npm i mochawesome-report-generator
 ```
 <img width="754" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/755e4412-dbfa-42a6-81cd-cb9012de60b3">
 
@@ -240,9 +242,12 @@ exports.config = {
 
 - Ejecutar los tests nuevamente
 ```bash
-npx codeceptjs run --steps --reporter mochawsome
+npx codeceptjs run --steps --reporter 
 ```
- 
+
+- Verificamos en el directorio output el html generado como reporte:
+![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/0321c013-36ed-4d6d-8985-92766d70ec01)
+
 
 - Hacemos un push hacia nuestro repo
 
