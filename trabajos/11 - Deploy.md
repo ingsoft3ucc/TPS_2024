@@ -42,9 +42,6 @@ docker build -t miang .
 
 ```
 docker login
-``
-
-```
 docker tag miang <mi_usuario>/miang:latest
 docker push <mi_usuario>/miang:latest
 
