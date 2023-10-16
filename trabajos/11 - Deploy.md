@@ -12,7 +12,7 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
    - On-Premise (internos) es decir en servidores propios.
    - Nubes Públicas, ejemplo AWS, Azure, Gcloud, etc.
    - Plataformas como servicios (PaaS), ejemplo Heroku, Google App Engine, AWS, Azure, etc
- - Para este práctico utilizaremos como ejemplo a Azure
+ - Para este práctico utilizaremos como ejemplo a Google Cloud
 
 ### 4- Desarrollo:
 
@@ -46,3 +46,22 @@ docker tag miang <mi_usuario>/miang:latest
 docker push <mi_usuario>/miang:latest
 
 ```
+
+- Crear una cuenta Google Cloud
+- Crear un proyecto TP11
+
+ ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/cd2e0fce-0510-43fe-8132-cb65b07410d8)
+ ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/d1b9bb13-7f35-4f76-8e05-e560cc390da4)
+
+- Activar Cloud Shell 
+![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/9801fc96-ff88-487b-98ec-9b4f3e6ad296)
+
+- Hacemos un pull de nuestra imagen de DockerHub
+```
+docker pull <nombre_usuario>/<nombre_imagen>
+```
+![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/ac92ad72-352d-47e0-b3a8-e2bd9800a54e)
+
+
+
+
