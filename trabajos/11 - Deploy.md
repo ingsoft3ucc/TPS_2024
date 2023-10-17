@@ -139,49 +139,6 @@ gcloud auth configure-docker
 
 <img width="1207" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/2cfc5a68-6f44-499e-ba36-474773471ea2">
 
-- Ahora veremos como hacer CD desde el repo de Github:
-- Creo un nuevo servicio de Google Run
-
-<img width="514" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/8d1c3153-e4a6-4410-8c8c-7f145e26ed1f">
-
-- Selecciono Implementar de forma continua revisiones nuevas desde un repositorio de código fuente y  le doy a CONFIGURACION CON CLOUD BUILD:
-
-<img width="600" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/7ceb2774-5cd6-46e7-b223-454ec46173d8">
-
-- Si me pide autenticar:
-
-<img width="871" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/24bcb56a-0f59-47c2-b2b8-eaf841ab56c2">
-
-- Le doy Authorize y luego INSTALR GOOGLE CLOUD BUILD
-
-<img width="1129" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/233df3ff-99a8-4c26-869d-0e17aa9d77e8">
-
-<img width="718" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/b24174bf-ba9b-4c5d-af8b-78a1ab1b71ac">
-
-- Le damos INSTALL
-
-<img width="1039" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/60be45e6-c2bd-44d6-a883-a8c28d11b59e">
-
-- Seleccionamos nuestro Repo:
-
-<img width="765" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/26fe56de-1b06-48b6-be57-da7b6f04dfcd">
-
-- Congiguramos la ubicacion de nuestro dockerfile
-
-<img width="674" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/ffe76a93-67a1-48bf-9524-9d43e1679c12">
-
-
-- Le damos siguiente, seleccionamos nuestra rama y le decimos que lo construya a partir de nuestro ddockerfile
-- Configuramos igual que antes y le damos Crear
-
-<img width="464" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/0dc2242c-ab7d-4c9f-862c-06ca99fa6ecc">
-
-
-- Hacemos un cambio en nuestra pantalla de login
-
-
-
-
 
 
 
