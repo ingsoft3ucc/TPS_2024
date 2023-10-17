@@ -141,6 +141,7 @@ gcloud auth configure-docker
 
 4.2 - Creamos un job de Jenkins para hacer pruebas de integacion e2e:
 
+- Modificamos nuestros archivos angular_sample_test.js y codecept.conf.js para que apunte a la url de nuestro sitio en Google Cloud y hacemos un push al repo.
 - Creamos una nueva imagen de Jenkins que incluya nodejs para poder correr Angular con  este Dockerfile:
 ```
 FROM jenkins/jenkins:lts
@@ -181,42 +182,42 @@ pipeline {
         stage('Test') {
             steps {
                 script {
-                    // Install CodeceptJS globally
-                    def codeceptInstall = sh(script: 'npm install -g codeceptjs', returnStatus: true)
-                    if (codeceptInstall != 0) {
-                        error "CodeceptJS installation failed"
-                    }
-                    // Install Playwright dependencies
-                    def playwrightDeps = sh(script: 'npx playwright install-deps', returnStatus: true)
-                    if (playwrightDeps != 0) {
-                        error "Playwright dependencies installation failed"
-                    }
-                    // Install Playwright
-                    def playwrightInstall = sh(script: 'npx playwright install', returnStatus: true)
-                    if (playwrightInstall != 0) {
-                        error "Playwright installation failed"
-                    }
-                    // Install mocha-junit-reporter and mocha-multi
-                    def mochaInstall = sh(script: 'npm install mocha-junit-reporter mochawesome --save', returnStatus: true)
-                    if (mochaInstall != 0) {
-                        error "Mocha dependencies installation failed"
-                    }
-                    // Run CodeceptJS tests with JUnit reporter
-                    def codeceptRun = sh(script: 'npx codeceptjs run --reporter mochawesome', returnStatus: true)
-                    if (codeceptRun != 0) {
-                        error "CodeceptJS tests failed"
+                    
+                    // Get some code from a GitHub repository
+                    git branch: 'main', url: '[MIREPO]'
+                    //Change directory
+                    dir('angular-sample') {
+                        // Install CodeceptJS globally
+                        def codeceptInstall = sh(script: 'npm install -g codeceptjs', returnStatus: true)
+                        if (codeceptInstall != 0) {
+                            error "CodeceptJS installation failed"
+                        }
+                        // Install Playwright dependencies
+                        def playwrightDeps = sh(script: 'npx playwright install-deps', returnStatus: true)
+                        if (playwrightDeps != 0) {
+                            error "Playwright dependencies installation failed"
+                        }
+                        // Install Playwright
+                        def playwrightInstall = sh(script: 'npx playwright install', returnStatus: true)
+                        if (playwrightInstall != 0) {
+                            error "Playwright installation failed"
+                        }
+                        // Install mocha-junit-reporter and mocha-multi
+                        def mochaInstall = sh(script: 'npm install mocha-junit-reporter mochawesome --save', returnStatus: true)
+                        if (mochaInstall != 0) {
+                            error "Mocha dependencies installation failed"
+                        }
+                        // Run CodeceptJS tests with JUnit reporter
+                        def codeceptRun = sh(script: 'npx codeceptjs run --reporter mochawesome', returnStatus: true)
+                        if (codeceptRun != 0) {
+                            error "CodeceptJS tests failed"
+                        }
                     }
                 }
             }
         }
     }
-    post {
-        always {
-            archiveArtifacts 'output/**/*'
-            
-            
-        }
-    }
+    
 }
 ```
 
