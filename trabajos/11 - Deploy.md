@@ -117,6 +117,11 @@ gcloud auth configure-docker
 
 ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/4a5e035c-b19d-4b5e-9567-dbcb23a7641b)
 
+- Habilitamos API si nos solicita:
+
+![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/9b9bcc81-5856-4b91-bfdd-35cd64bcff91)
+
+
 - Configuramos max 15 instancias:
   
  ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/4f08718a-1108-46c2-a559-2916e72dac1b)
