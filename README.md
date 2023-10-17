@@ -24,6 +24,6 @@ Repositorio Git de Ingeniería de Software 3
 
   * [Trabajo Práctico 10 - Pruebas de Integración](trabajos/10-pruebas-integracion.md)
 
-  * [Trabajo Práctico 11 - Deploy](trabajos/11-Deploy.md)  
+  * [Trabajo Práctico 11 - Deploy](trabajos/11%20-%20Deploy.md)  
 
 
