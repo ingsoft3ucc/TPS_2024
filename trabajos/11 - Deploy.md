@@ -16,7 +16,7 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
 
 ### 4- Desarrollo:
 
-- Sobre la aplicación angular que se realizo en el punto 3, 4 y 5 del TP10 construimos un Dockerfile
+4.1 Sobre la aplicación angular que se realizo en el punto 3, 4 y 5 del TP10 construimos un Dockerfile
 
 ```
 # Stage 1
@@ -139,6 +139,86 @@ gcloud auth configure-docker
 
 <img width="1207" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/2cfc5a68-6f44-499e-ba36-474773471ea2">
 
+4.2 - Creamos un job de Jenkins para hacer pruebas de integacion e2e:
+
+- Creamos una nueva imagen de Jenkins que incluya nodejs para poder correr Angular con  este Dockerfile:
+```
+FROM jenkins/jenkins:lts
+USER root
+# Instala dependencias necesarias
+RUN apt-get update && apt-get install -y nodejs npm \
+    apt-transport-https \
+    software-properties-common \
+    wget
+# Agrega el repositorio de Microsoft y actualiza
+RUN wget -q https://packages.microsoft.com/config/ubuntu/20.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb && \
+    dpkg -i packages-microsoft-prod.deb && \
+    apt-get update
+# Instala el SDK de .NET Core
+RUN apt-get install -y dotnet-sdk-7.0
+```
+- Desde DockerDesktop o desde la terminal borramos el volumen jenkins_home si es que existe.
+- Creamos la imagen a partir del dockkerfile:
+```
+docker build -t jenkins-ingsoft3 -f Dockerfile .
+```
+- Levantamos un contenedor con nuestra imagen:
+```
+cd  ~/jenkins
+rm -rf jenjins
+mkdir -p ~/jenkins
+docker run -d -p 8080:8080 -p 50000:50000 --name jenkins \
+-v jenkins_home:/var/jenkins_home \
+jenkins-ingsoft3
+```
+- Inicializamos Jenkins como se indica en el TP7
+- Creamos un pipeline llamado angular-sample reemplazando [MIREPO] :
+```
+pipeline {
+    agent any
+    stages {
+       
+        stage('Test') {
+            steps {
+                script {
+                    // Install CodeceptJS globally
+                    def codeceptInstall = sh(script: 'npm install -g codeceptjs', returnStatus: true)
+                    if (codeceptInstall != 0) {
+                        error "CodeceptJS installation failed"
+                    }
+                    // Install Playwright dependencies
+                    def playwrightDeps = sh(script: 'npx playwright install-deps', returnStatus: true)
+                    if (playwrightDeps != 0) {
+                        error "Playwright dependencies installation failed"
+                    }
+                    // Install Playwright
+                    def playwrightInstall = sh(script: 'npx playwright install', returnStatus: true)
+                    if (playwrightInstall != 0) {
+                        error "Playwright installation failed"
+                    }
+                    // Install mocha-junit-reporter and mocha-multi
+                    def mochaInstall = sh(script: 'npm install mocha-junit-reporter mochawesome --save', returnStatus: true)
+                    if (mochaInstall != 0) {
+                        error "Mocha dependencies installation failed"
+                    }
+                    // Run CodeceptJS tests with JUnit reporter
+                    def codeceptRun = sh(script: 'npx codeceptjs run --reporter mochawesome', returnStatus: true)
+                    if (codeceptRun != 0) {
+                        error "CodeceptJS tests failed"
+                    }
+                }
+            }
+        }
+    }
+    post {
+        always {
+            archiveArtifacts 'output/**/*'
+            
+            
+        }
+    }
+}
+```
 
 
 
