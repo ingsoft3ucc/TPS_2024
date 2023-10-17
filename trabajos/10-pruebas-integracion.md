@@ -242,7 +242,7 @@ exports.config = {
 
 - Ejecutar los tests nuevamente
 ```bash
-npx codeceptjs run --steps --reporter 
+npx codeceptjs run --steps 
 ```
 
 - Verificamos en el directorio output el html generado como reporte:
