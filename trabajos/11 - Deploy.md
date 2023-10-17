@@ -116,6 +116,7 @@ gcloud auth configure-docker
 ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/4a5e035c-b19d-4b5e-9567-dbcb23a7641b)
 
 - Configuramos max 15 instancias:
+  
  ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/4f08718a-1108-46c2-a559-2916e72dac1b)
 
 - Configuramos acceso público:
@@ -129,6 +130,13 @@ gcloud auth configure-docker
 - Le damos Crear:
 
 ![image](https://github.com/ingsoft3ucc/TPs/assets/140459109/182f1363-0c82-4e20-8b12-b6ba47347a3e)
+
+- Luego de unos segundos nos disponibiliza la url:
+
+<img width="698" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/b8aa42ab-f8e9-41c9-98d5-249786c3cb32">
+
+<img width="1207" alt="image" src="https://github.com/ingsoft3ucc/TPs/assets/140459109/2cfc5a68-6f44-499e-ba36-474773471ea2">
+
 
 
 
