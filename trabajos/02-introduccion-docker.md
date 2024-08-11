@@ -151,7 +151,16 @@ docker container prune
 ```
 
 #### 7- Construir una imagen
-
+- Conceptos de DockerFile
+  - Leer https://docs.docker.com/engine/reference/builder/ (tiempo estimado 2 horas)
+  - Describir las instrucciones
+     - FROM
+     - RUN
+     - ADD
+     - COPY
+     - EXPOSE
+     - CMD
+     - ENTRYPOINT
 - A partir del código https://github.com/ingsoft3ucc/SimpleWebAPI crearemos una imagen.
 - Clonar repo
 - Crear imagen etiquetándola con un nombre. El punto final le indica a Docker que use el dir actual
