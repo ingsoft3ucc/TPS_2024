@@ -99,12 +99,12 @@ docker run busybox
 
   - Explicar porque no se obtuvo ningún resultado
 
-  - Especificamos algún comando a correr dentro del contendor, ejecutar por ejemplo:
+  - Especificamos algún comando a correr dentro del contenedor, ejecutar por ejemplo:
 ```bash
 docker run busybox echo "Hola Mundo"
 ```
 
-  - Ver los contendores ejecutados utilizando el comando **ps**:
+  - Ver los contenedores ejecutados utilizando el comando **ps**:
 ```bash
 docker ps
 ```
@@ -127,22 +127,22 @@ uptime
 free
 ls -l /
 ```
-  - Salimos del contendor con:
+  - Salimos del contenedor con:
 ```bash
 exit
 ```
 
-#### 6- Borrando contendores terminados
+#### 6- Borrando contenedores terminados
 
-  - Obtener la lista de contendores 
+  - Obtener la lista de contenedores 
 ```bash
 docker ps -a
 ```
-  - Para borrar podemos utilizar el id o el nombre (autogenerado si no se especifica) de contendor que se desee, por ejemplo:
+  - Para borrar podemos utilizar el id o el nombre (autogenerado si no se especifica) de contenedor que se desee, por ejemplo:
 ```bash
 docker rm elated_lalande
 ```
-  - Para borrar todos los contendores que no estén corriendo, ejecutar cualquiera de los siguientes comandos:
+  - Para borrar todos los contenedores que no estén corriendo, ejecutar cualquiera de los siguientes comandos:
 ```bash
 docker rm $(docker ps -a -q -f status=exited)
 ```
@@ -152,7 +152,7 @@ docker container prune
 
 #### 7- Construir una imagen
 - Conceptos de DockerFile
-  - Leer https://docs.docker.com/engine/reference/builder/ (tiempo estimado 2 horas)
+  - Leer https://docs.docker.com/engine/reference/builder/ 
   - Describir las instrucciones
      - FROM
      - RUN
@@ -165,7 +165,7 @@ docker container prune
 - Clonar repo
 - Crear imagen etiquetándola con un nombre. El punto final le indica a Docker que use el dir actual
 ```
-docker build –t mywebapi .
+docker build -t mywebapi .
 ```
 - Revisar Dockerfile y explicar cada línea
 - Ver imágenes disponibles
