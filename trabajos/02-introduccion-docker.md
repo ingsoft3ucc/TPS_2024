@@ -171,6 +171,24 @@ docker build -t mywebapi .
 - Ver imágenes disponibles
 - Ejecutar un contenedor con nuestra imagen
 - Subir imagen a nuestra cuenta de dockerhub
+  - 7.1 Inicia sesión en Docker Hub
+    - Primero, asegúrate de estar autenticado en Docker Hub desde tu terminal:
+    ```bash
+    docker login
+    ```
+  - 7.2 Etiquetar la imagen a subir con tu nombre de usuario de Docker Hub y el nombre de la imagen. Por ejemplo:
+    ```bash
+    docker tag <nombre_imagen_local> <tu_usuario_dockerhub>/<nombre_imagen>:<tag>
+    ```
+  - 7.3 Subir la Imagen
+    - Para subir la imagen etiquetada a Docker Hub, utiliza el comando docker push:
+     ```bash
+     docker push <tu_usuario_dockerhub>/<nombre_imagen>:<tag>
+     ```
+  - 7.4 Verificar la Subida
+     ```bash
+     docker pull <tu_usuario_dockerhub>/<nombre_imagen>:<tag>
+     ```
 
 #### 8- Publicando puertos
 
