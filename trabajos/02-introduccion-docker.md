@@ -207,12 +207,12 @@ docker run --name myapi -d mywebapi
 docker kill myapi
 docker rm myapi
 ```
-  - Vamos a volver a correrlo otra vez, pero publicando los puertos 80 y 5254
+  - Vamos a volver a correrlo otra vez, pero publicando el puerto 80
 
 ```bash
-docker run --name myapi -d -p 80:80 -p 5254:5254 mywebapi
+docker run --name myapi -d -p 80:80 mywebapi
 ```
-  - Accedamos nuevamente a http://localhost/WeatherForecast y a http://localhost/swagger/index.html y expliquemos que sucede.
+  - Accedamos nuevamente a http://localhost/WeatherForecast y vemos que nos devuelve datos.
 
 #### 9- Modificar Dockerfile para soportar bash 
 
@@ -224,6 +224,9 @@ docker run --name myapi -d -p 80:80 -p 5254:5254 mywebapi
 CMD ["/bin/bash"]
 ```
 - Rehacemos la imagen
+```
+docker build -t mywebapi .
+```
 - Corremos contenedor en modo interactivo exponiendo puerto
 ```
 docker run -it --rm -p 80:80 mywebapi
@@ -283,7 +286,7 @@ select * from tabla_a;
 exit
 ```
 
-- Conectarse a la base utilizando alguna IDE (Dbeaver - https://dbeaver.io/, eclipse, IntelliJ, etc...). Interactuar con los objectos objectos creados.
+- Conectarse a la base utilizando alguna IDE (Dbeaver - https://dbeaver.io/, Azure DataStudio -https://azure.microsoft.com/es-es/products/data-studio, etc). Interactuar con los objectos objectos creados.
 
 - Explicar que se logro con el comando `docker run` y `docker exec` ejecutados en este ejercicio.
 
