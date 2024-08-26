@@ -54,7 +54,7 @@ Estas prácticas son esenciales en el desarrollo de software ágil y permiten la
  - 4.11 Buscar el resultado del pipeline y correr localmente el software compilado.
  - 4.12 Crear un nuevo proyecto en ADO clonado desde un repo que contenga una aplicación en Angular como por ejemplo https://github.com/ingsoft3ucc/angular-demo-project.git
  - 4.13 Configurar un pipeline de build para un proyecto de tipo Angular como el clonado.
- - 4.14 Descargar el resultado del pipeline y correr localmente el software compilado.
+ - 4.14 Descargar el resultado del pipeline y correr en un servidor web local el sitio construido.
 
 #### 5- Presentación del trabajo práctico.
 Subir un doc al repo con las capturas de pantalla de los pasos realizados y colocar en el excel de repos (https://docs.google.com/spreadsheets/d/1mZKJ8FH390QHjwkABokh3Ys6kMOFZGzZJ3-kg5ziELc/edit?gid=0#gid=0) la url del proyecto de AzureDevops.
