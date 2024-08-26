@@ -60,4 +60,4 @@ Estas prácticas son esenciales en el desarrollo de software ágil y permiten la
 Subir un doc al repo con las capturas de pantalla de los pasos realizados y colocar en el excel de repos (https://docs.google.com/spreadsheets/d/1mZKJ8FH390QHjwkABokh3Ys6kMOFZGzZJ3-kg5ziELc/edit?gid=0#gid=0) la url del proyecto de AzureDevops.
 
 #### 6- Criterio de Calificación
-Los pasos 4.1 al 4.11 representan un 50% de la nota total, los pasos 4.12 al 4.14 representan el 50% restante
+Los pasos 4.1 al 4.11 representan un 60% de la nota total, los pasos 4.12 al 4.14 representan el 40% restante
