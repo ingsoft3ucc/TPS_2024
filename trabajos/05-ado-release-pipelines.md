@@ -16,5 +16,7 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
 
 ### 4- Desarrollo:
 
-Crear una cuenta en Azure 
-<iframe src="https://scribehow.com/embed/Create_a_Free_Azure_Account_Step_by_Step_Guide__wug4YzPjTIOHWeTZdxSsyg?as=scrollable" width="100%" height="640" allowfullscreen frameborder="0"></iframe>
+## Crear una cuenta en Azure
+
+[Guía paso a paso para crear una cuenta en Azure](https://scribehow.com/embed/Create_a_Free_Azure_Account_Step_by_Step_Guide__wug4YzPjTIOHWeTZdxSsyg?as=scrollable)
+
