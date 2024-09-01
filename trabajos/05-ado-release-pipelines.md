@@ -35,7 +35,24 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
 
 4.10\. Modificar pipeline de release para colocar una aprobación manual para el paso a Producción.
 
-4.11\.  Realizar un cambio al código del controlador para que devuelva 5 pronósticos, realizar commit, evaluar ejecución de pipelines de build y release, navegar a la url de la webapp/weatherforecast y corroborar cambio, verificar que en la url de la webapp_prod/weatherforecast aun se muestra la versión anterior.
+4.11\. Realizar un cambio al código del controlador para que devuelva 5 pronósticos, realizar commit, evaluar ejecución de pipelines de build y release, navegar a la url de la webapp/weatherforecast y corroborar cambio, verificar que en la url de la webapp_prod/weatherforecast aun se muestra la versión anterior.
+
+4.12\. Aprobar el pase ya sea desde el release o desde el mail recibido. 
+<img width="1197" alt="image" src="https://github.com/user-attachments/assets/05e8d1a1-ae06-4824-91d7-1a6e0162e859">
+
+<img width="1221" alt="image" src="https://github.com/user-attachments/assets/33710115-a5c3-43ee-a208-5879331c7a8d">
+
+<img width="1466" alt="image" src="https://github.com/user-attachments/assets/9655c548-d3da-4d29-8080-8324d711c18f">
+
+4.12.1\. Notar que se puede dar la aprobación pero posponer su aplicación hasta una determinada fecha
+
+
+<img width="1222" alt="image" src="https://github.com/user-attachments/assets/11f710b9-4ac1-4e2c-a560-7714835b2ce6">
+
+4.13\. Esperar a la finalización de la etapa de Pase a Prod y luego corroborar que en la url de la webapp_prod/weatherforecast se muestra la nueva versión coinicidente con la de QA.
+<img width="1465" alt="image" src="https://github.com/user-attachments/assets/533ac589-58e1-4f36-9356-d37a0da58220">
+
+<img width="1125" alt="image" src="https://github.com/user-attachments/assets/26256e9d-28c5-41d7-97cb-e86df429e817">
 
 
  
