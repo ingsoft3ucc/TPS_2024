@@ -812,5 +812,15 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
 ### 7-  Criterio de Calificación
 Los pasos 4.1 al 4.13 representan un 60% de la nota total, los pasos 4.13 y subsiguientes representan el 40% restante.
 
+### 8-  Documentación y Recursos Adicionales
+- https://learn.microsoft.com/en-us/azure/devops/?view=azure-devops
+
+- https://learn.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops
+
+- https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/?view=azure-pipelines
+
+- https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview
+
+- https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview
 
 
