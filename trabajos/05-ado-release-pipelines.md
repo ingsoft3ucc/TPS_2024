@@ -3,6 +3,9 @@
 ### 1- Objetivos de Aprendizaje
  - Adquirir conocimientos acerca de las herramientas de despliegue y releases de aplicaciones.
  - Configurar este tipo de herramientas.
+ - Comprender el concepto de recurso en Azure
+ - Comprender los conceptos básicos de Release Pipelines en Azure DevOps.
+ - Configurar un Release Pipeline para automatizar despliegues en diferentes entornos-
 
 ### 2- Unidad temática que incluye este trabajo práctico
 Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery: Cap 10)
@@ -12,7 +15,7 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
    - On-Premise (internos) es decir en servidores propios.
    - Nubes Públicas, ejemplo AWS, Azure, Gcloud, etc.
    - Plataformas como servicios (PaaS), ejemplo Heroku, Google App Engine, AWS, Azure WebApp, etc
- - Para este práctico utilizaremos como ejemplo a Microsoft Azure WebApps
+ - En este práctico haremos despliegue a Plataforma como Servicio utilizando Azure Web Apps
 
 ### 4- Desarrollo:
 4.1\. Crear una cuenta en Azure
