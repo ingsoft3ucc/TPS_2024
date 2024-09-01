@@ -18,7 +18,178 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
 
 ## Crear una cuenta en Azure
 
-[Guía paso a paso para crear una cuenta en Azure](https://scribehow.com/embed/Create_a_Free_Azure_Account_Step_by_Step_Guide__wug4YzPjTIOHWeTZdxSsyg?as=scrollable)
+1\. Navigate to [https://azure.microsoft.com/es-mx/](https://azure.microsoft.com/es-mx/)
+
+
+2\. Click "Comenzar a usar Azure"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/c6b10b19-339c-4d02-a524-eb552d66fda4/ascreenshot.jpeg?tl_px=681,0&br_px=1541,480&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=558,-3)
+
+
+3\. Click "Probar Azure gratis"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/ac523580-203f-4497-88c6-e2d05e20102b/ascreenshot.jpeg?tl_px=0,204&br_px=859,685&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=192,212)
+
+
+4\. Click "Usar otra cuenta"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/80d9b3a9-9928-4894-8044-01fdd370471e/ascreenshot.jpeg?tl_px=269,443&br_px=1129,924&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+5\. Click this button.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/f32d5e77-531d-4364-80ef-0c8bbb379c05/ascreenshot.jpeg?tl_px=456,312&br_px=1316,793&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+6\. Click "Cree una"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/5e60ec4c-8f1e-4a79-bbd4-ce5c48057e28/ascreenshot.jpeg?tl_px=337,245&br_px=1197,726&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+7\. Click "get a new one"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/afa2e4f5-8d1e-44e1-8660-12de7d97a93e/ascreenshot.jpeg?tl_px=365,162&br_px=1225,643&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+8\. Click "Next"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/ac07a53d-3685-48a7-ad85-c52a04dabb7e/ascreenshot.jpeg?tl_px=458,336&br_px=1318,817&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+9\. Click "Next"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/1c7816d2-921b-492d-9ed2-cc1b2efc7917/ascreenshot.jpeg?tl_px=462,368&br_px=1322,849&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+10\. Click "Next"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/c8abc064-5ed4-4956-b86a-1e4b8a0c7637/ascreenshot.jpeg?tl_px=497,372&br_px=1357,853&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+11\. Click "Next"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/28558c68-72c2-4689-9d48-337ddf893843/ascreenshot.jpeg?tl_px=500,444&br_px=1360,925&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+12\. Click "To verify your email address use this security code: 399365"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/fbe2a0bd-0b90-474a-a3d3-dde4ffb0a52f/ascreenshot.jpeg?tl_px=243,172&br_px=1103,653&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+13\. Click "Next"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/56490255-84b9-4921-9819-6ab6d10edae8/ascreenshot.jpeg?tl_px=482,417&br_px=1342,898&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+14\. Click "Sign in"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/d06b46be-fb5c-454a-aac5-2091b8f84df4/ascreenshot.jpeg?tl_px=462,360&br_px=1322,841&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+15\. Click "Yes"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/b69e6757-6a9f-448f-9509-325ebef29b71/ascreenshot.jpeg?tl_px=455,341&br_px=1315,822&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+16\. Click "Acepto el contrato de cliente."
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/72a45337-d58b-4413-b235-688b9b02634b/ascreenshot.jpeg?tl_px=0,286&br_px=859,767&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=227,212)
+
+
+17\. Click the "Teléfono" field.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/54267126-b1d8-4591-8172-fd3bf32ae789/ascreenshot.jpeg?tl_px=14,96&br_px=873,577&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+18\. Click "Envíeme un mensaje de texto"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/75b93bcb-b64f-4353-9c2b-49a6c5113bd4/ascreenshot.jpeg?tl_px=0,270&br_px=859,751&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=390,212)
+
+
+19\. Click "Comprobar código"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/29b45c8e-5b26-4a7b-8367-af897209302a/ascreenshot.jpeg?tl_px=0,401&br_px=859,882&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=299,212)
+
+
+20\. Click "Siguiente"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/a2e5ee85-1a17-40c8-a1f9-fc8507276d5a/ascreenshot.jpeg?tl_px=0,487&br_px=859,968&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=290,217)
+
+
+21\. Click this button field.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/87dc3039-4f21-4cc4-bc78-edffbb5d82e7/ascreenshot.jpeg?tl_px=0,101&br_px=859,582&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=373,212)
+
+
+22\. Click this text field.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/2547ec3f-0c04-4f44-9aec-0733a87eff6d/ascreenshot.jpeg?tl_px=0,356&br_px=859,837&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=359,212)
+
+
+23\. Click "Registrarse"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/03b09f0c-05be-43bf-9910-df3f84044488/ascreenshot.jpeg?tl_px=116,487&br_px=976,968&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,361)
+
+
+24\. Click "Siguiente"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/99adbd68-9ce5-4e97-8b40-a54f7ff5b20f/ascreenshot.jpeg?tl_px=467,431&br_px=1327,912&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+25\. Click "Regístrese para obtener Azure con los precios de pago por uso."
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/e0e34b63-d502-4239-82dd-b615dc9e05c5/ascreenshot.jpeg?tl_px=423,134&br_px=1283,615&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+26\. Click "Acepto el contrato de cliente."
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/718b7a57-fa94-47ad-962f-a0a96767c8d8/ascreenshot.jpeg?tl_px=0,61&br_px=859,542&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=231,212)
+
+
+27\. Click "Siguiente"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/6617b10e-3771-4408-bbe1-61e21124c60c/ascreenshot.jpeg?tl_px=0,286&br_px=859,767&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=294,212)
+
+
+28\. Click "Siguiente"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/5c569c66-3721-45fe-8843-273cf8c1359a/ascreenshot.jpeg?tl_px=0,290&br_px=859,771&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=274,212)
+
+
+29\. Click "Registrarse"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/7f1b810e-6dfd-4248-9ac6-6e5f10499494/ascreenshot.jpeg?tl_px=28,487&br_px=887,968&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,361)
+
+
+30\. Click "Siguiente"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/62c8a8b0-2a17-452f-80b0-f0267bb9bb53/ascreenshot.jpeg?tl_px=469,441&br_px=1329,922&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+31\. Click here.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/84c7cb19-c812-44a4-9dec-d68c0be415e0/ascreenshot.jpeg?tl_px=454,256&br_px=1314,737&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+32\. Click here.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/13d09b79-3b01-4c5b-85ee-3c9e5ab7fc63/ascreenshot.jpeg?tl_px=0,0&br_px=859,480&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=134,137)
+
+
+33\. Click "Verify"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/a0abf4e1-adf8-4b58-bf0a-60c917564c77/ascreenshot.jpeg?tl_px=466,373&br_px=1326,854&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+34\. Click "[azportal2024@gmail.com](mailto:azportal2024@gmail.com)"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/a52e29ff-3449-48e5-a598-5f0b4c6885cb/ascreenshot.jpeg?tl_px=338,125&br_px=1198,606&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+35\. Click this icon.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/35588b40-0ab1-4a69-bf1e-6f8738eafd30/ascreenshot.jpeg?tl_px=681,0&br_px=1541,480&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=808,42)
+
 
 ## Crear un Pipeline de Release en Azure DevOps
 
