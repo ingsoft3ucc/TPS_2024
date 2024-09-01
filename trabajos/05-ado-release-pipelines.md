@@ -11,8 +11,8 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
  - Los despliegues (deployments) de aplicaciones se pueden realizar en diferentes tipos de entornos
    - On-Premise (internos) es decir en servidores propios.
    - Nubes Públicas, ejemplo AWS, Azure, Gcloud, etc.
-   - Plataformas como servicios (PaaS), ejemplo Heroku, Google App Engine, AWS, Azure, etc
- - Para este práctico utilizaremos como ejemplo a Google Cloud
+   - Plataformas como servicios (PaaS), ejemplo Heroku, Google App Engine, AWS, Azure WebApp, etc
+ - Para este práctico utilizaremos como ejemplo a Microsoft Azure WebApps
 
 ### 4- Desarrollo:
 4.1\. Crear una cuenta en Azure
@@ -54,7 +54,7 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
 
 <img width="1125" alt="image" src="https://github.com/user-attachments/assets/26256e9d-28c5-41d7-97cb-e86df429e817">
 
-
+4.14\. Realizar un pipeline (no release) que incluya el deploy a QA y a PROD con una aprobación manual. El pipeline debe estar construido en YAML sin utilizar el editor clásico de pipelines ni el editor clásico de pipelines de release.
  
 ### 5- Instructivos:
 #### 5.1 Crear una cuenta en Azure
@@ -805,7 +805,12 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/601a17d6-c1e2-4044-a2c9-0e60bd8cbc36/ascreenshot.jpeg?tl_px=487,520&br_px=2034,1385&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=524,277)
 
 
+### 6-  Presentación del trabajo práctico.
+- Subir un doc al repo con las capturas de pantalla de los pasos realizados y tener en el excel de repos (https://docs.google.com/spreadsheets/d/1mZKJ8FH390QHjwkABokh3Ys6kMOFZGzZJ3-kg5ziELc/edit?gid=0#gid=0) la url del proyecto de AzureDevops.
+- Aclarar los nombres de los pipelines que se deben evaluar.
 
+### 7-  Criterio de Calificación
+Los pasos 4.1 al 4.13 representan un 60% de la nota total, los pasos 4.13 y subsiguientes representan el 40% restante.
 
 
 
