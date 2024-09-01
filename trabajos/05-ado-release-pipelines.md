@@ -33,7 +33,9 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
 
 4.9\.  Realizar un cambio al código del controlador para que devuelva 10 pronósticos, realizar commit, evaluar ejecución de pipelines de build y release, navegar a la url de la webapp/weatherforecast y corroborar cambio, verificar que en la url de la webapp_prod/weatherforecast se muestra lo mismo.
 
-4.10\. Modificar pipeline de release para colocar una aprobación manual para el paso a Producción
+4.10\. Modificar pipeline de release para colocar una aprobación manual para el paso a Producción.
+
+4.11\.  Realizar un cambio al código del controlador para que devuelva 5 pronósticos, realizar commit, evaluar ejecución de pipelines de build y release, navegar a la url de la webapp/weatherforecast y corroborar cambio, verificar que en la url de la webapp_prod/weatherforecast aun se muestra la versión anterior.
 
 
  
@@ -723,6 +725,67 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
 
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/349c21f3-f5c9-4321-ae32-900ec1af8697/ascreenshot.jpeg?tl_px=484,547&br_px=2031,1412&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=524,277)
 
+####5.6 Agregar Aprobación Manual para el Paso a Prod en un Azure Release Pipeline
+
+5.6.1\. Navegar a [https://dev.azure.com/ ](https://dev.azure.com/ingsoft3ucc/Sample02/_build)NOMBRE_ORGANIZACION
+
+
+5.6.2\. Click "Releases"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/4c1f29ac-05c1-4eec-8ce6-33558b87f5c6/ascreenshot.jpeg?tl_px=0,279&br_px=1547,1144&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=101,277)
+
+
+5.6.3\. Click en Edit.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/9398590b-c897-4b60-8558-525e39f6074b/ascreenshot.jpeg?tl_px=634,0&br_px=2182,865&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=717,83)
+
+
+5.6.4\. Click en "Pre-deployment conditions"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/b538eb66-cb9b-488c-86ed-64ca48a47cbc/ascreenshot.jpeg?tl_px=634,177&br_px=2182,1042&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=715,277)
+
+
+5.6.5\. Habilitar las "Pre-deployment conditions"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/fe1bf373-7760-4958-b4b2-dcfcf1a6c21f/ascreenshot.jpeg?tl_px=634,798&br_px=2182,1664&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=928,283)
+
+
+5.6.6\. Click en "Search users and groups for approvers" para agregar a los usuarios que pueden aprobar el pase a prod.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/a76d1832-5c2b-4a45-b56d-574a10a33923/ascreenshot.jpeg?tl_px=634,353&br_px=2182,1218&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=614,277)
+
+
+5.6.7\. Seleccionar un usuario
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/75f34bd8-1e7b-4cba-afea-d4dbbf55f9e1/ascreenshot.jpeg?tl_px=634,403&br_px=2182,1268&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=601,277)
+
+
+5.6.8\. Ver que siginifica la propiedad Timeout
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/6fdfbcc4-541b-40e4-8592-1bce10717be6/ascreenshot.jpeg?tl_px=521,418&br_px=2068,1283&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=523,276)
+
+
+5.6.9\. Click here.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/48f71632-8c55-42b4-ade5-612184abf539/ascreenshot.jpeg?tl_px=634,0&br_px=2182,865&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=1057,158)
+
+
+5.6.10\. Click "Save"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/033c1a25-7ac8-4b8d-81e9-a22588d2e1b7/ascreenshot.jpeg?tl_px=634,0&br_px=2182,865&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=734,62)
+
+
+5.6.11\. Click the "Comment" field.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/9526005e-48b0-43dc-8ba4-cf138807b1a8/ascreenshot.jpeg?tl_px=491,375&br_px=2038,1240&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=524,277)
+
+
+5.6.12\. Type "Se agrega aprobacion manual"
+
+
+5.6.13\. Click here.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/601a17d6-c1e2-4044-a2c9-0e60bd8cbc36/ascreenshot.jpeg?tl_px=487,520&br_px=2034,1385&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=524,277)
 
 
 
