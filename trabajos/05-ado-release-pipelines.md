@@ -20,9 +20,7 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
 
 [Guía paso a paso para crear una cuenta en Azure](https://scribehow.com/embed/Create_a_Free_Azure_Account_Step_by_Step_Guide__wug4YzPjTIOHWeTZdxSsyg?as=scrollable)
 
-# Creating a Release Pipeline in Azure DevOps
-#### [Made by Ariel Schwindt with Scribe](https://scribehow.com/shared/Creating_a_Release_Pipeline_in_Azure_DevOps__-mnaOVKFSOqRMuim_Me02w)
-
+## Crear un Pipeline de Release en Azure DevOps
 
 1\. Navegar a [https://dev.azure.com/](https://dev.azure.com/azportal2024/Sample01)NOMBRE_DE_TU_ORGANIZACION
 
@@ -176,7 +174,7 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
 32\. Click "OK"
 
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/d8c2f803-ea8f-44a9-b99e-7b6e5b3c92b5/ascreenshot.jpeg?tl_px=558,322&br_px=1418,803&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
-#### [Made with Scribe](https://scribehow.com/shared/Creating_a_Release_Pipeline_in_Azure_DevOps__-mnaOVKFSOqRMuim_Me02w)
+
 
 
 
