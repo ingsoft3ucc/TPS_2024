@@ -19,7 +19,7 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
 
 4.2\. Crear un recurso Web App en Azure Portal y navegar a la url provista
 
-4.3\. Crear un Pipeline de Release en Azure DevOps con CD habilitada
+4.3\. Actualizar Pipeline de Build para que use tareas de DotNetCoreCLI@2 como en el pipeline clásico, luego crear un Pipeline de Release en Azure DevOps con CD habilitada
 
 4.4\. Optimizar Pipeline de Build
 
