@@ -191,6 +191,190 @@ Este trabajo práctico corresponde a la unidad Nº: 3 (Libro Continuous Delivery
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-08-29/35588b40-0ab1-4a69-bf1e-6f8738eafd30/ascreenshot.jpeg?tl_px=681,0&br_px=1541,480&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=808,42)
 
 
+# Crear un recurso Web App en Azure Portal
+
+1\. Navigate to [https://portal.azure.com/#home](https://portal.azure.com/#home)
+
+
+2\. Click this icon.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/699d7c93-5e30-40b0-a784-bb232bbeef4c/ascreenshot.jpeg?tl_px=0,0&br_px=859,480&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=264,115)
+
+
+3\. Click the "Buscar servicios y marketplace" field.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/477981f4-6ee2-48c3-9261-97b59fe2b635/ascreenshot.jpeg?tl_px=0,0&br_px=859,480&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=348,125)
+
+
+4\. Click this image.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/a7944fc4-82ba-4c2e-a29e-569b5aa921dd/ascreenshot.jpeg?tl_px=681,119&br_px=1541,600&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=432,212)
+
+
+5\. Click "Planes"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/d91bb0c2-afbb-47b9-93eb-f955a67052f4/ascreenshot.jpeg?tl_px=0,151&br_px=859,632&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=176,212)
+
+
+6\. Click "Información de uso y soporte técnico"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/79fcfefb-3d2f-4472-b42b-42ff1c5195c7/ascreenshot.jpeg?tl_px=0,147&br_px=859,628&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=296,212)
+
+
+7\. Click "Crear"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/a0fb8565-6a6a-4e9e-965a-a611ccc7de29/ascreenshot.jpeg?tl_px=0,48&br_px=859,529&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=389,212)
+
+
+8\. Click "(Nuevo) Grupo de recursos"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/2791e4a8-db6d-4896-8868-467108714fb9/ascreenshot.jpeg?tl_px=0,176&br_px=859,657&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=353,212)
+
+
+9\. Click "(Nuevo) Grupo de recursos"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/d9b09799-ea72-4540-bbcc-a6f990abbc2d/ascreenshot.jpeg?tl_px=0,168&br_px=859,649&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=350,212)
+
+
+10\. Click "Crear nuevo"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/4c2d2cc6-716d-4a43-940e-06155eb3c6fa/ascreenshot.jpeg?tl_px=0,198&br_px=859,679&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=304,212)
+
+
+11\. Type "TPSIngSoft3UCC2024"
+
+
+12\. Click here.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/f3d93ccc-201a-47c4-8036-d2f1447d4885/ascreenshot.jpeg?tl_px=0,371&br_px=859,852&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=342,212)
+
+
+13\. Click the "Nombre" field.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/74ca7403-ac4c-4401-8b96-6973cdda1f40/ascreenshot.jpeg?tl_px=0,281&br_px=859,762&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=397,212)
+
+
+14\. Type "MiWebApp01"
+
+
+15\. Click here.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/d5687ed0-9f00-4f8f-9f62-ee4c5f8a1338/ascreenshot.jpeg?tl_px=0,327&br_px=859,808&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=273,212)
+
+
+16\. Click "Seleccione una pila del entorno en tiempo de ejecución"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/b36e2e59-cf3d-49d1-b9ca-15952ab57e4d/ascreenshot.jpeg?tl_px=0,421&br_px=859,902&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=371,212)
+
+
+17\. Click here.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/0a8973c1-da85-4a4f-bfff-013d94d056a3/ascreenshot.jpeg?tl_px=0,0&br_px=859,480&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=352,187)
+
+
+18\. Click "Estándar S1 (Total de ACU: 100, 1.75 GB de memoria, 1 vCPU)"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/5072c787-029a-43dc-a5c7-abfae4e86271/ascreenshot.jpeg?tl_px=0,448&br_px=859,929&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=374,212)
+
+
+19\. Click "60 minutos de CPU/día incluidos"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/e74b0a6b-6e32-4dbe-b801-24dcd7612c75/ascreenshot.jpeg?tl_px=3,79&br_px=862,560&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
+20\. Click "Crear nuevo"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/abd461a8-c319-4a32-80ba-4560a296f5f0/ascreenshot.jpeg?tl_px=0,338&br_px=859,819&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=303,212)
+
+
+21\. Type "MiAppPlan01"
+
+
+22\. Click "Aceptar"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/2ce05660-43b4-403a-84ea-a49738fc066a/ascreenshot.jpeg?tl_px=0,476&br_px=859,957&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=328,212)
+
+
+23\. Click "Siguiente: Base de datos >"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/3e6e97a1-2cae-4aa2-b3db-3d7b7aac6d54/ascreenshot.jpeg?tl_px=0,487&br_px=859,968&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=323,411)
+
+
+24\. Click "Siguiente: Implementación >"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/4440896d-cc16-4e3d-937e-ced647c789a0/ascreenshot.jpeg?tl_px=0,487&br_px=859,968&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=339,421)
+
+
+25\. Click "Deshabilitar"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/fc5e4758-8230-46dd-a4c0-9b0fc1bfe82f/ascreenshot.jpeg?tl_px=0,47&br_px=859,528&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=295,212)
+
+
+26\. Click "Siguiente: Redes >"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/ed6fd2e0-5c15-484b-99cd-3509e5c359aa/ascreenshot.jpeg?tl_px=0,487&br_px=859,968&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=345,423)
+
+
+27\. Click "Siguiente: Supervisión y protección >"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/6a9471d7-b0fc-46d0-92de-8618bff28d05/ascreenshot.jpeg?tl_px=0,487&br_px=859,968&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=389,420)
+
+
+28\. Click here.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/51e65a51-2a51-44d9-acd2-ddde9c4cb4b4/ascreenshot.jpeg?tl_px=0,176&br_px=859,657&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=265,212)
+
+
+29\. Click "Siguiente: Etiquetas >"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/2008e818-fbb7-4b9d-b0ba-9bd2f25963e2/ascreenshot.jpeg?tl_px=0,487&br_px=859,968&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=319,416)
+
+
+30\. Click "Siguiente: Revisar y crear >"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/b36b996a-0746-42c6-b8f5-900a98fec43b/ascreenshot.jpeg?tl_px=0,487&br_px=859,968&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=349,424)
+
+
+31\. Click "Descargar una plantilla para la automatización"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/23e9fc9f-f718-41a7-96c0-bc9a74c4d469/ascreenshot.jpeg?tl_px=29,487&br_px=888,968&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,423)
+
+
+32\. Click here.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/e53fc21f-5705-4e03-8e7a-1d94e6d92222/ascreenshot.jpeg?tl_px=0,0&br_px=859,480&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=74,122)
+
+
+33\. Click "Crear"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/9dccaabe-c69a-489b-89aa-5a77c551cf7f/ascreenshot.jpeg?tl_px=0,487&br_px=859,968&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=42,419)
+
+
+34\. Click this icon.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/aaf4fc77-d72b-4d8a-bffb-86bfd549890d/ascreenshot.jpeg?tl_px=681,0&br_px=1541,480&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=484,-7)
+
+
+35\. Click "Ir al recurso"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/a2151089-bcdd-454e-972c-0848d573ddb0/ascreenshot.jpeg?tl_px=0,241&br_px=859,722&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=378,212)
+
+
+36\. Click this icon.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/5077baf7-20b0-4f24-8c45-80806b044ccf/ascreenshot.jpeg?tl_px=681,0&br_px=1541,480&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=791,34)
+
+
+37\. Click "[miwebapp01.azurewebsites.net](http://miwebapp01.azurewebsites.net)"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/a250a47b-4fa8-4a28-a200-dce85d724a23/ascreenshot.jpeg?tl_px=681,17&br_px=1541,498&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=431,212)
+
+
+38\. Click here.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-01/57cc8aa4-cde7-444c-8c40-b9f15a32e76c/ascreenshot.jpeg?
+
+
 ## Crear un Pipeline de Release en Azure DevOps
 
 1\. Navegar a [https://dev.azure.com/](https://dev.azure.com/azportal2024/Sample01)NOMBRE_DE_TU_ORGANIZACION
