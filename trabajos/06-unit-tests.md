@@ -50,6 +50,12 @@ GO
 
 4.2.1\. Seguir las instrucciones del README.md del repo clonado prestando atención a la modificación de la cadena de conexión en el appSettings.json para que apunte a la BD creada en 4.1 
 
+4.2.2\. Navegar a http://localhost:7150/swagger/index.html y probar uno de los controladores para verificar el correcto funcionamiento de la API.
+![image](https://github.com/user-attachments/assets/a537ad2e-7c4a-4099-a3e4-fb03fc3bd1f1)
+
+4.2.3\. Navegar a http://localhost:4200 y verificar el correcto funcionamiento de nuestro front-end Angular
+![image](https://github.com/user-attachments/assets/a2858f8a-4ce7-4d49-8852-167e8cc23660)
+
 4.3\. Una vez verificado el correcto funcionamiento de la Aplicación procederemos a crear un proyecto de pruebas unitarias.
 
 4.3.1\. En el directorio raiz de nuestro repo crear un nuevo proyecto de pruebas unitarias para nuestra API 
@@ -63,8 +69,55 @@ dotnet new xunit -n EmployeeCrudApi.Tests
 
 Primero, instala las siguientes bibliotecas mediante NuGet:
 
-Moq: para crear objetos simulados de tus dependencias.
-xUnit (o NUnit) para escribir las pruebas unitarias.
+-**Moq**
+
+Moq es una popular biblioteca de mocking en .NET que se utiliza en pruebas unitarias para simular el comportamiento de dependencias externas o de objetos complejos. El objetivo de Moq es ayudar a los desarrolladores a escribir pruebas unitarias aisladas sin tener que interactuar con implementaciones reales de dependencias, como bases de datos, servicios externos, APIs o archivos del sistema. De esta manera, se puede probar el código en condiciones controladas y reproducibles.
+Sirve para:
+  - Simular el comportamiento de dependencias: Moq permite crear versiones simuladas (mocks) de las dependencias externas (por ejemplo, interfaces o clases abstractas) para verificar cómo interactúa el código con ellas.
+
+  - Aislamiento de pruebas: Permite aislar el código bajo prueba, garantizando que cualquier error en las dependencias externas no afecte las pruebas.
+
+  - Verificación de interacciones: Moq puede verificar si los métodos de las dependencias se llamaron con los argumentos correctos o con qué frecuencia fueron invocados.
+
+  - Simulación de resultados: Podemos configurar el comportamiento de los métodos simulados para que devuelvan valores específicos, excepciones o respuestas asíncronas para distintos escenarios.
+
+  - Ejemplos de uso:
+    - Configurar retornos de métodos: Se puede configurar un mock para que un método retorne un valor específico.
+    - Verificar interacciones: Verificar si un método fue llamado, cuántas veces y con qué parámetros.
+    - Simular excepciones: Probar cómo responde el código al manejar excepciones lanzadas por dependencias externas.
+- **xUnit** 
+
+xUnit es un marco de trabajo (framework) para pruebas unitarias en el ecosistema .NET. Es una de las opciones más populares para escribir pruebas automatizadas en proyectos de .NET, y es conocido por su simplicidad, flexibilidad y compatibilidad con varias versiones de .NET, incluyendo .NET Core y .NET 5/6/7/8.
+
+- Características principales de xUnit:
+
+  - Atributos de prueba:
+
+    - **[Fact]**: Se usa para definir una prueba unitaria básica.
+    - **[Theory]**: Permite ejecutar una prueba varias veces con diferentes parámetros, útil para probar múltiples casos de una misma lógica.
+
+  - Inyección de dependencias: xUnit soporta inyección de dependencias en los constructores de las clases de prueba, lo que facilita la configuración y limpieza de las pruebas.
+
+  - Configuración y limpieza de pruebas:
+    
+    - Los métodos `Dispose` permiten liberar recursos al final de cada prueba.
+    - También se pueden usar los atributos **[ClassFixture]** y **[Collection]** para compartir el contexto entre pruebas y gestionar la configuración y limpieza antes o después de varias pruebas.
+
+  - Integración con herramientas de CI/CD: xUnit se integra perfectamente con sistemas de integración continua y entrega continua (CI/CD) como **Azure DevOps**, **GitHub Actions**, y **Jenkins**, lo que lo convierte en una excelente opción para entornos de desarrollo ágiles.
+
+  - Compatibilidad con múltiples plataformas: xUnit es compatible con **.NET Framework**, **.NET Core** y **.NET 5+**, lo que lo hace versátil y adaptable a diferentes proyectos.
+
+  - Desventajas de NUnit y MSTest corregidas: xUnit surgió como una evolución de otros marcos como **NUnit** y **MSTest**, con el objetivo de corregir ciertas limitaciones. Por ejemplo, no utiliza métodos como `SetUp` o `TearDown` (propios de NUnit), sino que promueve el uso del constructor de clases para inicializar objetos.
+
+- **Microsoft.EntityFrameworkCore.InMemory**
+
+Este paquete es una implementación del proveedor InMemory para Entity Framework Core, y su propósito principal es permitir realizar pruebas unitarias y de integración en memoria, sin necesidad de conectarse a una base de datos física. Simula el comportamiento de una base de datos sin necesidad de utilizar un servidor de base de datos real. Esto es útil en las siguientes situaciones:
+
+  * Pruebas unitarias: Con InMemory, es posible insertar datos en la base de datos simulada, realizar operaciones de consulta, actualización y eliminación, y verificar que el código funcione correctamente sin tener que preocuparnos por la conexión a una base de datos real. 
+  * Prototipado rápido: Si estamos desarrollando una aplicación y necesitamos trabajar con datos sin configurar un entorno de base de datos completo, podemos usar InMemory para almacenar los datos de manera temporal mientras desarrollamos la lógica de la aplicación.
+  * Aislamiento de pruebas: El proveedor InMemory garantiza que cada ejecución de prueba pueda tener su propia instancia de base de datos aislada, lo que ayuda a asegurar que las pruebas sean consistentes y no dependan de datos residuales de ejecuciones anteriores.
+
+ 
 
 ```bash
 cd EmployeeCrudApi.Tests 
@@ -238,13 +291,39 @@ mv UnitTest1.cs EmployeeControllerUnitTests.cs
 </Project>
 
 ```
-4.3.5\. Ejecutar los siguientes comandos
+4.4\. Ejecutar los siguientes comandos para ejecutar nuestras pruebas
 ```bash
 dotnet build
 dotnet test
 ```
-4.3.6\. Verificar que se hayan ejecutado correctamente las pruebas
+4.4.1\. Verificar que se hayan ejecutado correctamente las pruebas
 ![image](https://github.com/user-attachments/assets/5f69e693-ed99-418b-97c1-c69ebd5839fe)
+
+4.5\. Verificar que no estamos usando una dependencia externa como la base de datos.
+
+4.5.1\. Modificar la cadena de conexión en el archivo appsettings.json para que use un usuario o password incorrecto y recompilar el proyecto EmployeeCrudApi
+```bash
+dotnet build
+dotnet run --urls "http://localhost:7150"
+```
+4.5.2\. Verificar que nuestro proyecto ya no tiene acceso a la BD navegando a http://localhost:7150/swagger/index.html y probando uno de los controladores:
+![image](https://github.com/user-attachments/assets/33df73ea-bd02-48a6-a399-c4a312c1e360)
+
+4.5.3\. En la carpeta de nuestro proyecto EmployeeCrudApi.Tests volver a correr las pruebas
+```bash
+dotnet build
+dotnet test
+```
+4.5.4\. Verificar que se hayan ejecutado correctamente las pruebas inclusive sin tener acceso a la BD, lo que confirma que es efectivamente una prueba unitaria que no requiere de una dependencia externa para funcionar.
+![image](https://github.com/user-attachments/assets/5f69e693-ed99-418b-97c1-c69ebd5839fe)
+
+4.5.5\. Modificar la cadena de conexión en el archivo appsettings.json para que use el usuario y password correcto y recompilar el proyecto EmployeeCrudApi
+```bash
+dotnet build
+dotnet run --urls "http://localhost:7150"
+```
+4.5.2\. Verificar que nuestro proyecto vuelve a tener acceso a la BD navegando a http://localhost:7150/swagger/index.html y probando uno de los controladores:
+![image](https://github.com/user-attachments/assets/2fe6b621-db7b-48f2-96e8-d8e1b995474f)
 
 
 
