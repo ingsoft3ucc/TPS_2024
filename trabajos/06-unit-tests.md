@@ -50,6 +50,28 @@ GO
 
 4.2.1\. Seguir las instrucciones del README.md del repo clonado prestando atención a la modificación de la cadena de conexión en el appSettings.json para que apunte a la BD creada en 4.1 
 
+4.3\. Una vez verificado el correcto funcionamiento de la Aplicación procederemos a crear un proyecto de pruebas unitarias.
+
+4.3.1\. En el directorio raiz de nuestro repo crear un nuevo proyecto de pruebas unitarias para nuestra API 
+```bash
+dotnet new xunit -n EmployeeCrudApi.Tests
+```
+![image](https://github.com/user-attachments/assets/faba2065-cf36-44c8-be66-c616355b7659)
+
+
+4.3.2\. Instalar dependencias necesarias
+
+Primero, instala las siguientes bibliotecas mediante NuGet:
+
+Moq: para crear objetos simulados de tus dependencias.
+xUnit (o NUnit) para escribir las pruebas unitarias.
+
+```bash
+cd EmployeeCrudApi.Tests 
+dotnet add package Moq
+dotnet add package xunit
+
+```
 
 
 
