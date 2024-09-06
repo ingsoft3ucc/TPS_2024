@@ -70,6 +70,7 @@ xUnit (o NUnit) para escribir las pruebas unitarias.
 cd EmployeeCrudApi.Tests 
 dotnet add package Moq
 dotnet add package xunit
+dotnet add package Microsoft.EntityFrameworkCore.InMemory
 
 ```
 
@@ -78,124 +79,125 @@ dotnet add package xunit
 using EmployeeCrudApi.Controllers;
 using EmployeeCrudApi.Data;
 using EmployeeCrudApi.Models;
-using Moq;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
-using Microsoft.EntityFrameworkCore;
 
-namespace EmployeeCrudApi.Tests;
-
-public class EmployeeControllerTests
+namespace EmployeeCrudApi.Tests
 {
-    private readonly Mock<ApplicationDbContext> _mockContext;
-    private readonly EmployeeController _controller;
-
-    public EmployeeControllerTests()
+    public class EmployeeControllerTests
     {
-        // Crear un mock de ApplicationDbContext
-        _mockContext = new Mock<ApplicationDbContext>();
-        
-        // Inicializar el controlador con el mock del contexto
-        _controller = new EmployeeController(_mockContext.Object);
-    }
-
-    [Fact]
-    public async Task GetAll_ReturnsListOfEmployees()
-    {
-        // Preparar datos simulados
-        var employees = new List<Employee>
+        private ApplicationDbContext GetInMemoryDbContext()
         {
-            new Employee { Id = 1, Name = "John Doe" },
-            new Employee { Id = 2, Name = "Jane Doe" }
-        }.AsQueryable();
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>()
+                .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString()) // Crear una nueva base de datos en memoria para cada prueba
+                .Options;
 
-        // Simular el DbSet con Moq y Entity Framework in-memory
-        var mockSet = new Mock<DbSet<Employee>>();
-        mockSet.As<IQueryable<Employee>>().Setup(m => m.Provider).Returns(employees.Provider);
-        mockSet.As<IQueryable<Employee>>().Setup(m => m.Expression).Returns(employees.Expression);
-        mockSet.As<IQueryable<Employee>>().Setup(m => m.ElementType).Returns(employees.ElementType);
-        mockSet.As<IQueryable<Employee>>().Setup(m => m.GetEnumerator()).Returns(employees.GetEnumerator());
+            return new ApplicationDbContext(options);
+        }
 
-        _mockContext.Setup(c => c.Employees).Returns(mockSet.Object);
+        [Fact]
+        public async Task GetAll_ReturnsListOfEmployees()
+        {
+            // Arrange
+            var context = GetInMemoryDbContext();
+            context.Employees.AddRange(
+                new Employee { Id = 1, Name = "John Doe" },
+                new Employee { Id = 2, Name = "Jane Doe" }
+            );
+            context.SaveChanges();
 
-        // Actuar
-        var result = await _controller.GetAll();
+            var controller = new EmployeeController(context);
 
-        // Afirmar
-        Assert.Equal(2, result.Count);
-        Assert.Equal("John Doe", result[0].Name);
-        Assert.Equal("Jane Doe", result[1].Name);
+            // Act
+            var result = await controller.GetAll();
+
+            // Assert
+            Assert.Equal(2, result.Count);
+            Assert.Equal("John Doe", result[0].Name);
+            Assert.Equal("Jane Doe", result[1].Name);
+        }
+
+        [Fact]
+        public async Task GetById_ReturnsEmployeeById()
+        {
+            // Arrange
+            var context = GetInMemoryDbContext();
+            context.Employees.Add(new Employee { Id = 1, Name = "John Doe" });
+            context.SaveChanges();
+
+            var controller = new EmployeeController(context);
+
+            // Act
+            var result = await controller.GetById(1);
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(1, result.Id);
+            Assert.Equal("John Doe", result.Name);
+        }
+
+        [Fact]
+        public async Task Create_AddsEmployee()
+        {
+            // Arrange
+            var context = GetInMemoryDbContext();
+            var controller = new EmployeeController(context);
+
+            var newEmployee = new Employee { Id = 3, Name = "New Employee" };
+
+            // Act
+            await controller.Create(newEmployee);
+
+            // Assert
+            var employee = await context.Employees.FindAsync(3);
+            Assert.NotNull(employee);
+            Assert.Equal("New Employee", employee.Name);
+        }
+
+        [Fact]
+        public async Task Update_UpdatesEmployee()
+        {
+            // Arrange
+            var context = GetInMemoryDbContext();
+            var existingEmployee = new Employee { Id = 1, Name = "Old Name" };
+            context.Employees.Add(existingEmployee);
+            context.SaveChanges();
+
+            var controller = new EmployeeController(context);
+
+            var updatedEmployee = new Employee { Id = 1, Name = "Updated Name" };
+
+            // Act
+            await controller.Update(updatedEmployee);
+
+            // Assert
+            var employee = await context.Employees.FindAsync(1);
+            Assert.NotNull(employee);
+            Assert.Equal("Updated Name", employee.Name);
+        }
+
+        [Fact]
+        public async Task Delete_RemovesEmployee()
+        {
+            // Arrange
+            var context = GetInMemoryDbContext();
+            var employeeToDelete = new Employee { Id = 1, Name = "John Doe" };
+            context.Employees.Add(employeeToDelete);
+            context.SaveChanges();
+
+            var controller = new EmployeeController(context);
+
+            // Act
+            await controller.Delete(1);
+
+            // Assert
+            var employee = await context.Employees.FindAsync(1);
+            Assert.Null(employee); // Verifica que el empleado fue eliminado
+        }
     }
-	[Fact]
-	public async Task GetById_ReturnsEmployeeById()
-	{
-	    // Preparar datos simulados
-	    var employee = new Employee { Id = 1, Name = "John Doe" };
-
-	    // Simular el método FindAsync
-	    _mockContext.Setup(c => c.Employees.FindAsync(1))
-	                .ReturnsAsync(employee);
-
-	    // Actuar
-	    var result = await _controller.GetById(1);
-
-	    // Afirmar
-	    Assert.NotNull(result);
-	    Assert.Equal(1, result.Id);
-	    Assert.Equal("John Doe", result.Name);
-	}
-	[Fact]
-	public async Task Create_AddsEmployee()
-	{
-	    var employee = new Employee { Name = "John Doe" };
-
-	    // Simular el método AddAsync
-	    _mockContext.Setup(c => c.Employees.AddAsync(employee, default))
-	                .Returns(Task.CompletedTask);
-
-	    // Actuar
-	    await _controller.Create(employee);
-
-	    // Verificar que el método AddAsync fue llamado una vez
-	    _mockContext.Verify(c => c.Employees.AddAsync(employee, default), Times.Once);
-	    _mockContext.Verify(c => c.SaveChangesAsync(default), Times.Once);
-	}
-	[Fact]
-	public async Task Update_UpdatesEmployee()
-	{
-	    var employeeToUpdate = new Employee { Id = 1, Name = "Old Name" };
-	    var updatedEmployee = new Employee { Id = 1, Name = "New Name" };
-
-	    // Simular el método FindAsync para devolver el empleado existente
-	    _mockContext.Setup(c => c.Employees.FindAsync(1))
-	                .ReturnsAsync(employeeToUpdate);
-
-	    // Actuar
-	    await _controller.Update(updatedEmployee);
-
-	    // Verificar que el empleado fue actualizado y SaveChanges fue llamado
-	    Assert.Equal("New Name", employeeToUpdate.Name);
-	    _mockContext.Verify(c => c.SaveChangesAsync(default), Times.Once);
-	}
-	[Fact]
-	public async Task Delete_RemovesEmployee()
-	{
-	    var employeeToDelete = new Employee { Id = 1, Name = "John Doe" };
-
-	    // Simular el método FindAsync para devolver el empleado existente
-	    _mockContext.Setup(c => c.Employees.FindAsync(1))
-	                .ReturnsAsync(employeeToDelete);
-
-	    // Actuar
-	    await _controller.Delete(1);
-
-	    // Verificar que Remove fue llamado con el empleado correcto
-	    _mockContext.Verify(c => c.Employees.Remove(employeeToDelete), Times.Once);
-	    _mockContext.Verify(c => c.SaveChangesAsync(default), Times.Once);
-	}
-	
 }
 
 ```
@@ -204,7 +206,46 @@ public class EmployeeControllerTests
 mv UnitTest1.cs EmployeeControllerUnitTests.cs 
 ```
 
-4.3.5\. Editar archivo 
+4.3.5\. Editar el archivo EmployeeCrudApi.Tests/EmployeeCrudApi.Tests.csproj para agregar una referencia a nuestro proyecto de EmployeeCrudApi reemplazando su contenido por
+```xml
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="Moq" Version="4.20.71" />
+    <PackageReference Include="xunit" Version="2.9.0" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.5.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="../EmployeeCrudApi/EmployeeCrudApi/EmployeeCrudApi.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Using Include="Xunit" />
+  </ItemGroup>
+
+</Project>
+
+```
+4.3.5\. Ejecutar los siguientes comandos
+```bash
+dotnet build
+dotnet test
+```
+4.3.6\. Verificar que se hayan ejecutado correctamente las pruebas
+![image](https://github.com/user-attachments/assets/5f69e693-ed99-418b-97c1-c69ebd5839fe)
+
 
 
 ### 5- Instructivos:
