@@ -318,7 +318,7 @@ K\. En la carpeta de nuestro proyecto EmployeeCrudApi.Tests volver a correr las 
 dotnet build
 dotnet test
 ```
-L\. Verificar que se hayan ejecutado correctamente las pruebas inclusive sin tener acceso a la BD, lo que confirma que es efectivamente una prueba unitaria que no requiere de una dependencia externa para funcionar.
+L\. Verificar que se hayan ejecutado correctamente las pruebas inclusive sin tener acceso a la BD, lo que confirma que es efectivamente un conjunto de pruebas unitarias que no requieren de una dependencia externa para funcionar.
 ![image](https://github.com/user-attachments/assets/5f69e693-ed99-418b-97c1-c69ebd5839fe)
 
 M\. Modificar la cadena de conexión en el archivo appsettings.json para que use el usuario y password correcto y recompilar el proyecto EmployeeCrudApi
@@ -330,6 +330,192 @@ N\. Verificar que nuestro proyecto vuelve a tener acceso a la BD navegando a htt
 ![image](https://github.com/user-attachments/assets/2fe6b621-db7b-48f2-96e8-d8e1b995474f)
 
 #### 4.4 Creamos pruebas unitarias para nuestro front de Angular:
+Intro\. 
+Para las pruebas unitarias de nuestro front en Angular utilizaremos Jasmine y Karma, herramientas ampliamente utilizadas para pruebas unitarias en aplicaciones web, especialmente en proyectos de Angular.
+
+- **Jasmine**: Es un framework de pruebas unitarias para JavaScript. Es popular porque no requiere dependencias externas y es fácil de usar. Jasmine se utiliza para escribir pruebas de manera estructurada y ofrece un conjunto de funciones para facilitar la verificación del comportamiento del código.
+  - Características principales:
+    - Sintaxis descriptiva: Jasmine permite escribir pruebas en un estilo de "BDD" (Desarrollo Orientado a Comportamiento). Usa palabras clave como describe, it, expect para definir pruebas de forma muy legible.
+    - Sin dependencias externas: A diferencia de otros frameworks de prueba, Jasmine no necesita ninguna biblioteca externa para funcionar.
+    - Espías (Spies): Jasmine permite observar llamadas a funciones, rastrearlas y verificar si fueron llamadas correctamente.
+
+- **Karma**: Es un test runner (ejecutor de pruebas) que facilita la ejecución de pruebas en varios navegadores. Está diseñado para trabajar con frameworks de pruebas como Jasmine, Mocha, entre otros. Karma se integra perfectamente con proyectos de Angular y es parte del Angular CLI.
+  - Características principales:
+    - Soporte de múltiples navegadores: Karma permite ejecutar pruebas en diferentes navegadores (Chrome, Firefox, Safari, etc.) de forma automática.
+    - Ejecución en modo de observación: Karma puede detectar cambios en los archivos y ejecutar las pruebas automáticamente en cuanto se modifican.
+    - Generación de informes: Karma proporciona informes detallados sobre el resultado de las pruebas.
+    - Integración con CI/CD: Se puede integrar con sistemas de integración continua como Azure Devops, Jenkins, Travis CI o CircleCI para ejecutar las pruebas automáticamente en un entorno controlado.
+  - Flujo de trabajo con Karma:
+    - Karma inicia un servidor.
+    - Abre un navegador (o varios) y ejecuta las pruebas en cada uno de ellos.
+    - Karma se queda a la espera de cambios en el código, ejecutando nuevamente las pruebas si detecta modificaciones.
+
+A\. Nos posicionamos en nuestro proyecto de front, en el directorio EmployeeCrudAngular/src/app
+```bash
+pwd
+```
+![image](https://github.com/user-attachments/assets/1057289a-4d31-485b-8502-cfb817a53453)
+
+B\. Editamos el archivo app.component.spec.ts reemplazando su contenido por:
+```typescript
+import { TestBed } from '@angular/core/testing';
+import { AppComponent } from './app.component'; // Ajusta la ruta si es necesario
+
+describe('AppComponent', () => {
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [AppComponent], // Usa imports en lugar de declarations
+    }).compileComponents();
+  });
+
+  it('should render title', () => {
+    const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h1')?.textContent).toContain('EmployeeCrudAngular');
+  });
+
+});
+```
+C\. Creamos el archivo employee.service.spec.ts reemplazando su contenido por:
+```typescript
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { EmployeeService } from './employee.service';
+import { Employee } from './employee.model';
+import { DatePipe } from '@angular/common';
+
+describe('EmployeeService', () => {
+  let service: EmployeeService;
+  let httpMock: HttpTestingController;
+  let datePipe: DatePipe;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [
+        EmployeeService,
+        DatePipe
+      ]
+    });
+
+    service = TestBed.inject(EmployeeService);
+    httpMock = TestBed.inject(HttpTestingController);
+    datePipe = TestBed.inject(DatePipe);
+  });
+
+  afterEach(() => {
+    httpMock.verify();
+  });
+
+
+
+  it('should retrieve all employees', () => {
+    const today = new Date();
+    const expectedDateTime = datePipe.transform(today, 'dd/MM/yyyy HH:mm:ss', undefined) ?? '';  // Consistente con el servicio
+
+    const dummyEmployees: Employee[] = [
+      new Employee(1, 'John Doe', expectedDateTime),
+      new Employee(2, 'Jane Smith', expectedDateTime)
+    ];
+
+    service.getAllEmployee().subscribe(employees => {
+      expect(employees.length).toBe(2);
+      employees.forEach((employee, index) => {
+        // Agrega depuración aquí
+        console.log('Employee createdDate:', datePipe.transform(employee.createdDate, 'dd/MM/yyyy HH:mm:ss', undefined)?? '');  // Imprimir el valor generado por el servicio
+        console.log('Dummy employee createdDate:', datePipe.transform(dummyEmployees[index].createdDate, 'MM/dd/yyyy HH:mm:ss', undefined)?? '');   // Imprimir el valor esperado
+
+        expect(datePipe.transform(employee.createdDate, 'dd/MM/yyyy HH:mm:ss', undefined)?? '').toEqual(datePipe.transform(dummyEmployees[index].createdDate, 'MM/dd/yyyy HH:mm:ss', undefined)?? '');  // Compara la fecha completa
+      });
+    });
+
+    const req = httpMock.expectOne(`${service.apiUrlEmployee}/getall`);
+    expect(req.request.method).toBe('GET');
+    req.flush(dummyEmployees);
+  });
+
+
+});
+```
+D\. Editamos el archivo employee.component.spec.ts ubicado en la carpeta **employee** reemplazando su contenido por:
+
+```typescript
+import { TestBed } from '@angular/core/testing';
+import { EmployeeComponent } from './employee.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { DatePipe } from '@angular/common';
+
+describe('EmployeeComponent', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [EmployeeComponent, HttpClientTestingModule],
+      providers: [DatePipe] // Añade DatePipe a los proveedores
+    });
+  });
+
+  it('should create', () => {
+    const fixture = TestBed.createComponent(EmployeeComponent);
+    const component = fixture.componentInstance;
+    expect(component).toBeTruthy();
+  });
+});
+```
+E\. Editamos el archivo addemployee.component.spec.ts ubicado en la carpeta **addemployee** reemplazando su contenido por:
+```typescript
+import { TestBed } from '@angular/core/testing';
+import { AddemployeeComponent } from './addemployee.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs'; // para simular observables
+import { DatePipe } from '@angular/common';
+
+describe('AddemployeeComponent', () => {
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [AddemployeeComponent, HttpClientTestingModule],
+      providers: [
+        DatePipe,
+        {
+          provide: ActivatedRoute, // Simula ActivatedRoute
+          useValue: {
+            params: of({ id: 1 }) // simula el parámetro id en la URL
+          }
+        }
+      ]
+    });
+  });
+
+  it('should create', () => {
+    const fixture = TestBed.createComponent(AddemployeeComponent);
+    const component = fixture.componentInstance;
+    expect(component).toBeTruthy();
+  });
+});
+```
+F\. En el directorio raiz de nuestro proyecto EmployeeCrudAngular ejecutamos el comando 
+```bash
+ng test
+```
+En proyectos de Angular, Jasmine se usa para escribir las pruebas, y Karma se encarga de ejecutarlas. Cuando ejecutamos el comando ng test, Karma se inicia, carga las pruebas escritas en Jasmine, y las ejecuta en un navegador.
+
+G\. Vemos que se abre una ventana de Karma con Jasmine en la que nos indica que los tests se ejecutaron correctamente
+![image](https://github.com/user-attachments/assets/d5bd574f-bab4-4f65-ac5e-6b95d6338bc3)
+
+H\. Vemos que los tests se ejecutaron correctamente:
+![image](https://github.com/user-attachments/assets/24172199-9b90-4e1c-8231-3c142f9d6160)
+
+
+I\. Verificamos que no esté corriendo nuestra API navegando a http://localhost:7150/swagger/index.html y recibiendo esta salida:
+![image](https://github.com/user-attachments/assets/550dd212-5254-4c7f-bea0-aa55c73021fe)
+
+J\. Los puntos G y H nos indican que se han ejecutado correctamente las pruebas inclusive sin tener acceso a la API, lo que confirma que es efectivamente un conjunto de pruebas unitarias que no requieres de una dependencia externa para funcionar.
+
+
+
+
+
+
 
 ### 5- Instructivos:
 #### 5.1 Crear una Base de Datos SQL en Azure
