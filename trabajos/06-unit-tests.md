@@ -277,6 +277,7 @@ E\. Editar el archivo EmployeeCrudApi.Tests/EmployeeCrudApi.Tests.csproj para ag
 
   <ItemGroup>
     <PackageReference Include="coverlet.collector" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.8" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
     <PackageReference Include="Moq" Version="4.20.71" />
     <PackageReference Include="xunit" Version="2.9.0" />
