@@ -984,6 +984,7 @@ GO
 
 ### 6-  Presentación del trabajo práctico.
 - Subir un doc al repo con las capturas de pantalla de los pasos realizados
+- Subir el proyecto a un repo para poder evaluar, revisar y ejecutar el código y las pruebas unitarias
 
 ### 7-  Criterio de Calificación
 Los pasos 4.1 al 4.4 representan un 60% de la nota total, los pasos 4.5 y subsiguientes representan el 40% restante.
