@@ -10,9 +10,10 @@
 
 
 ### 4- Desarrollo:
-4.1\. Crear una BD Azure SQL Database (Ver Instructivo 5.1) o montar una imagen Docker de SQL Server como se solicitó en el punto 12 del [TP02]. (https://github.com/ingsoft3ucc/TPS_2024/blob/main/trabajos/02-introduccion-docker.md)
+#### 4.1 Creación de una BD SQL Server para nuestra App
+A\. Crear una BD Azure SQL Database (Ver Instructivo 5.1) o montar una imagen Docker de SQL Server como se solicitó en el punto 12 del [TP02]. (https://github.com/ingsoft3ucc/TPS_2024/blob/main/trabajos/02-introduccion-docker.md)
 
-4.1.1\. En caso de optar por la opción de montar la imagen de docker, una vez levantada el contenedor, conectarse y ejecutar el siguiente script:
+B\. En caso de optar por la opción de montar la imagen de docker, una vez levantada el contenedor, conectarse y ejecutar el siguiente script:
 ```sql
 
 SET ANSI_NULLS ON
@@ -46,26 +47,28 @@ GO
 
 
 ```
-4.2\. Clonar el repo https://github.com/ingsoft3ucc/Angular_WebAPINetCore8_CRUD_Sample.git
+#### 4.2 Obtener nuestra App
+A\. Clonar el repo https://github.com/ingsoft3ucc/Angular_WebAPINetCore8_CRUD_Sample.git
 
-4.2.1\. Seguir las instrucciones del README.md del repo clonado prestando atención a la modificación de la cadena de conexión en el appSettings.json para que apunte a la BD creada en 4.1 
+B\. Seguir las instrucciones del README.md del repo clonado prestando atención a la modificación de la cadena de conexión en el appSettings.json para que apunte a la BD creada en 4.1 
 
-4.2.2\. Navegar a http://localhost:7150/swagger/index.html y probar uno de los controladores para verificar el correcto funcionamiento de la API.
+C\. Navegar a http://localhost:7150/swagger/index.html y probar uno de los controladores para verificar el correcto funcionamiento de la API.
 ![image](https://github.com/user-attachments/assets/a537ad2e-7c4a-4099-a3e4-fb03fc3bd1f1)
 
-4.2.3\. Navegar a http://localhost:4200 y verificar el correcto funcionamiento de nuestro front-end Angular
+D\. Navegar a http://localhost:4200 y verificar el correcto funcionamiento de nuestro front-end Angular
 ![image](https://github.com/user-attachments/assets/a2858f8a-4ce7-4d49-8852-167e8cc23660)
 
-4.3\. Una vez verificado el correcto funcionamiento de la Aplicación procederemos a crear un proyecto de pruebas unitarias.
+E\. Una vez verificado el correcto funcionamiento de la Aplicación procederemos a crear un proyecto de pruebas unitarias para nuestra API.
 
-4.3.1\. En el directorio raiz de nuestro repo crear un nuevo proyecto de pruebas unitarias para nuestra API 
+#### 4.3 Crear Pruebas Unitarias para nuestra API
+A\. En el directorio raiz de nuestro repo crear un nuevo proyecto de pruebas unitarias para nuestra API 
 ```bash
 dotnet new xunit -n EmployeeCrudApi.Tests
 ```
 ![image](https://github.com/user-attachments/assets/faba2065-cf36-44c8-be66-c616355b7659)
 
 
-4.3.2\. Instalar dependencias necesarias
+B\. Instalar dependencias necesarias
 
 Primero, instala las siguientes bibliotecas mediante NuGet:
 
@@ -127,7 +130,7 @@ dotnet add package Microsoft.EntityFrameworkCore.InMemory
 
 ```
 
-4.3.3\. Editar archivo UnitTest1.cs reemplazando su contenido por
+C\. Editar archivo UnitTest1.cs reemplazando su contenido por
 ```csharp
 using EmployeeCrudApi.Controllers;
 using EmployeeCrudApi.Data;
@@ -254,12 +257,12 @@ namespace EmployeeCrudApi.Tests
 }
 
 ```
-4.3.4\. Renombrar archivo UnitTest1.cs por EmployeeControllerUnitTests.cs
+D\. Renombrar archivo UnitTest1.cs por EmployeeControllerUnitTests.cs
 ```bash
 mv UnitTest1.cs EmployeeControllerUnitTests.cs 
 ```
 
-4.3.5\. Editar el archivo EmployeeCrudApi.Tests/EmployeeCrudApi.Tests.csproj para agregar una referencia a nuestro proyecto de EmployeeCrudApi reemplazando su contenido por
+E\. Editar el archivo EmployeeCrudApi.Tests/EmployeeCrudApi.Tests.csproj para agregar una referencia a nuestro proyecto de EmployeeCrudApi reemplazando su contenido por
 ```xml
 <Project Sdk="Microsoft.NET.Sdk">
 
@@ -291,41 +294,41 @@ mv UnitTest1.cs EmployeeControllerUnitTests.cs
 </Project>
 
 ```
-4.4\. Ejecutar los siguientes comandos para ejecutar nuestras pruebas
+F\. Ejecutar los siguientes comandos para ejecutar nuestras pruebas
 ```bash
 dotnet build
 dotnet test
 ```
-4.4.1\. Verificar que se hayan ejecutado correctamente las pruebas
+G\. Verificar que se hayan ejecutado correctamente las pruebas
 ![image](https://github.com/user-attachments/assets/5f69e693-ed99-418b-97c1-c69ebd5839fe)
 
-4.5\. Verificar que no estamos usando una dependencia externa como la base de datos.
+H\. Verificar que no estamos usando una dependencia externa como la base de datos.
 
-4.5.1\. Modificar la cadena de conexión en el archivo appsettings.json para que use un usuario o password incorrecto y recompilar el proyecto EmployeeCrudApi
+I\. Modificar la cadena de conexión en el archivo appsettings.json para que use un usuario o password incorrecto y recompilar el proyecto EmployeeCrudApi
 ```bash
 dotnet build
 dotnet run --urls "http://localhost:7150"
 ```
-4.5.2\. Verificar que nuestro proyecto ya no tiene acceso a la BD navegando a http://localhost:7150/swagger/index.html y probando uno de los controladores:
+J\. Verificar que nuestro proyecto ya no tiene acceso a la BD navegando a http://localhost:7150/swagger/index.html y probando uno de los controladores:
 ![image](https://github.com/user-attachments/assets/33df73ea-bd02-48a6-a399-c4a312c1e360)
 
-4.5.3\. En la carpeta de nuestro proyecto EmployeeCrudApi.Tests volver a correr las pruebas
+K\. En la carpeta de nuestro proyecto EmployeeCrudApi.Tests volver a correr las pruebas
 ```bash
 dotnet build
 dotnet test
 ```
-4.5.4\. Verificar que se hayan ejecutado correctamente las pruebas inclusive sin tener acceso a la BD, lo que confirma que es efectivamente una prueba unitaria que no requiere de una dependencia externa para funcionar.
+L\. Verificar que se hayan ejecutado correctamente las pruebas inclusive sin tener acceso a la BD, lo que confirma que es efectivamente una prueba unitaria que no requiere de una dependencia externa para funcionar.
 ![image](https://github.com/user-attachments/assets/5f69e693-ed99-418b-97c1-c69ebd5839fe)
 
-4.5.5\. Modificar la cadena de conexión en el archivo appsettings.json para que use el usuario y password correcto y recompilar el proyecto EmployeeCrudApi
+M\. Modificar la cadena de conexión en el archivo appsettings.json para que use el usuario y password correcto y recompilar el proyecto EmployeeCrudApi
 ```bash
 dotnet build
 dotnet run --urls "http://localhost:7150"
 ```
-4.5.2\. Verificar que nuestro proyecto vuelve a tener acceso a la BD navegando a http://localhost:7150/swagger/index.html y probando uno de los controladores:
+N\. Verificar que nuestro proyecto vuelve a tener acceso a la BD navegando a http://localhost:7150/swagger/index.html y probando uno de los controladores:
 ![image](https://github.com/user-attachments/assets/2fe6b621-db7b-48f2-96e8-d8e1b995474f)
 
-
+#### 4.4 Creamos pruebas unitarias para nuestro front de Angular:
 
 ### 5- Instructivos:
 #### 5.1 Crear una Base de Datos SQL en Azure
