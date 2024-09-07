@@ -710,10 +710,38 @@ I\. Verificamos que no esté corriendo nuestra API navegando a http://localhost:
 
 J\. Los puntos G y H nos indican que se han ejecutado correctamente las pruebas inclusive sin tener acceso a la API, lo que confirma que es efectivamente un conjunto de pruebas unitarias que no requieres de una dependencia externa para funcionar.
 
+#### 4.5 Modificamos el código de nuestra API y creamos nuevas pruebas unitarias:
 
+A\. Realizar las siguientes modificaciones al código de la API:
+  - Al agregar y al editar un empleado, controlar que el nombre del empleado no esté repetido.
+  - La longitud máxima del nombre y apellido del empleado debe ser de 100 caracteres.
+  - Almacenar el nombre en la BD siempre con la primera letra de los nombres en Mayuscula y todo el apellido en Mayusculas. Ejemplo, si recibo juan carlos chamizo, se debe almacenar como Juan Carlos CHAMIZO.
+  - Asegurar que el nombre del empleado no contenga caracteres especiales o números, a menos que sea necesario (por ejemplo, caracteres especiales en apellidos como "O'Connor" o "García").
+  - Validar que el nombre tenga un número mínimo de caracteres, por ejemplo, al menos dos caracteres para evitar entradas inválidas como "A".
+  - Verificar que el nombre no contenga números, ya que no es común en los nombres de empleados.
+  - Asegurar que cada parte del nombre (separada por espacios) tenga al menos un carácter o más, por ejemplo, para evitar "A B".
+  - Verificar que no haya palabras vacías o que el nombre no esté compuesto solo de espacios.
+  - Prohibir el uso de nombres triviales o genéricos como "Empleado", "N/A", "Nombre", etc.
+  - Evitar que se ingresen caracteres repetidos de forma excesiva, como "Juuuuaannnn".
+  - Implementar un filtro para evitar el uso de palabras inapropiadas, ofensivas o que puedan violar políticas internas.
+En todos los casos donde no se cumplan las condiciones, la API debe devolver un error de HTTP 400 Bad Request y un Json indicando el error, por ejemplo:
+```json
+{
+  "status": 400,
+  "error": "Bad Request",
+  "message": "El nombre del empleado ya existe."
+}
+```
 
+B\. Crear las pruebas unitarias necesarias para validar las modificaciones realizadas en el código
 
+#### 4.6 Modificamos el código de nuestro Front y creamos nuevas pruebas unitarias:
 
+A\. Realizar en el código del front las mismas modificaciones hechas a la API. 
+
+B\. Las validaciones deben ser realizadas en el front sin llegar a la API, y deben ser mostradas en un toast como por ejemplo https://stackblitz.com/edit/angular12-toastr?file=src%2Fapp%2Fapp.component.ts o https://stackblitz.com/edit/angular-error-toast?file=src%2Fapp%2Fcore%2Frxjsops.ts
+
+C\. Crear las pruebas unitarias necesarias en el front para validar las modificaciones realizadas en el código del front.
 
 
 ### 5- Instructivos:
@@ -955,21 +983,11 @@ GO
 
 
 ### 6-  Presentación del trabajo práctico.
-- Subir un doc al repo con las capturas de pantalla de los pasos realizados y tener en el excel de repos (https://docs.google.com/spreadsheets/d/1mZKJ8FH390QHjwkABokh3Ys6kMOFZGzZJ3-kg5ziELc/edit?gid=0#gid=0) la url del proyecto de AzureDevops.
-- Aclarar los nombres de los pipelines que se deben evaluar.
+- Subir un doc al repo con las capturas de pantalla de los pasos realizados
 
 ### 7-  Criterio de Calificación
-Los pasos 4.1 al 4.13 representan un 60% de la nota total, los pasos 4.13 y subsiguientes representan el 40% restante.
+Los pasos 4.1 al 4.4 representan un 60% de la nota total, los pasos 4.5 y subsiguientes representan el 40% restante.
 
-### 8-  Documentación y Recursos Adicionales
-- https://learn.microsoft.com/en-us/azure/devops/?view=azure-devops
 
-- https://learn.microsoft.com/en-us/azure/devops/pipelines/?view=azure-devops
-
-- https://learn.microsoft.com/en-us/azure/devops/pipelines/yaml-schema/?view=azure-pipelines
-
-- https://learn.microsoft.com/en-us/azure/azure-resource-manager/management/overview
-
-- https://learn.microsoft.com/en-us/azure/azure-resource-manager/templates/overview
 
 
