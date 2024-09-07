@@ -163,6 +163,52 @@ En Jasmine, los comandos de `expect` se utilizan para verificar las condiciones 
 
 
 ### 4- Desarrollo:
+#### Prerequisitos:
+- Node.js
+  - Para MAC OS:
+    - Instalar Brew https://brew.sh/
+    - Correr: 
+	```bash
+	# NOTE:
+	# Homebrew is not a Node.js package manager.
+	# Please ensure it is already installed on your system.
+	# Follow official instructions at https://brew.sh/
+	# Homebrew only supports installing major Node.js versions and might not support the latest Node.js version from the 20 release line.
+	
+	# download and install Node.js
+	brew install node@20
+	
+	# verifies the right Node.js version is in the environment
+	node -v # should print `v20.17.0`
+	
+	# verifies the right npm version is in the environment
+	npm -v # should print `10.8.2`
+	```
+  - Para Windows:
+    - Instalar Chocolatey https://chocolatey.org/
+    - Correr: 
+	```bash
+	# NOTE:
+	# Chocolatey is not a Node.js package manager.
+	# Please ensure it is already installed on your system.
+	# Follow official instructions at https://chocolatey.org/
+	# Chocolatey is not officially maintained by the Node.js project and might not support the v20.17.0 version of Node.js
+	
+	# download and install Node.js
+	choco install nodejs-lts --version="20.17.0"
+	
+	# verifies the right Node.js version is in the environment
+	node -v # should print `20`
+	
+	# verifies the right npm version is in the environment
+	npm -v # should print `10.8.2`
+  	```
+- Angular CLI
+	```bash
+ 	npm install -g @angular/cli
+ 	```
+- .NET Core 8 SDK https://dotnet.microsoft.com/en-us/download/dotnet/8.0
+  
 #### 4.1 Creación de una BD SQL Server para nuestra App
 A\. Crear una BD Azure SQL Database (Ver Instructivo 5.1) o montar una imagen Docker de SQL Server como se solicitó en el punto 12 del [TP02]. (https://github.com/ingsoft3ucc/TPS_2024/blob/main/trabajos/02-introduccion-docker.md)
 
