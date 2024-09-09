@@ -1133,9 +1133,54 @@ I\. Verificamos que no esté corriendo nuestra API navegando a http://localhost:
 
 J\. Los puntos G y H nos indican que se han ejecutado correctamente las pruebas inclusive sin tener acceso a la API, lo que confirma que es efectivamente un conjunto de pruebas unitarias que no requieres de una dependencia externa para funcionar.
 
-#### 4.5 Modificamos el código de nuestra API y creamos nuevas pruebas unitarias:
+#### 4.5 Agregamos generación de reporte XML de nuestras pruebas de front.
+Para cuando integremos nuestras pruebas en un pipeline de Build, vamos a necesitar el resultado devuelto por nuestras pruebas para reportarlas junto a las pruebas de back que se reportan automaticamente. 
 
-A\. Realizar las siguientes modificaciones al código de la API:
+![image](https://github.com/user-attachments/assets/12c430fd-13e7-4370-8c2a-a2f2756bd33f)
+
+
+Haremos los siguientes pasos para prepararnos:
+
+A\. Instalamos dependencia karma-junit-reporter
+```bash
+npm install karma-junit-reporter --save-dev
+```
+B\. En el directorio raiz de nuestro proyecto (al mismo nivel que el archivo angular.json) creamos un archivo karma.conf.js con el siguiente contenido
+```bash
+module.exports = function (config) {
+  config.set({
+    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-chrome-launcher'),
+      require('karma-junit-reporter'),
+      require('@angular-devkit/build-angular/plugins/karma')
+    ],
+    reporters: ['progress', 'junit'],
+    junitReporter: {
+      outputDir: 'test-results',
+      outputFile: 'test-results.xml',
+      useBrowserName: false
+    },
+    port: 9876,
+    colors: true,
+    logLevel: config.LOG_INFO,
+    autoWatch: true,
+    browsers: ['ChromeHeadless'],
+    singleRun: true,
+    restartOnFileChange: true
+  });
+};
+```
+C\. Ejecutamos nuestros test de la siguiente manera:
+```bash
+ng test --karma-config=karma.conf.js --watch=false --browsers ChromeHeadless
+```
+D\. Verificamos que se creo un archivo test-result.xml en el directorio test-results que está al mismo nivel que el directorio src
+
+#### 4.6 Modificamos el código de nuestra API y creamos nuevas pruebas unitarias:
+
+A\. Realizar al menos 5 de las siguientes modificaciones sugeridas al código de la API:
   - Al agregar y al editar un empleado, controlar que el nombre del empleado no esté repetido.
   - La longitud máxima del nombre y apellido del empleado debe ser de 100 caracteres.
   - Almacenar el nombre en la BD siempre con la primera letra de los nombres en Mayuscula y todo el apellido en Mayusculas. Ejemplo, si recibo juan carlos chamizo, se debe almacenar como Juan Carlos CHAMIZO.
@@ -1158,7 +1203,7 @@ En todos los casos donde no se cumplan las condiciones, la API debe devolver un 
 
 B\. Crear las pruebas unitarias necesarias para validar las modificaciones realizadas en el código
 
-#### 4.6 Modificamos el código de nuestro Front y creamos nuevas pruebas unitarias:
+#### 4.7 Modificamos el código de nuestro Front y creamos nuevas pruebas unitarias:
 
 A\. Realizar en el código del front las mismas modificaciones hechas a la API. 
 
@@ -1410,7 +1455,7 @@ GO
 - Subir el proyecto a un repo para poder evaluar, revisar y ejecutar el código y las pruebas unitarias
 
 ### 7-  Criterio de Calificación
-Los pasos 4.1 al 4.4 representan un 60% de la nota total, los pasos 4.5 y subsiguientes representan el 40% restante.
+Los pasos 4.1 al 4.5 representan un 60% de la nota total, los pasos 4.6 y subsiguientes representan el 40% restante.
 
 
 
