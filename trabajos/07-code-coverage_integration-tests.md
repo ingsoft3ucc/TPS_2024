@@ -212,23 +212,23 @@ La plataforma destaca por ofrecer un tablero interactivo donde se pueden visuali
 	  - Antes de nuestra tarea de Build del Back:
 		```yaml
 		    
-	        - task: SonarCloudPrepare@2
-	      inputs:
-	        SonarCloud: 'SonarCloud' #Nombre de nuestra Service Connection a SonarCloud
-	        organization: 'ingsoft3ucc'  #Nombre de nuestra organizacion SonarCloud
-	        scannerMode: 'MSBuild'
-	        projectKey: 'Angular_WebAPINetCore8_CRUD_Sample'  #Key de nuestro proyecto en SonarCloud
-	        projectName: 'Angular_WebAPINetCore8_CRUD_Sample' #Nombre de nuestro proyecto en SonarCloud
-	      displayName: 'Prepare SonarCloud'
+	 	    - task: SonarCloudPrepare@2
+		      inputs:
+		        SonarCloud: 'SonarCloud' #Nombre de nuestra Service Connection a SonarCloud
+		        organization: 'ingsoft3ucc'  #Nombre de nuestra organizacion SonarCloud
+		        scannerMode: 'MSBuild'
+		        projectKey: 'Angular_WebAPINetCore8_CRUD_Sample'  #Key de nuestro proyecto en SonarCloud
+		        projectName: 'Angular_WebAPINetCore8_CRUD_Sample' #Nombre de nuestro proyecto en SonarCloud
+		      displayName: 'Prepare SonarCloud'
 	        
 		 ```
 
   	  - Despues de nuestra tarea de Build del Back:
 		   ```yaml
 		     - task: SonarCloudAnalyze@2
-		      inputs:
-		        jdkversion: 'JAVA_HOME_17_X64'
-		      displayName: 'Analyze SonarCloud'
+		       inputs:
+		         jdkversion: 'JAVA_HOME_17_X64'
+		       displayName: 'Analyze SonarCloud'
 		      
 		    - task: SonarCloudPublish@2
 		      displayName: 'Publish SonarCloud'
@@ -324,20 +324,26 @@ La plataforma destaca por ofrecer un tablero interactivo donde se pueden visuali
 	Cypress captura automáticamente pantallas cuando una prueba falla. Las capturas de pantalla se guardan en la carpeta `cypress/screenshots`.
 	<img width="1136" alt="image" src="https://github.com/user-attachments/assets/e6f26695-def4-4596-b5c6-152f5b95aa59">
 
- 	- ##### 4.3.6 Grabar nuestras pruebas para que Cypress genere código automático:
+ 	- ##### 4.3.6 Grabar nuestras pruebas para que Cypress genere código automático y genere reportes:
     	 - Cerramos Cypress
-	 - Editamos el archivo cypress.config.ts incluyendo la propiedad **experimentalStudio** en true
+	 - Editamos el archivo cypress.config.ts incluyendo la propiedad **experimentalStudio** en true y la configuración de reportería.
 	      ```typescript
 		import { defineConfig } from "cypress";
-		
+
 		export default defineConfig({
 		  e2e: {
 		    setupNodeEvents(on, config) {
 		      // implement node event listeners here
 		    },
+		    reporter: 'junit',  // Configura el reporter a JUnit
+		    reporterOptions: {
+		      mochaFile: 'cypress/results/results-[hash].xml',  // Directorio y nombre de los archivos de resultados
+		      toConsole: true,  // Opcional: imprime los resultados en la consola
+		      },
 		  },
 		  experimentalStudio: true,
 		});
+
 		```
        - Corremos nuevamente Cypress con npx cypress open, una vez que se ejecute nuestra prueba tendremos la opción de "Add Commands to Test". Esto permitirá interactuar con la aplicación y generar automáticamente comandos de prueba basados en las interacciones con la página:
          
