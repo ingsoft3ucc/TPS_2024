@@ -80,18 +80,73 @@ Las pruebas de integración son un tipo de prueba de software que verifica si lo
 ### 4- Desarrollo:
 #### Prerequisitos:
 
-#### 4.1 Integrar nuestras pruebas unitarias de backend y front-end en el pipeline:
-- Desarrollo del punto 4.1:
-  
-![image](https://github.com/user-attachments/assets/6a5c7c9d-a85c-4177-bd62-24d533f4fb79)
-
-![image](https://github.com/user-attachments/assets/f94a46c2-bf23-4a48-933d-ebc70fa18aac)
-
-
-#### 4.2 Ejecutar el pipeline y evaluar los resultados de nuestras pruebas unitarias:
-
-![image](https://github.com/user-attachments/assets/c6447a6c-8a2e-4c61-a5a3-f6d4957deb63)
-
+#### 4.1 Agregar Code Coverage a nuestras pruebas de Front e Integrar nuestras pruebas unitarias de backend y front-end en el pipeline:
+- Desarrollo del punto 4.1: 
+	- ##### 4.1.1 En el directorio raiz de nuestro proyecto Angular instalar el siguiente paquete:
+  	```bash
+	npm install karma-coverage --save-dev
+   	```
+   	 - ##### 4.1.2 Editar nuestro archivo karma.conf.js para que incluya reporte de cobertura
+  	```javascript
+	module.exports = function (config) {
+	  config.set({
+	    frameworks: ['jasmine', '@angular-devkit/build-angular'],
+	    plugins: [
+	      require('karma-jasmine'),
+	      require('karma-chrome-launcher'),
+	      require('karma-junit-reporter'),
+	      require('karma-coverage'),
+	      require('@angular-devkit/build-angular/plugins/karma')
+	    ],
+	    reporters: ['progress', 'junit', 'coverage'],
+	    junitReporter: {
+	      outputDir: 'test-results',
+	      outputFile: 'test-results.xml',
+	      useBrowserName: false
+	    },
+	    coverageReporter: {
+	      type: 'lcov', // Formato compatible con Azure DevOps
+	      dir: require('path').join(__dirname, './coverage'),
+	      subdir: '.',
+	      file: 'lcov.info'
+	    },
+	    port: 9876,
+	    colors: true,
+	    logLevel: config.LOG_INFO,
+	    autoWatch: true,
+	    browsers: ['ChromeHeadless'],
+	    singleRun: true,
+	    restartOnFileChange: true
+	  });
+	};
+	```
+   	- ##### 4.1.3 Agregar a nuestro pipeline ANTES del Build de Back la tarea de test con los argumentos especificados:
+	```yaml
+	 - task: DotNetCoreCLI@2
+	      displayName: 'Ejecutar pruebas de la API'
+	      inputs:
+	        command: 'test'
+	        projects: '**/*.Tests.csproj'  # Asegúrate de que el patrón apunte a tu proyecto de pruebas
+	        arguments: '--configuration $(configuration) --collect "Code Coverage" /p:CoverletOutput=$(Agent.TempDirectory)/TestResults/coverage.opencover.xml /p:CoverletOutputFormat=opencover'
+	   
+	```
+ 	- ##### 4.1.4 Agregar a nuestro pipeline ANTES del Build de front la tarea de test y la de publicación de los resultados.
+	   ```yaml
+	     - script: npx ng test --karma-config=karma.conf.js --watch=false --browsers ChromeHeadless
+	      displayName: 'Ejecutar pruebas del front'
+	      workingDirectory: $(projectPath)
+	      continueOnError: true  # Para que la pipeline continúe aunque falle
+	
+	    - task: PublishTestResults@2
+	      inputs:
+	        testResultsFormat: 'JUnit'
+	        testResultsFiles: '$(projectPath)/test-results/test-results.xml'
+	        failTaskOnFailedTests: true
+	      condition: always()  # Esto asegura que se ejecute siempre
+	      displayName: 'Publicar resultados de pruebas del front'
+     	```
+	
+	- ##### 4.1.5 Ejecutar el pipeline y analizar el resultado de las pruebas unitarias y la cobertura de código.
 
 #### 4.2 Análisis Estático de Código con SonarCloud:
 
@@ -135,32 +190,6 @@ La plataforma destaca por ofrecer un tablero interactivo donde se pueden visuali
 	- ##### 4.2.3 Ir al link y analizar toda la información obtenida. Detallar en la entrega del TP los puntos más relevantes del informe, qué significan y para qué sirven.
 
   	![image](https://github.com/user-attachments/assets/6e1ce439-5f57-41b9-8624-1491d57120bd)
-
-	Vemos que no generó Code Coverage
-
-	![image](https://github.com/user-attachments/assets/5da4dfb9-459d-4566-b083-b89cae39b463)
-
-  #### 4.3 Cobertura de Pruebas con Herramientas de Code Coverage:
-- Explicación de la cobertura de código, cómo se mide y su importancia en el ciclo de vida del desarrollo de software.
-- Integración de herramientas de code coverage (por ejemplo, para .NET, JavaScript o TypeScript) en un proyecto de pruebas.
-- Ejemplo práctico: Ejecutar pruebas y generar un informe de cobertura de código, mostrando cómo se relaciona la cobertura con la calidad del código.
-- Desarrollo del punto 4.3
-	- ##### 4.3.1 Modificamos argumento de nuestra tarea de Test de Backend para que genere salida de reporte entendible por SonarCloud y pueda determinar el CodeCoverage
-  	  ```yaml
-  	   - task: DotNetCoreCLI@2
-	    displayName: 'Ejecutar pruebas de la API con cobertura'
-	    inputs:
-	      command: 'test'
-	      projects: '**/*.Tests.csproj'
-	      arguments: '--configuration $(configuration) --collect "Code Coverage" --results-directory $(Agent.TempDirectory)/TestResults /p:CoverletOutput=$(Agent.TempDirectory)/TestResults/coverage.opencover.xml /p:CoverletOutputFormat=opencover /p:Exclude="[xunit.*]*"'
-  	  ``` 
-	- ##### 4.3.2 Vemos el resultado de nuestro pipeline, en extensions tenemos un link al análisis realizado por SonarCloud
-
-  	![image](https://github.com/user-attachments/assets/312a3c9f-659e-4249-b204-aa1abd312cc2)
-  
-	- ##### 4.3.3 Ir al link y analizar la información de Code Coverage. Detallar en la entrega del TP qué conclusiones sacaron del % de código cubierto por sus pruebas y qué se debería mejorar.
-
-  	![image](https://github.com/user-attachments/assets/e1a011a5-13b9-4f89-aaec-2690c2f6f7b8)
 
 
 #### 4.4 Pruebas de Integración con Cypress:
