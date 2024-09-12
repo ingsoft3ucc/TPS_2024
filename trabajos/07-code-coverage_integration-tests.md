@@ -105,10 +105,14 @@ Las pruebas de integración son un tipo de prueba de software que verifica si lo
 	      useBrowserName: false
 	    },
 	    coverageReporter: {
-	      type: 'lcov', // Formato compatible con Azure DevOps
+	      type: 'lcov',
 	      dir: require('path').join(__dirname, './coverage'),
 	      subdir: '.',
 	      file: 'lcov.info'
+	    },
+	    preprocessors: {
+	      // Añade los archivos que deseas instrumentar para la cobertura
+	      'src/**/*.ts': ['coverage'], // Asegúrate de instrumentar los archivos de tu aplicación
 	    },
 	    port: 9876,
 	    colors: true,
@@ -119,34 +123,56 @@ Las pruebas de integración son un tipo de prueba de software que verifica si lo
 	    restartOnFileChange: true
 	  });
 	};
+
 	```
-   	- ##### 4.1.3 Agregar a nuestro pipeline ANTES del Build de Back la tarea de test con los argumentos especificados:
+   	- ##### 4.1.3 En el dir raiz del proyecto EmployeeCrudApi.Tests ejecutar:
+   	  ```bash
+   	  dotnet add package coverlet.collector
+   	  ```
+   	- ##### 4.1.4 Agregar a nuestro pipeline ANTES del Build de Back la tarea de test con los argumentos especificados y la de publicación de resultados de cobertura:
 	```yaml
-	 - task: DotNetCoreCLI@2
-	      displayName: 'Ejecutar pruebas de la API'
-	      inputs:
-	        command: 'test'
-	        projects: '**/*.Tests.csproj'  # Asegúrate de que el patrón apunte a tu proyecto de pruebas
-	        arguments: '--configuration $(configuration) --collect "Code Coverage" /p:CoverletOutput=$(Agent.TempDirectory)/TestResults/coverage.opencover.xml /p:CoverletOutputFormat=opencover'
-	   
+    - task: DotNetCoreCLI@2
+      displayName: 'Ejecutar pruebas de la API'
+      inputs:
+        command: 'test'
+        projects: '**/*.Tests.csproj'  # Asegúrate de que el patrón apunte a tu proyecto de pruebas
+        arguments: '--collect:"XPlat Code Coverage"'
+
+    - task: PublishCodeCoverageResults@2
+      inputs:
+        summaryFileLocation: '$(Agent.TempDirectory)/**/*.cobertura.xml'
+        failIfCoverageEmpty: false
+      displayName: 'Publicar resultados de code coverage del back-end'
 	```
- 	- ##### 4.1.4 Agregar a nuestro pipeline ANTES del Build de front la tarea de test y la de publicación de los resultados.
+ 	- ##### 4.1.5 Agregar a nuestro pipeline ANTES del Build de front la tarea de test y la de publicación de los resultados.
 	   ```yaml
-	     - script: npx ng test --karma-config=karma.conf.js --watch=false --browsers ChromeHeadless
+	    - script: npx ng test --karma-config=karma.conf.js --watch=false --browsers ChromeHeadless --code-coverage
 	      displayName: 'Ejecutar pruebas del front'
 	      workingDirectory: $(projectPath)
-	      continueOnError: true  # Para que la pipeline continúe aunque falle
-	
+	      continueOnError: true  # Para que el pipeline continúe aunque falle
+	    
+	    - task: PublishCodeCoverageResults@2
+	      inputs:
+	        summaryFileLocation: '$(projectPath)/coverage/lcov.info'
+	        failIfCoverageEmpty: false
+	      condition: always()  # Esto asegura que se ejecute siempre
+	      displayName: 'Publicar resultados de code coverage del front'  
+	    
 	    - task: PublishTestResults@2
 	      inputs:
 	        testResultsFormat: 'JUnit'
 	        testResultsFiles: '$(projectPath)/test-results/test-results.xml'
 	        failTaskOnFailedTests: true
 	      condition: always()  # Esto asegura que se ejecute siempre
-	      displayName: 'Publicar resultados de pruebas del front'
-     	```
+	      displayName: 'Publicar resultados de pruebas unitarias del front'
+    	```
 	
-	- ##### 4.1.5 Ejecutar el pipeline y analizar el resultado de las pruebas unitarias y la cobertura de código.
+	- ##### 4.1.6 Ejecutar el pipeline y analizar el resultado de las pruebas unitarias y la cobertura de código.
+
+ 	![image](https://github.com/user-attachments/assets/2798520e-a33e-40bf-9337-c822dfb7e805)
+
+  	![image](https://github.com/user-attachments/assets/e489405d-85a3-4cc9-ade3-19f5b98a3737)
+
 
 #### 4.2 Análisis Estático de Código con SonarCloud:
 
@@ -183,6 +209,32 @@ La plataforma destaca por ofrecer un tablero interactivo donde se pueden visuali
 	
 - Desarrollo del punto 4.2: Demostración de cómo integrar SonarCloud en un pipeline de CI/CD y cómo leer los reportes de análisis estático.
 	- ##### 4.2.1 A partir del resultado del TP06 integraremos SonarCloud para analizar el código fuente. Configurar SonarCloud en nuestro pipeline siguiendo instructivo 5.1
+	  - Antes de nuestra tarea de Build del Back:
+		```yaml
+		    
+	    - task: SonarCloudPrepare@2
+	      inputs:
+	        SonarCloud: 'SonarCloud'
+	        organization: 'ingsoft3ucc'
+	        scannerMode: 'MSBuild'
+	        projectKey: 'ingsoft3ucc_Angular_WebAPINetCore8_CRUD_Sample'
+	        projectName: 'Angular_WebAPINetCore8_CRUD_Sample'
+	      displayName: 'Prepare SonarCloud'
+	        
+		 ```
+
+  	  - Despues de nuestra tarea de Build del Back:
+		   ```yaml
+		     - task: SonarCloudAnalyze@2
+		      inputs:
+		        jdkversion: 'JAVA_HOME_17_X64'
+		      displayName: 'Analyze SonarCloud'
+		      
+		    - task: SonarCloudPublish@2
+		      displayName: 'Publish SonarCloud'
+		      inputs:
+		        pollingTimeoutSec: '300'
+	    ```
   	- ##### 4.2.2 Vemos el resultado de nuestro pipeline, en extensions tenemos un link al análisis realizado por SonarCloud
 
   	![image](https://github.com/user-attachments/assets/312a3c9f-659e-4249-b204-aa1abd312cc2)
