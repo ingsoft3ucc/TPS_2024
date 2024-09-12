@@ -339,9 +339,68 @@ La plataforma destaca por ofrecer un tablero interactivo donde se pueden visuali
 		  experimentalStudio: true,
 		});
 		```
-       - Corremos nuevamente Cypress con npx cypress open
- 	
+       - Corremos nuevamente Cypress con npx cypress open, una vez que se ejecute nuestra prueba tendremos la opción de "Add Commands to Test". Esto permitirá interactuar con la aplicación y generar automáticamente comandos de prueba basados en las interacciones con la página:
+         
+         <img width="748" alt="image" src="https://github.com/user-attachments/assets/73c287fc-de00-477d-abbf-d905eb11cdb3">
+
+       - Por ejemplo, si agregamos un nuevo empleado y luego verificamos que esté en la lista, Cypress nos generará un código como este:
+ 	```typescript
+  	escribe('Mi primera prueba', () => {
+	  it('Carga correctamente la página de ejemplo', () => {
+        cy.visit('https://as-crud-web-api-qa.azurewebsites.net/') // Colocar la url local o de Azure de nuestro front
+        cy.get('h1').should('contain', 'EmployeeCrudAngular') // Verifica que el título contenga "EmployeeCrudAngular"
+        /* ==== Generated with Cypress Studio ==== */
+        cy.get('.btn').click();
+        cy.get('.form-control').clear('O');
+        cy.get('.form-control').type('Oso Pratto');
+        cy.get('.btn').click();
+        cy.get(':nth-child(15) > :nth-child(2)').click();
+        cy.get(':nth-child(15) > :nth-child(2)').should('have.text', ' Oso Pratto ');
+        /* ==== End Cypress Studio ==== */
+      })
+	})
+ 	```
+  	- Por supuesto que habrá que hacerle ajustes, como por ejemplo que se fije siempre en la última fila de la grilla y no en la posición 15 como lo grabó, es ahí cuando consultando la documentación de Cypress debemos ver cómo modificar el código, en nuestro caso de ejemplo sería así:
+  	  ```typescript
+  	  cy.get('tr:last-child > :nth-child(2)').should('have.text', ' Oso Pratto ');
+  	  ```
+  	- ##### 4.3.7 Hacemos prueba de editar un empleado
+    	 - Creamos en cypress/e2e/ un archivo editEmployee_test.cy.js con el siguiente contenido, guardamos y aparecerá en Cypress:
+  	       
+		```js
+  		describe('editEmployeeTest', () => {
+			  it('Carga correctamente la página de ejemplo', () => {
+		        cy.visit('https://as-crud-web-api-qa.azurewebsites.net/') // Colocar la url local o de Azure de nuestro front
+		      })
+			})
+  	  	```
+  	
+ 	<img width="845" alt="image" src="https://github.com/user-attachments/assets/d37524a6-fcfc-431c-9a69-594bf4dbbc62">
+	- Hacemos "Add command to the test" y empezamos a interactuar con la página
+ 	<img width="679" alt="image" src="https://github.com/user-attachments/assets/e7ad9389-3f68-42fc-95f2-68a7a79a029a">
+  
+  	- Hacemos algunos ajustes al código generado:
    
+  	```js
+	describe('editEmployeeTest', () => {
+	  it('Carga correctamente la página de ejemplo', () => {
+	    cy.visit('https://as-crud-web-api-qa.azurewebsites.net/') // Colocar la url local o de Azure de nuestro front
+	
+	    /* ==== Generated with Cypress Studio ==== */
+	    cy.get(':nth-child(7) > :nth-child(4) > a > .fa').click();
+	    //cy.get('.form-control').clear('Emi Schwindt');
+	  	cy.get('.form-control')
+	    .click()  // Asegura que el campo esté enfocado
+	    .clear()  // Limpia el campo
+	    .type('{selectall}{backspace}')  // Selecciona y elimina cualquier texto restante
+	    .type('Emi Schwindt', { delay: 200 });  // Escribe el nuevo nombre
+	    cy.get('.btn').click();
+	    cy.get(':nth-child(7) > :nth-child(2)').should('have.text', ' Emi Schwindt ');
+	    /* ==== End Cypress Studio ==== */
+	  })
+	})
+  	```
+
 #### 4.4 Desafíos:
 - Integrar en el pipeline SonarCloud para nuestro proyecto Angular, mostrar el resultado obtenido en SonarCloud
 - Implementar en Cypress pruebas de integración que incluya los casos desarrollados como pruebas unitarias del front en el TP06.
