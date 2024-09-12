@@ -208,17 +208,17 @@ La plataforma destaca por ofrecer un tablero interactivo donde se pueden visuali
 	24. **Unresolved Issues**: Indica el número de problemas detectados que aún no han sido resueltos.
 	
 - Desarrollo del punto 4.2: Demostración de cómo integrar SonarCloud en un pipeline de CI/CD y cómo leer los reportes de análisis estático.
-	- ##### 4.2.1 A partir del resultado del TP06 integraremos SonarCloud para analizar el código fuente. Configurar SonarCloud en nuestro pipeline siguiendo instructivo 5.1
+	- ##### 4.2.1 Integraremos SonarCloud para analizar el código fuente. Configurar SonarCloud en nuestro pipeline siguiendo instructivo 5.1
 	  - Antes de nuestra tarea de Build del Back:
 		```yaml
 		    
-	    - task: SonarCloudPrepare@2
+	        - task: SonarCloudPrepare@2
 	      inputs:
-	        SonarCloud: 'SonarCloud'
-	        organization: 'ingsoft3ucc'
+	        SonarCloud: 'SonarCloud' #Nombre de nuestra Service Connection a SonarCloud
+	        organization: 'ingsoft3ucc'  #Nombre de nuestra organizacion SonarCloud
 	        scannerMode: 'MSBuild'
-	        projectKey: 'ingsoft3ucc_Angular_WebAPINetCore8_CRUD_Sample'
-	        projectName: 'Angular_WebAPINetCore8_CRUD_Sample'
+	        projectKey: 'Angular_WebAPINetCore8_CRUD_Sample'  #Key de nuestro proyecto en SonarCloud
+	        projectName: 'Angular_WebAPINetCore8_CRUD_Sample' #Nombre de nuestro proyecto en SonarCloud
 	      displayName: 'Prepare SonarCloud'
 	        
 		 ```
@@ -249,11 +249,11 @@ La plataforma destaca por ofrecer un tablero interactivo donde se pueden visuali
 - Explicación de cómo escribir y ejecutar pruebas de integración que verifiquen que los diferentes componentes de la aplicación funcionan correctamente juntos.
 - Ejemplo práctico: Crear y ejecutar pruebas de integración con Cypress y revisar los resultados.
 
-#### 4.4 Combinando los Tres Enfoques:
 
-Demostración de cómo un pipeline de CI/CD puede incluir análisis estático con SonarCloud, cobertura de código con herramientas específicas, y pruebas de integración con Cypress.
-Cómo estos tres enfoques se complementan para asegurar un software robusto, seguro y bien probado.
-
+#### 4.5 Desafíos:
+- Integrar en el pipeline SonarCloud para nuestro proyecto Angular, mostrar el resultado obtenido en SonarCloud
+- Implementar en Cypress pruebas de integración que incluya los casos desarrollados como pruebas unitarias del front en el TP06.
+- Incorporar al pipeline de Deploy la ejecución de las pruebas de integración.
 
 ### 5- Instructivos:
 ### 5.1 Integrate SonarCloud with Azure DevOps Pipelines
@@ -755,7 +755,7 @@ Cómo estos tres enfoques se complementan para asegurar un software robusto, seg
 - Subir el proyecto a un repo para poder evaluar, revisar y ejecutar el código y las pruebas unitarias
 
 ### 7-  Criterio de Calificación
-Los pasos 4.1 al 4.X representan un 60% de la nota total, los pasos 4.X y subsiguientes representan el 40% restante.
+Los pasos 4.1 al 4.4 representan un 60% de la nota total, los pasos 4.5 y subsiguientes representan el 40% restante.
 
 
 
