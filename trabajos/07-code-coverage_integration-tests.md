@@ -80,7 +80,7 @@ Las pruebas de integración son un tipo de prueba de software que verifica si lo
 ### 4- Desarrollo:
 #### Prerequisitos:
 
-#### 4.1 Agregar Code Coverage a nuestras pruebas de Front e Integrar nuestras pruebas unitarias de backend y front-end en el pipeline:
+#### 4.1 Agregar Code Coverage a nuestras pruebas unitarias de backend y front-end e integrarlas junto con sus resultados en nuestro pipeline de build.
 - Desarrollo del punto 4.1: 
 	- ##### 4.1.1 En el directorio raiz de nuestro proyecto Angular instalar el siguiente paquete:
   	```bash
