@@ -4,15 +4,15 @@
 
 Al finalizar esta sesión, los estudiantes serán capaces de:
 
-1. **Comprender el análisis estático de código**:
-   - Definir qué es el análisis estático de código y su importancia en el ciclo de desarrollo de software.
-   - Identificar cómo el análisis estático ayuda a detectar errores, vulnerabilidades de seguridad y malas prácticas en el código sin necesidad de ejecutarlo.
-   - Utilizar herramientas como **SonarCloud** para realizar análisis estático y generar reportes de calidad de código.
-
-2. **Evaluar la cobertura de pruebas (Code Coverage)**:
+1. **Evaluar la cobertura de pruebas (Code Coverage)**:
    - Explicar el concepto de cobertura de pruebas y su relevancia para asegurar la calidad del software.
    - Medir y analizar el porcentaje de código cubierto por pruebas automatizadas mediante herramientas específicas.
    - Mejorar la cobertura de pruebas para asegurar que los casos críticos y excepcionales están adecuadamente testeados.
+
+2. **Comprender el análisis estático de código**:
+   - Definir qué es el análisis estático de código y su importancia en el ciclo de desarrollo de software.
+   - Identificar cómo el análisis estático ayuda a detectar errores, vulnerabilidades de seguridad y malas prácticas en el código sin necesidad de ejecutarlo.
+   - Utilizar herramientas como **SonarCloud** para realizar análisis estático y generar reportes de calidad de código.
 
 3. **Aplicar pruebas de integración**:
    - Definir qué son las pruebas de integración y cómo garantizan que los módulos de una aplicación interactúen correctamente.
@@ -33,21 +33,7 @@ Este trabajo práctico corresponde a la unidad Nº: 5 (Libro Ingeniería de Soft
 
 #### Conceptos generales y explicaciones de los mismos
 
-##### 3.1. Análisis Estático de Código
-**¿Qué es?**
-El análisis estático de código es el proceso de examinar el código fuente de una aplicación sin necesidad de ejecutarlo. Este análisis se realiza mediante herramientas automatizadas que revisan el código en busca de errores, vulnerabilidades, y malas prácticas. A diferencia del análisis dinámico, que requiere que el software esté en funcionamiento, el análisis estático se realiza antes de la ejecución del código, generalmente durante la fase de desarrollo o en pipelines de integración continua.
-
-**¿Cómo ayuda a identificar errores, vulnerabilidades y malas prácticas?**
-
-- **Errores comunes de programación**: El análisis estático puede detectar errores sintácticos o lógicos que podrían no ser visibles a simple vista. Esto incluye problemas como el uso incorrecto de variables, bucles infinitos, o referencias nulas.
-
-- **Vulnerabilidades de seguridad**: Herramientas como SonarCloud analizan posibles vulnerabilidades como inyecciones de SQL, XSS (Cross-Site Scripting), o manejo inadecuado de datos sensibles. Esto es crucial para prevenir ataques y garantizar la seguridad del software.
-
-- **Malas prácticas**: El análisis estático también identifica patrones de código que, aunque no son incorrectos desde el punto de vista técnico, pueden afectar negativamente la mantenibilidad y legibilidad del código. Ejemplos incluyen duplicación de código, funciones demasiado largas o un uso ineficiente de recursos.
-
-- **Cumplimiento de estándares**: Estas herramientas también aseguran que el código cumpla con normas y buenas prácticas establecidas, como los estándares de la industria OWASP para seguridad o convenciones de estilo de codificación.
-
-##### 3.2. Cobertura de Pruebas (Code Coverage)
+##### 3.1. Cobertura de Pruebas (Code Coverage)
 
 **¿Qué es Code Coverage?**
 La cobertura de pruebas es una métrica que mide el porcentaje de código ejecutado cuando se corren pruebas automatizadas sobre una aplicación. Básicamente, calcula qué partes del código fueron “cubiertas” por las pruebas y cuáles no, permitiendo a los desarrolladores saber si sus pruebas están examinando la mayoría del código relevante o si hay áreas importantes no verificadas.
@@ -61,6 +47,20 @@ La cobertura de pruebas es una métrica que mide el porcentaje de código ejecut
 - **Mejora la calidad del código**: Al generar informes de cobertura, los desarrolladores pueden enfocarse en mejorar y aumentar las pruebas para cubrir áreas críticas del sistema, lo que contribuye a un software más estable y confiable.
 
 - **Optimización del esfuerzo de pruebas**: La medición de la cobertura de código permite priorizar las pruebas, enfocándose en las áreas más críticas o complejas del código que deben ser verificadas.
+
+##### 3.2. Análisis Estático de Código
+**¿Qué es?**
+El análisis estático de código es el proceso de examinar el código fuente de una aplicación sin necesidad de ejecutarlo. Este análisis se realiza mediante herramientas automatizadas que revisan el código en busca de errores, vulnerabilidades, y malas prácticas. A diferencia del análisis dinámico, que requiere que el software esté en funcionamiento, el análisis estático se realiza antes de la ejecución del código, generalmente durante la fase de desarrollo o en pipelines de integración continua.
+
+**¿Cómo ayuda a identificar errores, vulnerabilidades y malas prácticas?**
+
+- **Errores comunes de programación**: El análisis estático puede detectar errores sintácticos o lógicos que podrían no ser visibles a simple vista. Esto incluye problemas como el uso incorrecto de variables, bucles infinitos, o referencias nulas.
+
+- **Vulnerabilidades de seguridad**: Herramientas como SonarCloud analizan posibles vulnerabilidades como inyecciones de SQL, XSS (Cross-Site Scripting), o manejo inadecuado de datos sensibles. Esto es crucial para prevenir ataques y garantizar la seguridad del software.
+
+- **Malas prácticas**: El análisis estático también identifica patrones de código que, aunque no son incorrectos desde el punto de vista técnico, pueden afectar negativamente la mantenibilidad y legibilidad del código. Ejemplos incluyen duplicación de código, funciones demasiado largas o un uso ineficiente de recursos.
+
+- **Cumplimiento de estándares**: Estas herramientas también aseguran que el código cumpla con normas y buenas prácticas establecidas, como los estándares de la industria OWASP para seguridad o convenciones de estilo de codificación.
 
 ##### 3.3. Pruebas de Integración
 
@@ -174,7 +174,7 @@ Las pruebas de integración son un tipo de prueba de software que verifica si lo
   	![image](https://github.com/user-attachments/assets/e489405d-85a3-4cc9-ade3-19f5b98a3737)
 
 
-#### 4.2 Análisis Estático de Código con SonarCloud:
+#### 4.2 Agregar Análisis Estático de Código con SonarCloud:
 
 SonarCloud es una plataforma de análisis de calidad de código basada en la nube que ayuda a los equipos de desarrollo a detectar errores, vulnerabilidades de seguridad, malas prácticas y problemas de mantenibilidad en el código. Proporciona análisis estático de código para múltiples lenguajes, como Java, .NET, JavaScript, TypeScript, Python, y más, ofreciendo métricas detalladas sobre la cobertura de pruebas, duplicación de código, complejidad ciclomatica, y deuda técnica. Además, SonarCloud se integra fácilmente con sistemas de CI/CD y plataformas de control de versiones como GitHub, Azure DevOps y Bitbucket, lo que permite un análisis continuo del código en cada commit o despliegue.
 
