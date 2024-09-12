@@ -81,7 +81,8 @@ Las pruebas de integración son un tipo de prueba de software que verifica si lo
 #### Prerequisitos:
 
 #### 4.1 Integrar nuestras pruebas unitarias de backend y front-end en el pipeline:
-
+- Desarrollo del punto 4.1:
+  
 ![image](https://github.com/user-attachments/assets/6a5c7c9d-a85c-4177-bd62-24d533f4fb79)
 
 ![image](https://github.com/user-attachments/assets/f94a46c2-bf23-4a48-933d-ebc70fa18aac)
@@ -93,10 +94,39 @@ Las pruebas de integración son un tipo de prueba de software que verifica si lo
 
 
 #### 4.2 Análisis Estático de Código con SonarCloud:
-- Explicación detallada de qué es SonarCloud y cómo puede analizar el código para identificar problemas de seguridad, bugs y code smells.
-- Demostración de cómo integrar SonarCloud en un pipeline de CI/CD y cómo leer los reportes de análisis estático.
-- Ejemplo práctico: Analizar un proyecto con SonarCloud y revisar los reportes generados.
-- Desarrollo del punto 4.1:
+
+SonarCloud es una plataforma de análisis de calidad de código basada en la nube que ayuda a los equipos de desarrollo a detectar errores, vulnerabilidades de seguridad, malas prácticas y problemas de mantenibilidad en el código. Proporciona análisis estático de código para múltiples lenguajes, como Java, .NET, JavaScript, TypeScript, Python, y más, ofreciendo métricas detalladas sobre la cobertura de pruebas, duplicación de código, complejidad ciclomatica, y deuda técnica. Además, SonarCloud se integra fácilmente con sistemas de CI/CD y plataformas de control de versiones como GitHub, Azure DevOps y Bitbucket, lo que permite un análisis continuo del código en cada commit o despliegue.
+
+La plataforma destaca por ofrecer un tablero interactivo donde se pueden visualizar y priorizar los problemas detectados, facilitando la refactorización y la mejora de la calidad del código. SonarCloud permite a los equipos identificar vulnerabilidades y puntos críticos de seguridad, además de generar informes de cobertura de pruebas automatizadas, ayudando a mantener el código limpio, seguro y fácil de mantener a lo largo del ciclo de vida del desarrollo.
+
+- ### Resumen de Métricas de Calidad de Código en SonarCloud
+
+	1. **Coverage (Cobertura de Código)**: Mide el porcentaje de código cubierto por pruebas automatizadas.
+	2. **Bugs (Errores)**: Identifica problemas que podrían causar fallos en el código en tiempo de ejecución.
+	3. **Vulnerabilities (Vulnerabilidades)**: Detecta posibles puntos de riesgo que podrían comprometer la seguridad del código.
+	4. **Code Smells**: Indica malas prácticas o patrones de código que, aunque no causan fallos, afectan la calidad y mantenibilidad.
+	5. **Duplications (Duplicación de Código)**: Mide el porcentaje de código duplicado en el proyecto, lo que afecta la mantenibilidad.
+	6. **Maintainability (Mantenibilidad)**: Evalúa la facilidad con la que el código puede ser modificado o extendido sin introducir nuevos errores.
+	7. **Technical Debt (Deuda Técnica)**: Estima el tiempo necesario para corregir todos los problemas de calidad del código.
+	8. **Reliability (Fiabilidad)**: Mide la probabilidad de que el código funcione sin errores.
+	9. **Security Hotspots (Puntos Críticos de Seguridad)**: Indica áreas del código que deben ser revisadas manualmente por posibles problemas de seguridad.
+	10. **Cyclomatic Complexity (Complejidad Ciclomática)**: Mide el número de caminos lógicos independientes en el código, indicando su complejidad estructural.
+	11. **Cognitive Complexity (Complejidad Cognitiva)**: Evalúa la dificultad de entender el código, considerando aspectos de legibilidad y comprensión.
+	12. **Maintainability Rating**: Clasifica el proyecto en una escala de A a E según la deuda técnica y la facilidad de mantenimiento.
+	13. **Branch Coverage**: Mide la cobertura de las ramas de decisión en el código (por ejemplo, en estructuras `if`, `else` o `switch`).
+	14. **Complexity per Function**: Mide la complejidad promedio de las funciones dentro del proyecto.
+	15. **Complexity per Class**: Mide la complejidad promedio por clase, ayudando a evaluar la arquitectura y el diseño del sistema.
+	16. **Lines of Code (LoC)**: Cuenta el número total de líneas de código en el proyecto, excluyendo comentarios y espacios en blanco.
+	17. **Comment Density (Densidad de Comentarios)**: Mide el porcentaje de líneas de código que son comentarios, útil para evaluar la documentación interna.
+	18. **Issues (Problemas)**: Cuenta el número total de problemas detectados en el código, que pueden clasificarse como bugs, vulnerabilidades o code smells.
+	19. **Security Rating**: Proporciona una clasificación general de la seguridad del código, en una escala de A (mejor) a E (peor).
+	20. **Reliability Rating**: Clasifica la confiabilidad del código en una escala de A a E, basada en la cantidad y gravedad de los errores detectados.
+	21. **Security Remediation Effort**: Estima el tiempo necesario para resolver todos los problemas de seguridad identificados en el código.
+	22. **Uncovered Conditions**: Mide el número de condiciones lógicas que no están cubiertas por las pruebas automatizadas.
+	23. **Duplicated Blocks**: Cuenta los bloques de código que se repiten en el proyecto.
+	24. **Unresolved Issues**: Indica el número de problemas detectados que aún no han sido resueltos.
+	
+- Desarrollo del punto 4.2: Demostración de cómo integrar SonarCloud en un pipeline de CI/CD y cómo leer los reportes de análisis estático.
 	- ##### 4.2.1 A partir del resultado del TP06 integraremos SonarCloud para analizar el código fuente. Configurar SonarCloud en nuestro pipeline siguiendo instructivo 5.1
   	- ##### 4.2.2 Vemos el resultado de nuestro pipeline, en extensions tenemos un link al análisis realizado por SonarCloud
 
@@ -110,8 +140,12 @@ Las pruebas de integración son un tipo de prueba de software que verifica si lo
 
 	![image](https://github.com/user-attachments/assets/5da4dfb9-459d-4566-b083-b89cae39b463)
 
-   	
-	- ##### 4.2.4 Modificamos argumento de nuestra tarea de Test de Backend para que genere salida de reporte entendible por SonarCloud y pueda determinar el CodeCoverage
+  #### 4.3 Cobertura de Pruebas con Herramientas de Code Coverage:
+- Explicación de la cobertura de código, cómo se mide y su importancia en el ciclo de vida del desarrollo de software.
+- Integración de herramientas de code coverage (por ejemplo, para .NET, JavaScript o TypeScript) en un proyecto de pruebas.
+- Ejemplo práctico: Ejecutar pruebas y generar un informe de cobertura de código, mostrando cómo se relaciona la cobertura con la calidad del código.
+- Desarrollo del punto 4.3
+	- ##### 4.3.1 Modificamos argumento de nuestra tarea de Test de Backend para que genere salida de reporte entendible por SonarCloud y pueda determinar el CodeCoverage
   	  ```yaml
   	   - task: DotNetCoreCLI@2
 	    displayName: 'Ejecutar pruebas de la API con cobertura'
@@ -120,11 +154,14 @@ Las pruebas de integración son un tipo de prueba de software que verifica si lo
 	      projects: '**/*.Tests.csproj'
 	      arguments: '--configuration $(configuration) --collect "Code Coverage" --results-directory $(Agent.TempDirectory)/TestResults /p:CoverletOutput=$(Agent.TempDirectory)/TestResults/coverage.opencover.xml /p:CoverletOutputFormat=opencover /p:Exclude="[xunit.*]*"'
   	  ``` 
-	
-#### 4.3 Cobertura de Pruebas con Herramientas de Code Coverage:
-- Explicación de la cobertura de código, cómo se mide y su importancia en el ciclo de vida del desarrollo de software.
-- Integración de herramientas de code coverage (por ejemplo, para .NET, JavaScript o TypeScript) en un proyecto de pruebas.
-- Ejemplo práctico: Ejecutar pruebas y generar un informe de cobertura de código, mostrando cómo se relaciona la cobertura con la calidad del código.
+	- ##### 4.3.2 Vemos el resultado de nuestro pipeline, en extensions tenemos un link al análisis realizado por SonarCloud
+
+  	![image](https://github.com/user-attachments/assets/312a3c9f-659e-4249-b204-aa1abd312cc2)
+  
+	- ##### 4.3.3 Ir al link y analizar la información de Code Coverage. Detallar en la entrega del TP qué conclusiones sacaron del % de código cubierto por sus pruebas y qué se debería mejorar.
+
+  	![image](https://github.com/user-attachments/assets/e1a011a5-13b9-4f89-aaec-2690c2f6f7b8)
+
 
 #### 4.4 Pruebas de Integración con Cypress:
 - Introducción a Cypress como herramienta para realizar pruebas de integración en aplicaciones web.
