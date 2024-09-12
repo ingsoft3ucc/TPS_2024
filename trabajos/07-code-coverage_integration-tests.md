@@ -176,7 +176,7 @@ Las pruebas de integración son un tipo de prueba de software que verifica si lo
 
 #### 4.2 Agregar Análisis Estático de Código con SonarCloud:
 
-SonarCloud es una plataforma de análisis de calidad de código basada en la nube que ayuda a los equipos de desarrollo a detectar errores, vulnerabilidades de seguridad, malas prácticas y problemas de mantenibilidad en el código. Proporciona análisis estático de código para múltiples lenguajes, como Java, .NET, JavaScript, TypeScript, Python, y más, ofreciendo métricas detalladas sobre la cobertura de pruebas, duplicación de código, complejidad ciclomatica, y deuda técnica. Además, SonarCloud se integra fácilmente con sistemas de CI/CD y plataformas de control de versiones como GitHub, Azure DevOps y Bitbucket, lo que permite un análisis continuo del código en cada commit o despliegue.
+SonarCloud https://www.sonarsource.com/products/sonarcloud/ es una plataforma de análisis de calidad de código basada en la nube que ayuda a los equipos de desarrollo a detectar errores, vulnerabilidades de seguridad, malas prácticas y problemas de mantenibilidad en el código. Proporciona análisis estático de código para múltiples lenguajes, como Java, .NET, JavaScript, TypeScript, Python, y más, ofreciendo métricas detalladas sobre la cobertura de pruebas, duplicación de código, complejidad ciclomatica, y deuda técnica. Además, SonarCloud se integra fácilmente con sistemas de CI/CD y plataformas de control de versiones como GitHub, Azure DevOps y Bitbucket, lo que permite un análisis continuo del código en cada commit o despliegue.
 
 La plataforma destaca por ofrecer un tablero interactivo donde se pueden visualizar y priorizar los problemas detectados, facilitando la refactorización y la mejora de la calidad del código. SonarCloud permite a los equipos identificar vulnerabilidades y puntos críticos de seguridad, además de generar informes de cobertura de pruebas automatizadas, ayudando a mantener el código limpio, seguro y fácil de mantener a lo largo del ciclo de vida del desarrollo.
 
@@ -244,13 +244,105 @@ La plataforma destaca por ofrecer un tablero interactivo donde se pueden visuali
   	![image](https://github.com/user-attachments/assets/6e1ce439-5f57-41b9-8624-1491d57120bd)
 
 
-#### 4.4 Pruebas de Integración con Cypress:
-- Introducción a Cypress como herramienta para realizar pruebas de integración en aplicaciones web.
-- Explicación de cómo escribir y ejecutar pruebas de integración que verifiquen que los diferentes componentes de la aplicación funcionan correctamente juntos.
-- Ejemplo práctico: Crear y ejecutar pruebas de integración con Cypress y revisar los resultados.
+#### 4.3 Pruebas de Integración con Cypress:
+
+**Cypress** https://www.cypress.io/ es una herramienta de pruebas tanto de integración como unitarias diseñada para probar aplicaciones web. Facilita la escritura, ejecución y depuración de pruebas automáticas en tiempo real dentro del navegador. A diferencia de otras herramientas de pruebas, **Cypress** se ejecuta directamente en el navegador, lo que le permite interactuar con la página web de manera más eficiente, proporcionando feedback rápido y detallado sobre las pruebas.
+
+##### **Características clave de Cypress**:
+- **Pruebas en tiempo real**: Ver los resultados de las pruebas en el navegador mientras se ejecutan.
+- **Automatización completa del navegador**: Cypress controla el navegador para simular la interacción del usuario.
+- **Rápida retroalimentación**: Ideal para desarrollo ágil con integración continua.
+- **Depuración sencilla**: Acceso a capturas de pantalla y videos de las pruebas fallidas.
+
+### **Comandos más comunes de Cypress**
+
+| **Comando**                  | **Descripción**                                              | **Ejemplo**                                        |
+|------------------------------|--------------------------------------------------------------|----------------------------------------------------|
+| `cy.visit(url)`               | Carga la página web especificada.                            | `cy.visit('https://example.com')`                  |
+| `cy.get(selector)`            | Selecciona un elemento del DOM usando un selector CSS.       | `cy.get('button')`                                 |
+| `cy.click()`                  | Simula un clic en el elemento seleccionado.                  | `cy.get('button').click()`                         |
+| `cy.type(text)`               | Escribe el texto en el campo seleccionado.                   | `cy.get('input[name="username"]').type('user123')`  |
+| `cy.should(condition)`        | Verifica que un elemento cumple con una condición.           | `cy.get('h1').should('contain', 'Welcome')`        |
+| `cy.wait(time)`               | Espera una cantidad de milisegundos antes de continuar.      | `cy.wait(2000)`                                    |
+| `cy.intercept(method, url)`   | Intercepta una solicitud de red para pruebas.                | `cy.intercept('GET', '/api/data').as('getData')`   |
+| `cy.reload()`                 | Recarga la página actual.                                    | `cy.reload()`                                      |
+| `cy.go(direction)`            | Navega hacia atrás o adelante en el historial del navegador. | `cy.go('back')`                                    |
+| `npx cypress run`             | Ejecuta las pruebas en modo "headless".                      | `npx cypress run`                                  |
+| `assert.equal(value1, value2)` | Verifica que dos valores sean iguales.                      | `assert.equal(4, 4)`                               |
+| `assert.deepEqual(obj1, obj2)` | Verifica que dos objetos sean iguales.                      | `assert.deepEqual({a:1}, {a:1})`                   |
+| `assert.isTrue(value)`         | Verifica que el valor sea verdadero.                        | `assert.isTrue(true)`                              |
+| `assert.exists(value)`         | Verifica que un valor exista (no sea `null` o `undefined`). | `assert.exists('text')`                            |
+| `cy.should('be.visible')`      | Verifica que un elemento sea visible.                       | `cy.get('button').should('be.visible')`            |
+| `cy.should('not.be.visible')`  | Verifica que un elemento no sea visible.                    | `cy.get('.modal').should('not.be.visible')`        |
+| `cy.should('exist')`           | Verifica que un elemento existe en el DOM.                  | `cy.get('#menu').should('exist')`                  |
+| `cy.should('not.exist')`       | Verifica que un elemento no existe en el DOM.               | `cy.get('#loading').should('not.exist')`           |
+
+- Desarrollo del punto 4.4: 
+	- ##### 4.3.1 En el directorio raiz de nuestro proyecto Angular instalar el siguiente paquete:
+  	```bash
+	npm install cypress --save-dev
+   	```
+   	- ##### 4.3.2 Abrir Cypress:
+  	```bash
+   	npx cypress open
+   	```
+	- ##### 4.3.3 Inicializar Cypress en nuestro proyecto como se indica en el instructivo 5.2
+   	Esto creará automáticamente una estructura de carpetas dentro de tu proyecto. 
+	![image](https://github.com/user-attachments/assets/b0d3de46-91b2-4d19-bff0-7998a78c1521)
+
+	 - cypress/e2e: Aquí es donde se almacenan tus archivos de prueba.
+	 - cypress/fixtures: Aquí se almacenan los datos de prueba que puedes usar en tus tests.
+	 - cypress/support: Contiene archivos de configuración y comandos personalizados.
+
+  	- ##### 4.3.4 Crear nuestra primera prueba navegando a nuestro front.
+ 	En la carpeta cypress/e2e, crear un archivo con el nombre primer_test.js y agregar el siguiente código para probar la página de inicio de nuestro front:
+  	```js
+	  describe('Mi primera prueba', () => {
+	  it('Carga correctamente la página de ejemplo', () => {
+	    cy.visit('https://as-crud-web-api-qa.azurewebsites.net/') // Colocar la url local o de Azure de nuestro front
+	    cy.get('h1').should('contain', 'EmployeeCrudAngular') // Verifica que el título contenga "EmployeeCrudAngular"
+	  })
+	})
+   	```
+	- ##### 4.3.5 Correr nuestra primera prueba
+ 	Si está abierta la interfaz gráfica de Cypress, aparecerá el archivo primer_test.cy.js en la lista de pruebas. Clic en el archivo para ejecutar la prueba.
+  	<img width="1154" alt="image" src="https://github.com/user-attachments/assets/f34a9af2-1692-441a-b1f0-37055ae2d7a0">
+   	<img width="1436" alt="image" src="https://github.com/user-attachments/assets/8758c000-2f40-4a05-8cb0-c5fa56d583f9">
+	
+	También es posible ejecutar Cypress en modo "headless" (sin interfaz gráfica) utilizando el siguiente comando:
+	```bash
+ 	npx cypress run
+ 	```
+ 	![image](https://github.com/user-attachments/assets/78ecba2e-9e40-4eb0-a286-56908723dee1)
 
 
-#### 4.5 Desafíos:
+	- ##### 4.3.6 Modificar nuestra prueba para que falle.
+	  - Editamos el archivo primer_test.cy.js y hacemos que espere otra cosa en el título
+	  - Ejecutamos cypress en modo headless
+	 ![image](https://github.com/user-attachments/assets/b431354b-0e4f-492e-8c40-2993991ac76d)
+
+	Cypress captura automáticamente pantallas cuando una prueba falla. Las capturas de pantalla se guardan en la carpeta `cypress/screenshots`.
+	<img width="1136" alt="image" src="https://github.com/user-attachments/assets/e6f26695-def4-4596-b5c6-152f5b95aa59">
+
+ 	- ##### 4.3.6 Grabar nuestras pruebas para que Cypress genere código automático:
+    	 - Cerramos Cypress
+	 - Editamos el archivo cypress.config.ts incluyendo la propiedad **experimentalStudio** en true
+	      ```typescript
+		import { defineConfig } from "cypress";
+		
+		export default defineConfig({
+		  e2e: {
+		    setupNodeEvents(on, config) {
+		      // implement node event listeners here
+		    },
+		  },
+		  experimentalStudio: true,
+		});
+		```
+       - Corremos nuevamente Cypress con npx cypress open
+ 	
+   
+#### 4.4 Desafíos:
 - Integrar en el pipeline SonarCloud para nuestro proyecto Angular, mostrar el resultado obtenido en SonarCloud
 - Implementar en Cypress pruebas de integración que incluya los casos desarrollados como pruebas unitarias del front en el TP06.
 - Incorporar al pipeline de Deploy la ejecución de las pruebas de integración.
@@ -747,6 +839,79 @@ La plataforma destaca por ofrecer un tablero interactivo donde se pueden visuali
 
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-12/5147c69b-f5ed-492c-bdd1-80cad0fceff5/ascreenshot.jpeg?tl_px=767,535&br_px=1541,968&force_format=jpeg&q=100&width=774&wat_scale=69&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=677,362)
 
+### 5.2 Inicializar Cypress en nuestro proyecto
+
+1\. En la ventana del navegador que se abre hacer click en E2E Testing
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-12/d6c15ba2-a364-4ab1-b542-884aa0d86c6a/user_cropped_screenshot.jpeg?tl_px=0,0&br_px=1451,719&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=374,271)
+
+
+2\. Nos indica que creo una serie de archivos necesarios para el funcionamiento, click en "Continue"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-12/6a8b4c00-14ae-45c1-acad-d05574735f78/user_cropped_screenshot.jpeg?tl_px=0,0&br_px=1438,786&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=223,453)
+
+
+3\. Seleccionar un browser y darle "Start E2E Testing in &lt;BROWSER_Seleccionado&gt;"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-12/41784e8e-cce9-47d0-b7e4-41fd1bc8c91a/user_cropped_screenshot.jpeg?tl_px=0,0&br_px=1438,878&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=479,312)
+
+
+4\. Hacemos que nos cree una serie de pruebas de ejemplo
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-12/666c45c9-66ea-409a-82f8-3f58a6eab2d6/ascreenshot.jpeg?tl_px=0,0&br_px=2880,1800&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=482,356)
+
+
+5\. Click "Okay, I got it!"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-12/295462aa-efee-4c07-89f1-72353be0edb0/ascreenshot.jpeg?tl_px=0,0&br_px=2880,1800&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=337,530)
+
+
+6\. Seleccionar una de las pruebas generadas
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-12/63b4bcff-5ade-48ba-b737-4425160eca7a/ascreenshot.jpeg?tl_px=0,469&br_px=1719,1430&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=427,276)
+
+
+7\. Vemos que se corre una prueba automatizada.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-12/c65a7eec-eee0-4b62-a917-89d51b7bb007/user_cropped_screenshot.jpeg?tl_px=0,0&br_px=2880,1800&force_format=jpeg&q=100&width=1120.0)
+
+
+8\. Click "Salir"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-12/723e3ef7-795f-4b68-82d6-f4d774c5b1bf/ascreenshot.jpeg?tl_px=1060,599&br_px=1920,1080&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=531,308)
+
+
+9\. Click the Scribe - Desktop App: Uso de memoria: 71.5 MB tabulador
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-12/402c13b9-b8a8-4470-992e-1170fb5586e5/ascreenshot.jpeg?tl_px=702,0&br_px=1562,480&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,19)
+
+
+10\. Click the Cerrar botón
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-12/28e8eb93-b226-473b-bdb5-f3fe5bfd4e89/ascreenshot.jpeg?tl_px=743,0&br_px=1603,480&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,22)
+
+
+11\. Click the Scribe
+Tiene acceso a este sitio botón emergente
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-12/67b50aae-bd06-4154-98b2-b73fdd42a9a2/ascreenshot.jpeg?tl_px=1060,0&br_px=1920,480&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=681,72)
+
+
+12\. Click "Start Capture"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-12/b809dec5-15d3-4894-a972-e8c3609d7d0d/ascreenshot.jpeg?tl_px=1060,137&br_px=1920,618&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=690,212)
+
+
+13\. Click "Launch Scribe Desktop"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-12/71c8600f-ab19-4db4-a8f8-37862505635b/ascreenshot.jpeg?tl_px=1060,164&br_px=1920,645&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=579,212)
+
+
+14\. Click the Abrir Scribe Desktop.app botón
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-12/330f3c84-4615-44e9-975d-f45857cddecc/ascreenshot.jpeg?tl_px=640,31&br_px=1500,512&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=402,212)
+
+
 
 
 
@@ -755,7 +920,7 @@ La plataforma destaca por ofrecer un tablero interactivo donde se pueden visuali
 - Subir el proyecto a un repo para poder evaluar, revisar y ejecutar el código y las pruebas unitarias
 
 ### 7-  Criterio de Calificación
-Los pasos 4.1 al 4.4 representan un 60% de la nota total, los pasos 4.5 y subsiguientes representan el 40% restante.
+Los pasos 4.1 al 4.3 representan un 60% de la nota total, los pasos 4.4 y subsiguientes representan el 40% restante.
 
 
 
