@@ -1,4 +1,4 @@
-## Trabajo Práctico 7 - Code Coverage y Pruebas de Integración
+## Trabajo Práctico 7 - Code Coverage, Análisis estático de Código y Pruebas de Integración
 
 ### 1- Objetivos de Aprendizaje
 
