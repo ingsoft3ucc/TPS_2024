@@ -389,22 +389,36 @@ La plataforma destaca por ofrecer un tablero interactivo donde se pueden visuali
    
   	```js
 	describe('editEmployeeTest', () => {
-	  it('Carga correctamente la página de ejemplo', () => {
-	    cy.visit('https://as-crud-web-api-qa.azurewebsites.net/') // Colocar la url local o de Azure de nuestro front
+	  it('Edita correctamente un empleado', () => {
+	    cy.visit('https://as-crud-web-api-qa.azurewebsites.net/') // URL del front
 	
-	    /* ==== Generated with Cypress Studio ==== */
+	    // Haz clic en el botón de editar empleado
 	    cy.get(':nth-child(7) > :nth-child(4) > a > .fa').click();
-	    //cy.get('.form-control').clear('Emi Schwindt');
-	  	cy.get('.form-control')
-	    .click()  // Asegura que el campo esté enfocado
-	    .clear()  // Limpia el campo
-	    .type('{selectall}{backspace}')  // Selecciona y elimina cualquier texto restante
-	    .type('Emi Schwindt', { delay: 200 });  // Escribe el nuevo nombre
+	
+	    // Asegúrate de que el campo de texto esté visible y habilitado
+	    cy.get('.form-control')
+	      .should('be.visible')
+	      .should('not.be.disabled')
+	
+	    cy.wait(500);
+	
+	    cy.get('.form-control').type('{selectall}{backspace}')  // Selecciona todo el texto y lo elimina
+	
+	    cy.wait(500);
+	
+	    cy.get('.form-control').should('have.value', '');  // Verifica que el campo esté vacío
+	
+	    // Escribe el nuevo nombre 
+	    cy.get('.form-control').type('Emilia Schwindt Modified');
+	
+	    // Envía el formulario
 	    cy.get('.btn').click();
-	    cy.get(':nth-child(7) > :nth-child(2)').should('have.text', ' Emi Schwindt ');
-	    /* ==== End Cypress Studio ==== */
-	  })
-	})
+	
+	    // Verifica que el nombre fue actualizado correctamente
+	    cy.get(':nth-child(7) > :nth-child(2)').should('have.text', ' Emilia Schwindt Modified ');
+	  });
+	});
+
   	```
 
 #### 4.4 Desafíos:
