@@ -425,7 +425,8 @@ La plataforma destaca por ofrecer un tablero interactivo donde se pueden visuali
 - Integrar en el pipeline SonarCloud para nuestro proyecto Angular, mostrar el resultado obtenido en SonarCloud
 - Implementar en Cypress pruebas de integración que incluya los casos desarrollados como pruebas unitarias del front en el TP06.
 - Incorporar al pipeline de Deploy la ejecución de las pruebas de integración y la visualización de sus resultados.
-  - Resultado esperado: Un Pipeline en YAML que incluya a) Build de QA y Front con ejecución y resultado de pruebas de code coverage, pruebas unitarias y análisis de Sonar Cloud y b) Deploy a WebApp(s) de QA y Front que incluya ejecución y resultado de pruebas de integración
+- **Resultado esperado**:
+    - Un Pipeline en YAML que incluya a) Build de QA y Front con ejecución y resultado de pruebas de code coverage, pruebas unitarias y análisis de Sonar Cloud y b) Deploy a WebApp(s) de QA y Front que incluya ejecución y resultado de pruebas de integración
 
     <img width="1318" alt="image" src="https://github.com/user-attachments/assets/76324d85-3706-495d-ad56-6054371a3019">
 
@@ -444,11 +445,8 @@ La plataforma destaca por ofrecer un tablero interactivo donde se pueden visuali
     - En la pestaña Extensions, ver el análisis de SonarCloud en verde
 
        <img width="720" alt="image" src="https://github.com/user-attachments/assets/c5511fb6-3d39-4b9c-ad9a-e688bdaa3016">
-
     
-      	
-
-- Un documento de una carilla explicando qué información pudieron sacar del análisis de Sonar Cloud y de las pruebas de cobertura.
+    - Un documento de una carilla explicando qué información pudieron sacar del análisis de Sonar Cloud y de las pruebas de cobertura.
 
 ### 5- Instructivos:
 ### 5.1 Integrate SonarCloud with Azure DevOps Pipelines
