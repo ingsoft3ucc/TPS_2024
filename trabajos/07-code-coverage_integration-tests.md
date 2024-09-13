@@ -426,6 +426,28 @@ La plataforma destaca por ofrecer un tablero interactivo donde se pueden visuali
 - Implementar en Cypress pruebas de integración que incluya los casos desarrollados como pruebas unitarias del front en el TP06.
 - Incorporar al pipeline de Deploy la ejecución de las pruebas de integración y la visualización de sus resultados.
   - Resultado esperado: Un Pipeline en YAML que incluya a) Build de QA y Front con ejecución y resultado de pruebas de code coverage, pruebas unitarias y análisis de Sonar Cloud y b) Deploy a WebApp(s) de QA y Front que incluya ejecución y resultado de pruebas de integración
+
+    <img width="1318" alt="image" src="https://github.com/user-attachments/assets/76324d85-3706-495d-ad56-6054371a3019">
+
+    - Dos Stages: Una para Build, Test Unitarios, Code Coverage y SonarCloud y otra para el Deploy a QA con Tests de Integración
+
+	<img width="296" alt="image" src="https://github.com/user-attachments/assets/03a69736-a1c1-4ce2-a648-4237da015150">
+
+    - En la pestaña Test, poder visualizar los Test Unitarios de Front y Back y los Test de Integracion:
+
+	<img width="1262" alt="image" src="https://github.com/user-attachments/assets/83fe8613-631d-4c4d-9042-37455701c0e3">
+
+    - En la pestaña Code Coverage, visualizar la cobertura de las pruebas unitarias de Back y de Front:
+
+	<img width="1199" alt="image" src="https://github.com/user-attachments/assets/e3d48d54-945c-4b99-afbe-6a72b5f95c3f">
+
+    - En la pestaña Extensions, ver el análisis de SonarCloud en verde
+
+       <img width="720" alt="image" src="https://github.com/user-attachments/assets/c5511fb6-3d39-4b9c-ad9a-e688bdaa3016">
+
+    
+      	
+
 - Un documento de una carilla explicando qué información pudieron sacar del análisis de Sonar Cloud y de las pruebas de cobertura.
 
 ### 5- Instructivos:
