@@ -96,6 +96,7 @@ Las variables son esenciales para construir pipelines flexibles y adaptables que
 
 ### 4- Desarrollo:
 #### Prerequisitos:
+ - Azure CLI instalado 
 
 #### 4.1 Modificar nuestro pipeline para construir imágenes Docker de back y front y subirlas a ACR
 - Desarrollo del punto 4.1: 
@@ -160,9 +161,26 @@ Las variables son esenciales para construir pipelines flexibles y adaptables que
 		   targetPath: '$(Build.SourcesDirectory)/docker/front/dockerfile'
 		   artifact: 'dockerfile-front'
    	     ```
-	- ##### 4.1.4 Agregar a nuestro pipeline variables 
-   	
-  	- ##### 4.1.5 Agregar a nuestro pipeline una nueva etapa que dependa de nuestra etapa de Build y Test
+  	- ##### 4.1.4 En caso de no contar en nuestro proyecto con una ServiceConnection a Azure Portal para el manejo de recursos, agregar una service connection a Azure Resource Manager como se indica en instructivo 5.2 
+
+  	- ##### 4.1.5 Agregar a nuestro pipeline variables 
+		```yaml
+		trigger:
+		- main
+		
+		pool:
+		  vmImage: 'windows-latest'
+	
+		# AZURE VARIABLES
+		variables: 
+		  ConnectedServiceName: 'NOMBRE_SERVICE_CONNECTION_AZURE_RESOURCE_MANAGER' #Por ejemplo 'ServiceConnectionARM'
+		  acrLoginServer: 'URL_DE_RECURSO_ACR' #Por ejemplo 'ascontainerregistry.azurecr.io'
+		  backImageName: 'NOMBRE_IMAGEN_QA' #Por ejemplo 'employee-crud-api'
+	
+		```
+  	- ##### 4.1.6 Agregar a nuestro pipeline una nueva etapa que dependa de nuestra etapa de Build y Test
+  	  - Agregar tareas para generar imagen Docker de Back
+   	  
    	     ```yaml
 		# #----------------------------------------------------------
 		# ### STAGE BUILD DOCKER IMAGES Y PUSH A AZURE CONTAINER REGISTRY
@@ -170,7 +188,7 @@ Las variables son esenciales para construir pipelines flexibles y adaptables que
 		
 		- stage: DockerBuildAndPush
 		  displayName: 'Construir y Subir Imágenes Docker a ACR'
-		  dependsOn: BuildAndTestBackAndFront
+		  dependsOn: BuildAndTestBackAndFront #NOMBRE DE NUESTRA ETAPA DE BUILD Y TEST
 		  jobs:
 		    - job: docker_build_and_push
 		      displayName: 'Construir y Subir Imágenes Docker a ACR'
@@ -222,13 +240,87 @@ Las variables son esenciales para construir pipelines flexibles y adaptables que
 		            command: push
 		            repository: $(acrLoginServer)/$(backImageName)
 		            tags: 'latest'
-	```yaml          
+	  ```yaml
   	
+  	- ##### 4.1.7 - Ejecutar el pipeline y en Azure Portal acceder a la opción Repositorios de nuestro recurso Azure Container Registry. Verificar que exista una imagen con el nombre especificado en la variable backImageName asignada en nuestro pipeline
+  	  ![image](https://github.com/user-attachments/assets/57f0f0d2-2a23-4a8a-a1a0-6f5d4ea48756)
 
+	- ##### 4.1.8 - Agregar tareas para generar imagen Docker de Front (DESAFIO)
+  	  - A la etapa creada en 4.1.6 Agregar tareas para generar imagen Docker de Front
+  	- ##### 4.1.9 - Agregar a nuestro pipeline una nueva etapa que dependa de nuestra etapa de Construcción de Imagenes Docker y subida a ACR
+	  - Agregar variables a nuestro pipeline:
+  	  ```yaml
+  	  ResourceGroupName: 'NOMBRE_GRUPO_RECURSOS' #Por ejemplo 'TPS_INGSOFT3_UCC'
+	  backContainerInstanceNameQA: 'NOMBRE_CONTAINER_BACK_QA' #Por ejemplo 'as-crud-api-qa'
+	  backImageTag: 'latest' 
+	  container-cpu-api-qa: 1 #CPUS de nuestro container de QA
+	  container-memory-api-qa: 1.5 #RAM de nuestro container de QA
+  	  ```
+  	  - Agregar variable secreta cnn-string-qa desde la GUI de ADO que apunte a nuestra BD de SQL Server de QA como se indica en el instructivo 5.3
+  	    
+  	  - Agregar tareas para crear un recurso Azure Container Instances que levante un contenedor con nuestra imagen de back
+  	  ```yaml
+  	  #----------------------------------------------------------
+		### STAGE DEPLOY TO ACI QA
+		#----------------------------------------------------------
+		
+		- stage: DeployToACIQA
+		  displayName: 'Desplegar en Azure Container Instances (ACI) QA'
+		  dependsOn: DockerBuildAndPush
+		  jobs:
+		    - job: deploy_to_aci_qa
+		      displayName: 'Desplegar en Azure Container Instances (ACI) QA'
+		      pool:
+		        vmImage: 'ubuntu-latest'
+		
+		      steps:
+		        #------------------------------------------------------
+		        # DEPLOY DOCKER BACK IMAGE A AZURE CONTAINER INSTANCES QA
+		        #------------------------------------------------------
+		
+		        - task: AzureCLI@2
+		          displayName: 'Desplegar Imagen Docker de Back en ACI QA'
+		          inputs:
+		            azureSubscription: '$(ConnectedServiceName)'
+		            scriptType: bash
+		            scriptLocation: inlineScript
+		            inlineScript: |
+		              echo "Resource Group: $(ResourceGroupName)"
+		              echo "Container Instance Name: $(backContainerInstanceNameQA)"
+		              echo "ACR Login Server: $(acrLoginServer)"
+		              echo "Image Name: $(backImageName)"
+		              echo "Image Tag: $(backImageTag)"
+		              echo "Connection String: $(cnn-string-qa)"
+		          
+		              az container delete --resource-group $(ResourceGroupName) --name $(backContainerInstanceNameQA) --yes
+		
+		              az container create --resource-group $(ResourceGroupName) \
+		                --name $(backContainerInstanceNameQA) \
+		                --image $(acrLoginServer)/$(backImageName):$(backImageTag) \
+		                --registry-login-server $(acrLoginServer) \
+		                --registry-username $(acrName) \
+		                --registry-password $(az acr credential show --name $(acrName) --query "passwords[0].value" -o tsv) \
+		                --dns-name-label $(backContainerInstanceNameQA) \
+		                --ports 80 \
+		                --environment-variables ConnectionStrings__DefaultConnection="$(cnn-string-qa)" \
+		                --restart-policy Always \
+		                --cpu $(container-cpu-api-qa) \
+		                --memory $(container-memory-api-qa)
+  	  ```
+  	  - ##### 4.1.10 - Ejecutar el pipeline y en Azure Portal acceder al recurso de Azure Container Instances creado. Copiar la url del contenedor y navegarlo desde browser. Verificar que traiga datos.
+  	  - ##### 4.1.11 - Agregar tareas para generar un recurso Azure Container Instances que levante un contenedor con nuestra imagen de front (DESAFIO)
+  	  	- A la etapa creada en 4.1.9 Agregar tareas para generar contenedor en ACI con nuestra imagen de Front
+  	  - ##### 4.1.12 - Agregar tareas para correr pruebas de integración en el entorno de QA de Back y Front creado en ACI.
+  	     
 #### 4.4 Desafíos:
+- 4.4.1 Agregar tareas para generar imagen Docker de Front. (Punto 4.1.8)
+- 4.4.2 Agregar tareas para generar en Azure Container Instances un contenedor de imagen Docker de Front. (Punto 4.1.11)
+- 4.4.3 Agregar tareas para correr pruebas de integración en el entorno de QA de Back y Front creado en ACI. (Punto 4.1.12)
+- 4.4.4 Agregar etapa que dependa de la etapa de Deploy en ACI QA y genere contenedores en ACI para entorno de PROD.
 
 
 ### 5- Instructivos:
+
 ### 5.1 Crear un recurso Azure Container Registry
 
 1\. Crear un nuevo recurso en nuestro grupo de recursos
@@ -291,6 +383,116 @@ Las variables son esenciales para construir pipelines flexibles y adaptables que
 
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/ce058583-1cf6-4e1f-9bb6-e18bb1b4eb35/ascreenshot.jpeg?tl_px=474,62&br_px=1457,611&force_format=jpeg&q=100&width=983&wat_scale=87&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=744,121)
 
+### 5.2 Crear una Service Connection a Azure Resource Manager en Azure DevOps
+
+1\. En nuestro proyecto de ADO, click "Project settings"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/e8c26f25-5725-448a-b0df-dd145827ecd4/ascreenshot.jpeg?tl_px=0,4&br_px=1541,966&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=30,653)
+
+
+2\. Click "Service connections"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/ccbfd038-d76e-4a7d-9b6a-d815fd3f406e/ascreenshot.jpeg?tl_px=0,413&br_px=688,798&force_format=jpeg&q=100&width=688&wat_scale=61&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=91,170)
+
+
+3\. Click "New service connection"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/0ccbf282-43b0-47ba-a958-c4c1c02262f9/ascreenshot.jpeg?tl_px=852,0&br_px=1541,384&force_format=jpeg&q=100&width=688&wat_scale=61&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=553,58)
+
+
+4\. Click "Azure Resource Manager"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/16ef2054-72e5-4022-b20a-2ffd82d5b4ae/ascreenshot.jpeg?tl_px=852,18&br_px=1541,403&force_format=jpeg&q=100&width=688&wat_scale=61&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=375,170)
+
+
+5\. Click "Next"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/4a25944a-ae9b-40cb-b370-199c09a9e319/ascreenshot.jpeg?tl_px=852,583&br_px=1541,968&force_format=jpeg&q=100&width=688&wat_scale=61&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=599,322)
+
+
+6\. Dejar seleccionado el Authentication method por defecto y Click "Next"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/f174b447-e513-454d-a85d-9ffca08f5e11/ascreenshot.jpeg?tl_px=474,112&br_px=1457,661&force_format=jpeg&q=100&width=983&wat_scale=87&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=950,201)
+
+
+7\. Ingresar nuestro mail de Azure Portal
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/490f06a3-cd69-42c7-aabc-32195ae98ab7/user_cropped_screenshot.jpeg?tl_px=0,0&br_px=960,599&force_format=jpeg&q=100&width=1073&wat_scale=95&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=562,190)
+
+
+8\. Click this button.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/b97bc19c-9792-4d6d-9cc5-c3163833b4ae/user_cropped_screenshot.jpeg?tl_px=0,0&br_px=960,599&force_format=jpeg&q=100&width=1073&wat_scale=95&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=630,335)
+
+
+9\. Ingresar contraseña de cuenta de Azure Portal y Click "Sign in"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/289ec148-a582-40e9-9229-8685ccad916f/ascreenshot.jpeg?tl_px=100,118&br_px=960,599&force_format=jpeg&q=100&width=860&wat_scale=76&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=472,274)
+
+
+10\. Seleccionar la suscripción y expandir el combo "Resource group"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/70f1fed3-5623-4704-a318-8f841e2ac412/ascreenshot.jpeg?tl_px=852,59&br_px=1541,444&force_format=jpeg&q=100&width=688&wat_scale=61&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=476,170)
+
+
+11\. Seleccionar el grupo de recursos donde creamos nuestro recurso de Azure Container Registry
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/f4ea71c0-9fc3-4863-9296-ce772c1c3cce/ascreenshot.jpeg?tl_px=852,141&br_px=1541,526&force_format=jpeg&q=100&width=688&wat_scale=61&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=416,170)
+
+
+12\. Colocarle un nombre a la Service Connection
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/b79d354e-5348-4e9f-979a-e2a0becacb89/ascreenshot.jpeg?tl_px=852,134&br_px=1541,519&force_format=jpeg&q=100&width=688&wat_scale=61&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=417,170)
+
+
+13\. Type "ServiceConnectionARM"
+
+
+14\. Click "Grant access permission to all pipelines"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/0fbd6fd9-e144-4f92-bc74-29d97a6d5fba/ascreenshot.jpeg?tl_px=852,319&br_px=1541,704&force_format=jpeg&q=100&width=688&wat_scale=61&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=452,170)
+
+
+15\. Click "Save"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/5b693682-d1a3-4fab-b265-20f2903a2bd6/ascreenshot.jpeg?tl_px=852,355&br_px=1541,740&force_format=jpeg&q=100&width=688&wat_scale=61&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=600,170)
+
+### 5.3  Configurar variables secretas en Azure DevOps
+
+1\. En nuestro pipeline Click "Variables"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/d7638d53-1aea-4dc0-8c3d-1821f0cd7cb5/ascreenshot.jpeg?tl_px=852,0&br_px=1541,384&force_format=jpeg&q=100&width=688&wat_scale=61&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=516,52)
+
+
+2\. Click here.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/d2dbe776-5623-4662-9d39-adcc6b85b690/ascreenshot.jpeg?tl_px=852,0&br_px=1541,384&force_format=jpeg&q=100&width=688&wat_scale=61&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=611,58)
+
+
+3\. Type "cnn_string_qa"
+
+
+4\. Click this text field.
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/cae06e4c-dcb6-462f-a0dd-f682de8557c4/ascreenshot.jpeg?tl_px=852,0&br_px=1541,384&force_format=jpeg&q=100&width=688&wat_scale=61&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=452,134)
+
+
+5\. Ingresar la cadena de conexión de nuestra BD de SQL Server
+
+
+6\. Click "Keep this value secret"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/54d4f8d8-740c-407f-9135-fdab8f680639/ascreenshot.jpeg?tl_px=852,0&br_px=1541,384&force_format=jpeg&q=100&width=688&wat_scale=61&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=376,159)
+
+
+7\. Click "OK"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/e706649e-16c2-4da9-82bb-077b3b05d007/ascreenshot.jpeg?tl_px=0,4&br_px=1541,966&force_format=jpeg&q=100&width=1120.0&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=1054,634)
+
+
+8\. Click "Save"
+
+![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/23a4eb59-095f-4c76-b0cd-6873b89935bb/ascreenshot.jpeg?tl_px=852,583&br_px=1541,968&force_format=jpeg&q=100&width=688&wat_scale=61&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=616,324)
 
 
 
