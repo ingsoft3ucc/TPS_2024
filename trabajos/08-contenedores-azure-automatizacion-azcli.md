@@ -142,6 +142,7 @@ Las variables son esenciales para construir pipelines flexibles y adaptables que
 			
 			# Exponer el puerto 80 para servir la aplicación Angular
 			EXPOSE 80
+			CMD sh -c 'echo "window[\"env\"] = { apiUrl: \"'$API_URL'\" };" > /usr/share/nginx/html/assets/env.js && nginx -g "daemon off;"'
 			```
    	- ##### 4.1.2 Crear un recurso ACR en Azure Portal siguiendo el instructivo 5.1
   	- ##### 4.1.3 Modificar nuestro pipeline en la etapa de Build y Test
@@ -310,6 +311,8 @@ Las variables son esenciales para construir pipelines flexibles y adaptables que
   	  - ##### 4.1.10 - Ejecutar el pipeline y en Azure Portal acceder al recurso de Azure Container Instances creado. Copiar la url del contenedor y navegarlo desde browser. Verificar que traiga datos.
   	  - ##### 4.1.11 - Agregar tareas para generar un recurso Azure Container Instances que levante un contenedor con nuestra imagen de front (DESAFIO)
   	  	- A la etapa creada en 4.1.9 Agregar tareas para generar contenedor en ACI con nuestra imagen de Front
+  	        - Tener en cuenta que el contenedor debe recibir como variable de entorno API_URL el valor de una variable container-url-api-qa definida en nuestro pipeline.
+  	        - Para que el punto anterior funcione el código fuente del front debe ser modificado para que la url de la API pueda ser cambiada luego de haber sido construída la imagen. Se deja un ejemplo de las modificaciones a realizar en el repo https://github.com/ingsoft3ucc/CrudAngularConEnvironment.git
   	  - ##### 4.1.12 - Agregar tareas para correr pruebas de integración en el entorno de QA de Back y Front creado en ACI.
   	     
 #### 4.4 Desafíos:
