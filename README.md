@@ -93,5 +93,6 @@ Asegúrense de cumplir con todos los requisitos y procedimientos establecidos pa
   * [Trabajo Práctico 5 - Azure DevOps Release Pipelines](trabajos/05-ado-release-pipelines.md)
   * [Trabajo Práctico 6 - Pruebas Unitarias](trabajos/06-unit-tests.md)
   * [Trabajo Práctico 7 - Code Coverage, Análisis Estático de Código y Pruebas de Integración](trabajos/07-code-coverage_integration-tests.md)
+  * [Trabajo Práctico 8 - Implementación de Contenedores en Azure y Automatización con Azure CLI](08-contenedores-azure-automatizacion-azcli.md)
 
 
