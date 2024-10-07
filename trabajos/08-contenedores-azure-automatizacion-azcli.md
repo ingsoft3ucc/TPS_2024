@@ -315,11 +315,11 @@ Las variables son esenciales para construir pipelines flexibles y adaptables que
   	        - Para que el punto anterior funcione el código fuente del front debe ser modificado para que la url de la API pueda ser cambiada luego de haber sido construída la imagen. Se deja un ejemplo de las modificaciones a realizar en el repo https://github.com/ingsoft3ucc/CrudAngularConEnvironment.git
   	  - ##### 4.1.12 - Agregar tareas para correr pruebas de integración en el entorno de QA de Back y Front creado en ACI.
   	     
-#### 4.4 Desafíos:
-- 4.4.1 Agregar tareas para generar imagen Docker de Front. (Punto 4.1.8)
-- 4.4.2 Agregar tareas para generar en Azure Container Instances un contenedor de imagen Docker de Front. (Punto 4.1.11)
-- 4.4.3 Agregar tareas para correr pruebas de integración en el entorno de QA de Back y Front creado en ACI. (Punto 4.1.12)
-- 4.4.4 Agregar etapa que dependa de la etapa de Deploy en ACI QA y genere contenedores en ACI para entorno de PROD.
+#### 4.2 Desafíos:
+- 4.2.1 Agregar tareas para generar imagen Docker de Front. (Punto 4.1.8)
+- 4.2.2 Agregar tareas para generar en Azure Container Instances un contenedor de imagen Docker de Front. (Punto 4.1.11)
+- 4.2.3 Agregar tareas para correr pruebas de integración en el entorno de QA de Back y Front creado en ACI. (Punto 4.1.12)
+- 4.2.4 Agregar etapa que dependa de la etapa de Deploy en ACI QA y genere contenedores en ACI para entorno de PROD.
 
 
 ### 5- Instructivos:
@@ -505,9 +505,8 @@ Las variables son esenciales para construir pipelines flexibles y adaptables que
 - Acceso al repo de Azure Devops para revisar el trabajo realizado.
 
 ### 7-  Criterio de Calificación
-Los pasos 4.1 al 4.X representan un 60% de la nota total, los pasos 4.X y subsiguientes representan el 40% restante.
+El paso 4.1 representan un 30% de la nota total, el paso 4.2 representa el 70% restante.
 
-### 8-  Recursos Adicionales
 
 
 
