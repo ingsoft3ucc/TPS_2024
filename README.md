@@ -94,5 +94,5 @@ Asegúrense de cumplir con todos los requisitos y procedimientos establecidos pa
   * [Trabajo Práctico 6 - Pruebas Unitarias](trabajos/06-unit-tests.md)
   * [Trabajo Práctico 7 - Code Coverage, Análisis Estático de Código y Pruebas de Integración](trabajos/07-code-coverage_integration-tests.md)
   * [Trabajo Práctico 8 - Implementación de Contenedores en Azure y Automatización con Azure CLI](trabajos/08-contenedores-azure-automatizacion-azcli.md)
-  * [Trabajo Práctico 9 - Implementación de Contenedores en Azure Parte 2](trabajos/09-contenedores-azure-automatizacion-parte2.md)
+  * [Trabajo Práctico 9 - Implementación de Contenedores en Azure Parte 2](trabajos/09-contenedores-azure-automatizacion-Parte2.md)
 
