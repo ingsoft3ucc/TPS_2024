@@ -96,9 +96,9 @@ Es ideal para aplicaciones web y APIs que requieren integración con otros servi
   	  ```
   	     
 #### 4.2 Desafíos:
-- 4.2.1 Agregar tareas para generar en Front en Azure App Service con Soporte para Contenedores
+- 4.2.1 Agregar tareas para generar Front en Azure App Service con Soporte para Contenedores
 - 4.2.2 Agregar variables necesarias para el funcionamiento de la nueva etapa considerando que debe haber 2 entornos QA y PROD para Back y Front.
-- 4.2.3 Agregar tareas para correr pruebas de integración en el entorno de QA de Back y Front creado en Azure App Services con Soporte para Contenedores. (Punto 4.1.12)
+- 4.2.3 Agregar tareas para correr pruebas de integración en el entorno de QA de Back y Front creado en Azure App Services con Soporte para Contenedores. 
 - 4.2.4 Agregar etapa que dependa de la etapa de Deploy en QA que genere un entorno de PROD.
 - 4.2.5 Entregar un pipeline que incluya:
   - A) Etapa Construcción y Pruebas Unitarias y Code Coverage Back y Front
