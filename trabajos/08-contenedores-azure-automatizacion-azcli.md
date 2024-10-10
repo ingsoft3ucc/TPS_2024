@@ -386,6 +386,11 @@ Las variables son esenciales para construir pipelines flexibles y adaptables que
 
 ![](https://ajeuwbhvhr.cloudimg.io/colony-recorder.s3.amazonaws.com/files/2024-09-22/ce058583-1cf6-4e1f-9bb6-e18bb1b4eb35/ascreenshot.jpeg?tl_px=474,62&br_px=1457,611&force_format=jpeg&q=100&width=983&wat_scale=87&wat=1&wat_opacity=0.7&wat_gravity=northwest&wat_url=https://colony-recorder.s3.us-west-1.amazonaws.com/images/watermarks/FB923C_standard.png&wat_pad=744,121)
 
+13\. Ir a Configuracion->Claves de acceso de nuestro recurso ACR y tildar el check "Usuario administrador"
+
+![image](https://github.com/user-attachments/assets/8bf99a9a-2479-4e66-8780-091315169b03)
+
+
 ### 5.2 Crear una Service Connection a Azure Resource Manager en Azure DevOps
 
 1\. En nuestro proyecto de ADO, click "Project settings"
